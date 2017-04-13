@@ -72,7 +72,7 @@ class Partita():
 
 	 	else:
 
-	 		if cliente[0] in listaIP:
+	 		if self.cliente[0] in self.listaIP:
 
 	 			if self.query["attesa"]==["1"]:
 	 				
@@ -107,17 +107,19 @@ class Partita():
 
 				u.debug("sto analizzando la conferma",4)
 
+				player.conferma=True
+
 				if self.verificaOK()==True:
 
-					self.response("Benvenuto nella Terra di Mezzo")
-					self.response("Il tuo colore e il {}".format(player.colore))
+					self.response("Benvenuto nella Terra di Mezzo. Il tuo colore e il {}".format(player.colore))
 					
+
 					self.STATO=1.1
 
 				else:
 
 					self.soCKET.sendall(u.responseHTTP("Aspettare la conferma degli altri giocatori.","200 OK"))
-
+					
 			elif "attesa" in self.query:
 
 				if self.query["attesa"]==["1"]:
@@ -126,7 +128,7 @@ class Partita():
 
 	 			elif self.query["attesa"]==["2"]:
 
-	 				pass
+	 				self.response("Attendere la conferma degli altri giocatori")
 	 				#TODO rispondi qualcosa
 
 	 			else:
@@ -160,6 +162,7 @@ class Partita():
 
 		for g in self.giocatori:
 
+			print "%%%%%%%%%%%%%%%%%%%%%%%%%%%" 
 			print(g.conferma)
 
 			if g.conferma==False:
@@ -175,7 +178,7 @@ class Partita():
 
 	def confermePrepartita(self):
 
-		if cliente[0] in listaIP:
+		if self.cliente[0] in self.listaIP:
 
 			player=None
 
@@ -228,7 +231,7 @@ class Partita():
 
 					elif self.query["attesa"]==["3"]:
 
-						pass
+						self.response("Attendere gli altri giocatori")
 						#TODO rispondi qualcosa
 
 					else:
@@ -273,7 +276,7 @@ class Partita():
 
 		#distribuzione armate sui territori
 
-		if cliente[0] in listaIP:
+		if self.cliente[0] in self.listaIP:
 
 			if self.query:
 
@@ -366,30 +369,30 @@ class Partita():
 			self.rispostina()
 
 
-def passaAllaPartita(self):
+	def passaAllaPartita(self):
 
-	var=True
+		var=True
 
-	for g in self.giocatori:
+		for g in self.giocatori:
 
-		if g.finitoDisArmy==False:
+			if g.finitoDisArmy==False:
 
-			var=False
+				var=False
 				
-			break		
+				break		
 
-	return var
+		return var
 
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
-def TurnoGiocatore(self,player):
+	def TurnoGiocatore(self,player):
 
-	self.player=player
+		self.player=player
 	
-	if "attesa" in self.query and self.query["attesa"]==["4"]:
+		if "attesa" in self.query and self.query["attesa"]==["4"]:
 
-		self.response("Inizio della partita.")
+			self.response("Inizio della partita.")
 
 
 ##0000000000000000000000000000000000000000000000000000000000000000000000000
@@ -413,7 +416,7 @@ class Giocatore(object):
 		self.NumArmy=0
 		self.finitoDisArmy=False
 		self.territori=[]
-		self.nomiTerritori=[territori.nomeT]
+		self.nomiTerritori=None #TODO
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 #0000000000000000000000000000000000000000000000000000000000000000000000000
