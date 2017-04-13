@@ -10,6 +10,10 @@ class Partita():
 		self.giocatori=[] #lista di oggetti del tipo Giocatore
 		self.listaIP=[]
 
+		self.carteTerritori=[]
+		self.colori=[]
+		self.obiettivi=[]
+
 		self.giocatoreDelTurno=None
 
 		self.tutto=[]
@@ -25,6 +29,26 @@ class Partita():
 
 	def response(self, risposta, codice="200 OK"):
 		self.soCKET.sendall(u.responseHTTP(risposta,codice))
+
+	def DistribuzioneRoba(self,Lista,listina1,listina2,listina3,totale=False):
+
+		a=Lista
+		from random import shuffle
+		shuffle(a)
+
+		if totale==True:
+
+			lista=[listina1,listina2,listina3]
+			for i,val in enumerate(a):
+				lista[i%3].append(val)
+
+		else:
+
+			listina1=a[0]
+			listina2=a[4]
+			listina3=a[5]
+
+
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 #0000000000000000000000000000000000000000000000000000000000000000000000000
@@ -87,6 +111,16 @@ class Partita():
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 
 	def analizzaRichiesteOK(self):
+
+		#distribuzione territori
+		self.DistribuzioneRoba(self.territoriTotali, self.giocatori[0].territori, self.giocatori[1].territori, self.giocatori[2].territori,True)
+		
+		#distribuzione obiettivo
+		self.DistribuzioneRoba(self.obiettivi, self.giocatori[0].obiettivoGiocatore , self.giocatori[1].obiettivoGiocatore , self.giocatori[2].obiettivoGiocatore , False)
+
+		#distribuzione colore
+		self.DistribuzioneRoba(self.colori, self.giocatori[0].colore , self.giocatori[1].colore , self.giocatori[2].colore , False)		
+
 
 		u.debug("sto analizzando richieste",4)
 
@@ -409,6 +443,7 @@ class Giocatore(object):
 		self.socket=socket
 		self.IP=self.socket[0]
 		self.colore=""
+		self.obiettivoGiocatore=""
 		self.conferma=False
 		self.colorSelect=False
 		self.obiettivoDist=False
@@ -454,4 +489,10 @@ class Carta(object):
 		self.proprietario=Territorio.proprietarioC
 
 
-				
+class CartaObiettivo(object):
+	"""docstring for Obiettivi"""
+	def __init__(self,ID):
+		self.stringaObiettivo=""
+		self.proprietario=None
+		self.oID=ID
+		self.obiettivoLogico=None
