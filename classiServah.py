@@ -11,7 +11,7 @@ class Partita():
 		self.listaIP=[]
 
 		self.carteTerritori=[]
-		self.colori=[]
+		self.colori=["blu","rosse","gialle","nere","verdi","viola"]
 		self.obiettivi=[]
 
 		self.giocatoreDelTurno=None
@@ -30,7 +30,7 @@ class Partita():
 	def response(self, risposta, codice="200 OK"):
 		self.soCKET.sendall(u.responseHTTP(risposta,codice))
 
-	def DistribuzioneRoba(self,Lista,listina1,listina2,listina3,totale=False):
+	def DistribuzioneRoba(self,Lista,listina1,listina2,listina3=None,listina4=None,listina5=None,listina6=None,totale=False):
 
 		a=Lista
 		from random import shuffle
@@ -38,15 +38,41 @@ class Partita():
 
 		if totale==True:
 
-			lista=[listina1,listina2,listina3]
+			if numPmax==2:
+				lista=[listina1,listina2]
+
+				if numPmax==3:
+					lista=[listina1,listina2,listina3]
+
+					if numPmax==4:
+						lista=[listina1,listina2,listina3,listina4]
+
+						if numPmax==5:
+							lista=[listina1,listina2,listina3,listina4,listina5]
+
+							if numPmax==6:
+								lista=[listina1,listina2,listina3,listina4,listina5,listina6]
+
 			for i,val in enumerate(a):
-				lista[i%3].append(val)
+				lista[i%self.numPmax].append(val)
 
 		else:
 
 			listina1=a[0]
 			listina2=a[4]
-			listina3=a[5]
+
+			if numPmax>=3:
+				listina3=a[5]
+
+				if numPmax>=4:
+					listina4=a[2]
+
+					if numPmax>=5:
+						listina5=a[3]
+
+						if numPmax==6:
+							listina6=a[1]
+
 
 
 
@@ -113,13 +139,13 @@ class Partita():
 	def analizzaRichiesteOK(self):
 
 		#distribuzione territori
-		self.DistribuzioneRoba(self.territoriTotali, self.giocatori[0].territori, self.giocatori[1].territori, self.giocatori[2].territori,True)
+		self.DistribuzioneRoba(self.carteTerritori, self.giocatori[0].territori,True)
 		
 		#distribuzione obiettivo
-		self.DistribuzioneRoba(self.obiettivi, self.giocatori[0].obiettivoGiocatore , self.giocatori[1].obiettivoGiocatore , self.giocatori[2].obiettivoGiocatore , False)
+		self.DistribuzioneRoba(self.obiettivi, self.giocatori[0].obiettivoGiocatore , self.giocatori[1].obiettivoGiocatore , False)
 
 		#distribuzione colore
-		self.DistribuzioneRoba(self.colori, self.giocatori[0].colore , self.giocatori[1].colore , self.giocatori[2].colore , False)		
+		self.DistribuzioneRoba(self.colori, self.giocatori[0].colore , self.giocatori[1].colore , False)		
 
 
 		u.debug("sto analizzando richieste",4)
