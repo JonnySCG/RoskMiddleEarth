@@ -1,0 +1,20 @@
+{
+"obiettivi":[
+				{
+					"stringa":"Conquista 24 territori",
+					"obiettivoLogico":{},
+					"ID":"ob24"
+				},
+				{
+					"stringa":"Distruggi le armate Rosse",
+					"obiettivoLogico":{},
+					"ID":"obA1"
+				},
+				{
+					"stringa":"Conquista l'America del Nord e l'Asia",
+					"obiettivoLogico":{},
+					"ID":"obT1"
+				}
+			]
+
+}

@@ -1,9 +1,12 @@
 import utilities as u
 
+import json
+
 class Partita():
 
 	"""Partita: oggetto che rappresenta il gioco vero e proprio"""
 	def __init__(self,numPmax):
+
 		self.numPmax=numPmax
 		self.STATO=0
 		self.numP=0
@@ -11,6 +14,7 @@ class Partita():
 		self.listaIP=[]
 
 		self.carteTerritori=[]
+		self.carteTerritoriFisse=self.carteTerritori
 		self.colori=["blu","rosse","gialle","nere","verdi","viola"]
 		self.obiettivi=[]
 
@@ -73,7 +77,11 @@ class Partita():
 						if numPmax==6:
 							listina6=a[1]
 
+	def controllaRequest(self):
 
+		if self.cliente[0] in self.giocatori and self.query:
+
+			self.response("Azione non disponibile.")
 
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000
@@ -139,7 +147,7 @@ class Partita():
 	def analizzaRichiesteOK(self):
 
 		#distribuzione territori
-		self.DistribuzioneRoba(self.carteTerritori, self.giocatori[0].territori,True)
+		self.DistribuzioneRoba(self.carteTerritori, self.giocatori[0].territori, self.giocatori[1].territori,True)
 		
 		#distribuzione obiettivo
 		self.DistribuzioneRoba(self.obiettivi, self.giocatori[0].obiettivoGiocatore , self.giocatori[1].obiettivoGiocatore , False)
@@ -353,7 +361,7 @@ class Partita():
 							player.finitoDisArmy=False
 							self.response("Puoi ricominciare a distribuire le tue armate")
 
-						elif "attesa" in self.query and self.query["attesa"]==["4"]:
+						elif "aggiornami" in self.query and self.query["aggiornami"]==["1"]:
 
 							pass
 							#TODO rispondi qualcosa
@@ -446,13 +454,23 @@ class Partita():
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
-	def TurnoGiocatore(self,player):
+	def inizioPartita(self):
 
-		self.player=player
-	
-		if "attesa" in self.query and self.query["attesa"]==["4"]:
+		self.controllaRequest()
 
-			self.response("Inizio della partita.")
+		if self.cliente[0] == giocatoreDelTurno.IP:
+
+			if "aggiornami" in self.query and self.query["aggiornami"]==["1"]:
+				None
+			elif "carta1" in self.query and "carta2" in self.query and "carta3" in self.query and "carta1" in giocatoreDelTurno.carteCombinazioni and "carta2" in giocatoreDelTurno.carteCombinazioni and "carta3" in giocatoreDelTurno.carteCombinazioni:
+				#bruno non e' d'accordo con questo, ma jonny insiste in che e' bello
+				None
+			#elif :
+			#	None
+			else:
+				None
+		else:
+			None
 
 
 ##0000000000000000000000000000000000000000000000000000000000000000000000000
@@ -469,7 +487,7 @@ class Giocatore(object):
 		self.socket=socket
 		self.IP=self.socket[0]
 		self.colore=""
-		self.obiettivoGiocatore=""
+		self.obiettivoGiocatore=None
 		self.conferma=False
 		self.colorSelect=False
 		self.obiettivoDist=False
@@ -477,6 +495,7 @@ class Giocatore(object):
 		self.NumArmy=0
 		self.finitoDisArmy=False
 		self.territori=[]
+		self.carteCombinazioni=[]
 		self.nomiTerritori=None #TODO
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000
@@ -488,13 +507,15 @@ class Giocatore(object):
 class Territorio(object):
 	"""docstring for Territorio"""
 
-	def __init__(self):
-		self.nomeT=""
+	def __init__(self,nome,colore):
+		self.nomeT=nome
 		self.carta=None
 		self.numArmyT=0
+		self.continente=None
 		self.proprietarioT=None
 		self.proprietarioC=None
 		self.armateExtra=False
+		self.coloreTerritorio=colore
 
 		if self.proprietarioC==self.proprietarioT:
 			self.armateExtra=True
@@ -509,16 +530,33 @@ class Carta(object):
 	"""docstring for Carta"""
 	def __init__(self, figura, Territorio, nomeContinente):
 
-		self.figura=figura
-		self.territorioC=Territorio.nomeT
-		self.continente=nomeContinente
-		self.proprietario=Territorio.proprietarioC
+		if figura!="jolly":
+			self.figura=figura
+			self.territorioC=Territorio.nomeT
+			self.continente=nomeContinente
+			self.proprietario=Territorio.proprietarioC
+			self.jolly=False
 
+		else:
+
+			self.proprietario=None
+			self.jolly=True
 
 class CartaObiettivo(object):
 	"""docstring for Obiettivi"""
-	def __init__(self,ID):
-		self.stringaObiettivo=""
+	def __init__(self,json):
+		self.stringa=json["stringa"]
 		self.proprietario=None
-		self.oID=ID
-		self.obiettivoLogico=None
+		self.ID=json["ID"]
+		self.obiettivoLogicoCompletato=False
+		self.obiettivoLogico=json["obiettivoLogico"]
+
+if __name__=="__main__":
+
+	with open('obiettivi.json') as data_file:    
+
+		data = json.load(data_file)
+
+		a= u.parser(CartaObiettivo,data["obiettivi"])
+
+		print a[0].stringa

@@ -12,3 +12,11 @@ def debug(out,LEVEL):
 
 	if LEVEL> LEVEL_OUT:
 		print(out)
+
+def parser(oggetto,json):
+	oggetti=[]
+
+	for o in json:
+		oggetti.append(oggetto(o))
+		
+	return oggetti
