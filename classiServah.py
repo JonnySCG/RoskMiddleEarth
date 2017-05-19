@@ -472,8 +472,10 @@ class Partita():
 				codiciQuery.append(self.query["carta2"])
 				codiciQuery.append(self.query["carta3"])
 
+				self.ArmyDaCarte(self.estrapolaCarte(codiciQuery))
 
-				
+				self.response("Combinazione analizzata: {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
+
 			elif "fine2.1" in self.query and self.query["fine2.1"]==["OK"]:
 				
 				self.STATO=2.2
@@ -490,12 +492,29 @@ class Partita():
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 
-	def estrapolaCarte(self,stringa1,stringa2,stringa3):
+	def estrapolaCarte(self,codici):
+
+		codiciGenerali=[]
+		carteDaRitornare=[]
+		combinazioneBuona=True
 
 		for x in self.giocatoreDelTurno.carteCombinazioni:
 
+			codiciGenerali.append(x.code)
 
+		for x in codici:
 
+			if x not in codiciGenerali:
+
+				return False
+
+		for ogniCarta in self.giocatoreDelTurno.carteCombinazioni:
+
+			if ogniCarta.code in codici:
+
+				carteDaRitornare.append(ogniCarta)
+
+		return carteDaRitornare
 
 	def ArmyDaCarte(self,carteCombo):
 
