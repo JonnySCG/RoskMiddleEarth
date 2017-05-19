@@ -464,8 +464,15 @@ class Partita():
 				
 				self.response("E' il tuo turno")
 
-			elif "carta1" in self.query and "carta2" in self.query and "carta3" in self.query and "carta1" in giocatoreDelTurno.carteCombinazioni and "carta2" in giocatoreDelTurno.carteCombinazioni and "carta3" in giocatoreDelTurno.carteCombinazioni:
-				#bruno non e' d'accordo con questo, ma jonny insiste in che e' bello
+			elif "carta1" in self.query and "carta2" in self.query and "carta3" in self.query:
+
+				codiciQuery=[]
+
+				codiciQuery.append(self.query["carta1"])
+				codiciQuery.append(self.query["carta2"])
+				codiciQuery.append(self.query["carta3"])
+
+
 				
 			elif "fine2.1" in self.query and self.query["fine2.1"]==["OK"]:
 				
@@ -485,7 +492,9 @@ class Partita():
 
 	def estrapolaCarte(self,stringa1,stringa2,stringa3):
 
-		for x.code in self.giocatoreDelTurno.carteCombinazioni:
+		for x in self.giocatoreDelTurno.carteCombinazioni:
+
+
 
 
 	def ArmyDaCarte(self,carteCombo):
@@ -592,12 +601,12 @@ class Carta(object):
 	"""docstring for Carta"""
 	def __init__(self, figura, Territorio, nomeContinente):
 
-		if figura!="jolly":
-			self.figura=figura
-			self.code=None
-			self.territorioC=Territorio.nomeT
-			self.continente=nomeContinente
-			self.proprietario=Territorio.proprietarioC
+
+		self.figura=figura
+		self.code=""
+		self.territorioC=Territorio.nomeT
+		self.continente=nomeContinente
+		self.proprietario=Territorio.proprietarioC
 
 
 
