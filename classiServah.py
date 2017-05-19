@@ -454,23 +454,27 @@ class Partita():
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
-	def inizioPartita(self):
+	def incassareArmate(self):
 
 		self.controllaRequest()
 
 		if self.cliente[0] == giocatoreDelTurno.IP:
 
 			if "aggiornami" in self.query and self.query["aggiornami"]==["1"]:
-				None
+				
+				self.response("E' il tuo turno")
+
 			elif "carta1" in self.query and "carta2" in self.query and "carta3" in self.query and "carta1" in giocatoreDelTurno.carteCombinazioni and "carta2" in giocatoreDelTurno.carteCombinazioni and "carta3" in giocatoreDelTurno.carteCombinazioni:
 				#bruno non e' d'accordo con questo, ma jonny insiste in che e' bello
-				None
-			#elif :
-			#	None
+				
+			elif "fine2.1" in self.query and self.query["fine2.1"]==["OK"]:
+				
+				self.STATO=2.2
+
 			else:
-				None
+				self.response("Azione non disponibile")
 		else:
-			None
+			self.response("Azione non disponibile")
 
 
 ##0000000000000000000000000000000000000000000000000000000000000000000000000
@@ -478,6 +482,64 @@ class Partita():
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 #0000000000000000000000000000000000000000000000000000000000000000000000000
+
+	def estrapolaCarte(self,stringa1,stringa2,stringa3):
+
+		for x.code in self.giocatoreDelTurno.carteCombinazioni:
+
+
+	def ArmyDaCarte(self,carteCombo):
+
+		c1=carteCombo[0].figura
+		c2=carteCombo[1].figura
+		c3=carteCombo[2].figura
+
+		if c1==c2 and c1==c3:
+
+			if c1=="troll":
+
+				self.giocatoreDelTurno.NumArmy+=8
+
+			elif c1=="balrog":
+
+				self.giocatoreDelTurno.NumArmy+=10
+
+			elif c1=="drago":
+
+				self.giocatoreDelTurno.NumArmy+=12
+
+			else:
+
+				self.response("Azione non disponibile")
+
+		elif c1!=c2 and c1!=c3 and c2!=c3:
+
+			self.giocatoreDelTurno.NumArmy+=14
+
+		elif c1 =="jolly" or c2=="jolly" or c3=="jolly":
+
+			if c1 =="jolly" and c2==c3:
+
+				self.giocatoreDelTurno.NumArmy+=15
+
+			elif c2 =="jolly" and c1==c3:
+
+				self.giocatoreDelTurno.NumArmy+=15
+
+			elif c3 =="jolly" and c2==c1:			
+
+				self.giocatoreDelTurno.NumArmy+=15
+
+			else:
+
+				self.response("Combinazione non valida")
+
+		else:
+
+			self.response("Combinazione non valida")
+
+
+
 
 class Giocatore(object):
 
@@ -532,15 +594,12 @@ class Carta(object):
 
 		if figura!="jolly":
 			self.figura=figura
+			self.code=None
 			self.territorioC=Territorio.nomeT
 			self.continente=nomeContinente
 			self.proprietario=Territorio.proprietarioC
-			self.jolly=False
 
-		else:
 
-			self.proprietario=None
-			self.jolly=True
 
 class CartaObiettivo(object):
 	"""docstring for Obiettivi"""
