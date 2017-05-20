@@ -474,6 +474,17 @@ class Partita():
 
 				self.ArmyDaCarte(self.estrapolaCarte(codiciQuery))
 
+				x=len(self.giocatoreDelTurno.territori)/3
+				y=0
+
+				if x<=3: y=0
+				elif x>=4 and x<=9: y=1
+				elif x>=10 and x<=15: y=2
+				elif x=16 or x=17 : y=3
+				else: self.response("Azione non disponibile")
+
+				self.giocatoreDelTurno.NumArmy+=(x+y)
+
 				self.response("Combinazione analizzata: {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
 
 			elif "fine2.1" in self.query and self.query["fine2.1"]==["OK"]:
@@ -603,40 +614,33 @@ class Territorio(object):
 		self.numArmyT=0
 		self.continente=None
 		self.proprietarioT=None
-		self.proprietarioC=None
 		self.armateExtra=False
 		self.coloreTerritorio=colore
 
 		if self.proprietarioC==self.proprietarioT:
 			self.armateExtra=True
 
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
 
 class Carta(object):
 	"""docstring for Carta"""
-	def __init__(self, figura, Territorio, nomeContinente):
-
+	def __init__(self,json):
 
 		self.figura=figura
 		self.code=""
 		self.territorioC=Territorio.nomeT
 		self.continente=nomeContinente
-		self.proprietario=Territorio.proprietarioC
+		self.proprietario=None
 
 
 
 class CartaObiettivo(object):
 	"""docstring for Obiettivi"""
 	def __init__(self,json):
-		self.stringa=json["stringa"]
+		self.stringa=json["obiettivi"]["stringa"]
 		self.proprietario=None
-		self.ID=json["ID"]
+		self.ID=json["obiettivi"]["ID"]
 		self.obiettivoLogicoCompletato=False
-		self.obiettivoLogico=json["obiettivoLogico"]
+		self.obiettivoLogico=json["obiettivi"]["obiettivoLogico"]
 
 if __name__=="__main__":
 
@@ -646,4 +650,3 @@ if __name__=="__main__":
 
 		a= u.parser(CartaObiettivo,data["obiettivi"])
 
-		print a[0].stringa

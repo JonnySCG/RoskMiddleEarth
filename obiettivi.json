@@ -6,15 +6,83 @@
 					"ID":"ob24"
 				},
 				{
-					"stringa":"Distruggi le armate Rosse",
+					"stringa":"Conquista 18 territori occupandoli con almeno 2 armate ognuna",
+					"obiettivoLogico":{},
+					"ID":"ob18"
+				},
+				{
+					"stringa":"Conquista la totalità del Beleriand e del Nord Endor",
+					"obiettivoLogico":{},
+					"ID":"obT1"
+				},
+				{
+					"stringa":"Conquista la totalità del Sud Aman e del Nord Endor",
+					"obiettivoLogico":{},
+					"ID":"obT2"
+				},
+				{
+					"stringa":"Conquista la totalità del Sud Aman e del Nord Aman",
+					"obiettivoLogico":{},
+					"ID":"obT3"
+				},
+				{
+					"stringa":"Conquista la totalità del Beleriand e del Sud Aman",
+					"obiettivoLogico":{},
+					"ID":"obT4"
+				},
+				{
+					"stringa":"Conquista la totalità del Beleriand e del Endor Orientale",
+					"obiettivoLogico":{},
+					"ID":"obT5"
+				},
+				{
+					"stringa":"Conquista la totalità del Endor Orientale e del Sud Endor",
+					"obiettivoLogico":{},
+					"ID":"obT6"
+				},
+				{
+					"stringa":"Distruggi le Armate Rosse, oppure conquista 24 territori",
 					"obiettivoLogico":{},
 					"ID":"obA1"
 				},
 				{
-					"stringa":"Conquista l'America del Nord e l'Asia",
+					"stringa":"Distruggi le Armate Gialle, oppure conquista 24 territori",
 					"obiettivoLogico":{},
-					"ID":"obT1"
+					"ID":"obA2"
+				},
+				{
+					"stringa":"Distruggi le Armate Blu, oppure conquista 24 territori",
+					"obiettivoLogico":{},
+					"ID":"obA3"
+				},
+				{
+					"stringa":"Distruggi le Armate Verdi, oppure conquista 24 territori",
+					"obiettivoLogico":{},
+					"ID":"obA4"
+				},
+				{
+					"stringa":"Distruggi le Armate Nere, oppure conquista 24 territori",
+					"obiettivoLogico":{},
+					"ID":"obA5"
+				},
+				{
+					"stringa":"Distruggi le Armate Viola, oppure conquista 24 territori",
+					"obiettivoLogico":{},
+					"ID":"obA6"
 				}
+			],
+"carte":[
+
+			
+
+
+
+		],
+
+"territori":[
+
+
+
 			]
 
 }

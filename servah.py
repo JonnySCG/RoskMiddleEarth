@@ -34,7 +34,8 @@ while True:
 	0.2: p.analizzaRichiesteOK ,
 	1.1: p.confermePrepartita ,
 	1.5: p.disArmy ,
-	2.1: p.incassareArmate 
+	2.1: p.incassareArmate ,
+	2.2: DummyFunction
 	
 	}
 	
