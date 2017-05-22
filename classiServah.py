@@ -595,6 +595,7 @@ class Giocatore(object):
 		self.finitoDisArmy=False
 		self.territori=[]
 		self.carteCombinazioni=[]
+		self.eliminato=False
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 #0000000000000000000000000000000000000000000000000000000000000000000000000
@@ -664,7 +665,9 @@ class CartaObiettivo(object):
 
 					list1.append(x)
 
-			if len(list1)==14
+			if len(list1)==14:
+
+				self.obCompletato=True
 
 		elif json["obiettivi"]["ID"]=="obT2":
 
@@ -679,7 +682,9 @@ class CartaObiettivo(object):
 
 					list1.append(x)
 
-			if len(list1)==14			
+			if len(list1)==14:
+
+				self.obCompletato=True	
 
 		elif json["obiettivi"]["ID"]=="obT3":
 
@@ -694,7 +699,9 @@ class CartaObiettivo(object):
 
 					list1.append(x)
 
-			if len(list1)==15
+			if len(list1)==15:
+
+				self.obCompletato=True
 
 		elif json["obiettivi"]["ID"]=="obT4":
 
@@ -709,7 +716,9 @@ class CartaObiettivo(object):
 
 					list1.append(x)
 
-			if len(list1)==18			
+			if len(list1)==18:
+
+				self.obCompletato=True	
 
 		elif json["obiettivi"]["ID"]=="obT5":
 
@@ -724,7 +733,9 @@ class CartaObiettivo(object):
 
 					list1.append(x)
 
-			if len(list1)==19
+			if len(list1)==19:
+
+				self.obCompletato=True
 
 		elif json["obiettivi"]["ID"]=="obT6":
 
@@ -739,30 +750,165 @@ class CartaObiettivo(object):
 
 					list1.append(x)
 
-			if len(list1)==20
+			if len(list1)==20:
+
+				self.obCompletato=True
 
 		elif json["obiettivi"]["ID"]=="obA1":
 
+			colorePresente=False
+			playerDaSconfiggere=None
+
+			for x in giocatori:
+				
+				if x.colore == "rosso":
+
+					colorePresente=True
+					playerDaSconfiggere=x
+
+			if colorePresente==True:
+
+				playerDaSconfiggere.eliminato==True:
+
+					self.obCompletato=True
+
+			else:
+
+				if len(self.proprietario.territori)>=24:
+			
+					self.obCompletato=True
+
 		elif json["obiettivi"]["ID"]=="obA2":
+
+			colorePresente=False
+			playerDaSconfiggere=None
+
+			for x in giocatori:
+				
+				if x.colore == "giallo":
+
+					colorePresente=True
+					playerDaSconfiggere=x
+
+			if colorePresente==True:
+
+				playerDaSconfiggere.eliminato==True:
+
+					self.obCompletato=True
+
+			else:
+
+				if len(self.proprietario.territori)>=24:
+			
+					self.obCompletato=True
 
 		elif json["obiettivi"]["ID"]=="obA3":
 
+			colorePresente=False
+			playerDaSconfiggere=None
+
+			for x in giocatori:
+				
+				if x.colore == "blu":
+
+					colorePresente=True
+					playerDaSconfiggere=x
+
+			if colorePresente==True:
+
+				playerDaSconfiggere.eliminato==True:
+
+					self.obCompletato=True
+
+			else:
+
+				if len(self.proprietario.territori)>=24:
+			
+					self.obCompletato=True
+
 		elif json["obiettivi"]["ID"]=="obA4":
+
+			colorePresente=False
+			playerDaSconfiggere=None
+
+			for x in giocatori:
+				
+				if x.colore == "verde":
+
+					colorePresente=True
+					playerDaSconfiggere=x
+
+			if colorePresente==True:
+
+				playerDaSconfiggere.eliminato==True:
+
+					self.obCompletato=True
+
+			else:
+
+				if len(self.proprietario.territori)>=24:
+			
+					self.obCompletato=True
 
 		elif json["obiettivi"]["ID"]=="obA5":
 
+			colorePresente=False
+			playerDaSconfiggere=None
+
+			for x in giocatori:
+				
+				if x.colore == "nero":
+
+					colorePresente=True
+					playerDaSconfiggere=x
+
+			if colorePresente==True:
+
+				playerDaSconfiggere.eliminato==True:
+
+					self.obCompletato=True
+
+			else:
+
+				if len(self.proprietario.territori)>=24:
+			
+					self.obCompletato=True
+
 		elif json["obiettivi"]["ID"]=="obA6":
 
+			colorePresente=False
+			playerDaSconfiggere=None
 
+			for x in giocatori:
+				
+				if x.colore == "viola":
+
+					colorePresente=True
+					playerDaSconfiggere=x
+
+			if colorePresente==True:
+
+				playerDaSconfiggere.eliminato==True:
+
+					self.obCompletato=True
+
+			else:
+
+				if len(self.proprietario.territori)>=24:
+			
+					self.obCompletato=True
 
 			
 
 
 if __name__=="__main__":
 
-	with open('obiettivi.json') as data_file:    
+	with open('json.json') as data_file:    
 
 		data = json.load(data_file)
 
 		a= u.parser(CartaObiettivo,data["obiettivi"])
+		b= u.parser(Carta,data["carte"])
+		c= u.parser(Territorio,data["territori"])
+
 
