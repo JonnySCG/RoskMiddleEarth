@@ -197,7 +197,6 @@ class Partita():
 	 			elif self.query["attesa"]==["2"]:
 
 	 				self.response("Attendere la conferma degli altri giocatori")
-	 				#TODO rispondi qualcosa
 
 	 			else:
 
@@ -300,7 +299,6 @@ class Partita():
 					elif self.query["attesa"]==["3"]:
 
 						self.response("Attendere gli altri giocatori")
-						#TODO rispondi qualcosa
 
 					else:
 
@@ -597,7 +595,6 @@ class Giocatore(object):
 		self.finitoDisArmy=False
 		self.territori=[]
 		self.carteCombinazioni=[]
-		self.nomiTerritori=None #TODO
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 #0000000000000000000000000000000000000000000000000000000000000000000000000
@@ -608,18 +605,13 @@ class Giocatore(object):
 class Territorio(object):
 	"""docstring for Territorio"""
 
-	def __init__(self,nome,colore):
+	def __init__(self,json):
 		self.nomeT=nome
-		self.carta=None
 		self.numArmyT=0
-		self.continente=None
+		self.codiceTerritorio=""
+		self.continente=""
 		self.proprietarioT=None
-		self.armateExtra=False
 		self.coloreTerritorio=colore
-
-		if self.proprietarioC==self.proprietarioT:
-			self.armateExtra=True
-
 
 class Carta(object):
 	"""docstring for Carta"""
@@ -627,7 +619,7 @@ class Carta(object):
 
 		self.figura=figura
 		self.code=""
-		self.territorioC=Territorio.nomeT
+		self.codiceTerritorio=""
 		self.continente=nomeContinente
 		self.proprietario=None
 
@@ -639,8 +631,132 @@ class CartaObiettivo(object):
 		self.stringa=json["obiettivi"]["stringa"]
 		self.proprietario=None
 		self.ID=json["obiettivi"]["ID"]
-		self.obiettivoLogicoCompletato=False
-		self.obiettivoLogico=json["obiettivi"]["obiettivoLogico"]
+		self.obCompletato=False
+
+		if json["obiettivi"]["ID"]=="ob24" and len(self.proprietario.territori)>=24:
+			
+			self.obCompletato=True
+
+		elif json["obiettivi"]["ID"]=="ob18" and len(self.proprietario.territori)>=18:
+
+			arrayno=[]
+
+			for x in self.proprietario.territori:
+
+				if x.numArmyT<2:
+
+					arrayno.append(x)
+
+			if len(arrayno)==0
+
+				self.obCompletato=True
+
+		elif json["obiettivi"]["ID"]=="obT1":
+
+			c1="Beleriand"
+			c2="Nord Endor"
+
+			list1=[]
+
+			for x in self.proprietario.territori:
+				
+				if x.continente == c1 or x.continente == c2:
+
+					list1.append(x)
+
+			if len(list1)==14
+
+		elif json["obiettivi"]["ID"]=="obT2":
+
+			c1="Sud Aman"
+			c2="Nord Endor"
+
+			list1=[]
+
+			for x in self.proprietario.territori:
+				
+				if x.continente == c1 or x.continente == c2:
+
+					list1.append(x)
+
+			if len(list1)==14			
+
+		elif json["obiettivi"]["ID"]=="obT3":
+
+			c1="Sud Aman"
+			c2="Nord Aman"
+
+			list1=[]
+
+			for x in self.proprietario.territori:
+				
+				if x.continente == c1 or x.continente == c2:
+
+					list1.append(x)
+
+			if len(list1)==15
+
+		elif json["obiettivi"]["ID"]=="obT4":
+
+			c1="Beleriand"
+			c2="Sud Aman"
+
+			list1=[]
+
+			for x in self.proprietario.territori:
+				
+				if x.continente == c1 or x.continente == c2:
+
+					list1.append(x)
+
+			if len(list1)==18			
+
+		elif json["obiettivi"]["ID"]=="obT5":
+
+			c1="Beleriand"
+			c2="Endor Orientale"
+
+			list1=[]
+
+			for x in self.proprietario.territori:
+				
+				if x.continente == c1 or x.continente == c2:
+
+					list1.append(x)
+
+			if len(list1)==19
+
+		elif json["obiettivi"]["ID"]=="obT6":
+
+			c1="Sud Endor"
+			c2="Endor Orientale"
+
+			list1=[]
+
+			for x in self.proprietario.territori:
+				
+				if x.continente == c1 or x.continente == c2:
+
+					list1.append(x)
+
+			if len(list1)==20
+
+		elif json["obiettivi"]["ID"]=="obA1":
+
+		elif json["obiettivi"]["ID"]=="obA2":
+
+		elif json["obiettivi"]["ID"]=="obA3":
+
+		elif json["obiettivi"]["ID"]=="obA4":
+
+		elif json["obiettivi"]["ID"]=="obA5":
+
+		elif json["obiettivi"]["ID"]=="obA6":
+
+
+
+			
+
 
 if __name__=="__main__":
 
