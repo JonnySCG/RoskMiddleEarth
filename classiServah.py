@@ -9,24 +9,21 @@ class Partita():
 
 		self.numPmax=numPmax
 		self.STATO=0
-		self.numP=0
 		self.giocatori=[] #lista di oggetti del tipo Giocatore
+		self.numP=0
 		self.listaIP=[]
 
+		self.colori=["blu","rosso","giallo","nero","verde","viola"]
+		self.obiettivi=[]
 		self.carteTerritori=[]
 		self.carteTerritoriFisse=self.carteTerritori
-		self.colori=["blu","rosse","gialle","nere","verdi","viola"]
-		self.obiettivi=[]
 
 		self.giocatoreDelTurno=None
-
-		self.tutto=[]
 
 	def aggiungiP(self,player):
 
 		self.numP+=1
 		self.giocatori.append(player)
-		u.debug("sto aggiungendo giocatori",5)
 
 	def rispostina(self):
 		self.soCKET.sendall(u.responseHTTP("Partita non disponibile","200 OK"))
@@ -45,17 +42,20 @@ class Partita():
 			if numPmax==2:
 				lista=[listina1,listina2]
 
-				if numPmax==3:
-					lista=[listina1,listina2,listina3]
+			elif numPmax==3:
+				lista=[listina1,listina2,listina3]
 
-					if numPmax==4:
-						lista=[listina1,listina2,listina3,listina4]
+			elif numPmax==4:
+				lista=[listina1,listina2,listina3,listina4]
 
-						if numPmax==5:
-							lista=[listina1,listina2,listina3,listina4,listina5]
+			elif numPmax==5:
+				lista=[listina1,listina2,listina3,listina4,listina5]
 
-							if numPmax==6:
-								lista=[listina1,listina2,listina3,listina4,listina5,listina6]
+			elif numPmax==6:
+				lista=[listina1,listina2,listina3,listina4,listina5,listina6]
+
+			else:
+				self.response("Parametri partita sballati")
 
 			for i,val in enumerate(a):
 				lista[i%self.numPmax].append(val)
@@ -229,9 +229,6 @@ class Partita():
 
 		for g in self.giocatori:
 
-			print "%%%%%%%%%%%%%%%%%%%%%%%%%%%" 
-			print(g.conferma)
-
 			if g.conferma==False:
 
 				var=False
@@ -338,6 +335,7 @@ class Partita():
 	def disArmy(self):
 
 		if self.passaAllaPartita()==True:
+
 			self.STATO=2
 
 		#distribuzione armate sui territori
@@ -348,7 +346,7 @@ class Partita():
 
 				if "aggiorna" in self.query and self.query["aggiorna"]==["1"]:
 
-					self.response(self.tutto)
+					self.response()#TODO
 
 				else:
 
@@ -478,7 +476,7 @@ class Partita():
 				if x<=3: y=0
 				elif x>=4 and x<=9: y=1
 				elif x>=10 and x<=15: y=2
-				elif x=16 or x=17 : y=3
+				elif x=16: y=3
 				else: self.response("Azione non disponibile")
 
 				self.giocatoreDelTurno.NumArmy+=(x+y)
