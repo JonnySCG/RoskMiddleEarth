@@ -537,13 +537,40 @@ class Partita():
 
 				self.giocatoreDelTurno.NumArmy+=8
 
+				if c1.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c2.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c3.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
 			elif c1=="balrog":
 
 				self.giocatoreDelTurno.NumArmy+=10
 
+				if c1.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c2.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c3.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
 			elif c1=="drago":
 
 				self.giocatoreDelTurno.NumArmy+=12
+
+				if c1.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c2.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c3.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
 
 			else:
 
@@ -553,19 +580,55 @@ class Partita():
 
 			self.giocatoreDelTurno.NumArmy+=14
 
+			if c1.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+			if c2.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+			if c3.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
 		elif c1 =="jolly" or c2=="jolly" or c3=="jolly":
 
 			if c1 =="jolly" and c2==c3:
 
 				self.giocatoreDelTurno.NumArmy+=15
 
+				if c1.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c2.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c3.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
 			elif c2 =="jolly" and c1==c3:
 
 				self.giocatoreDelTurno.NumArmy+=15
 
+				if c1.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c2.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c3.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
 			elif c3 =="jolly" and c2==c1:			
 
 				self.giocatoreDelTurno.NumArmy+=15
+
+				if c1.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c2.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
+
+				if c3.armateExtra==True:
+					self.giocatoreDelTurno.NumArmy+=2
 
 			else:
 
@@ -623,6 +686,14 @@ class Carta(object):
 		self.codiceTerritorio=""
 		self.continente=nomeContinente
 		self.proprietario=None
+		self.armateExtra=False
+
+		for x in self.proprietario.territori:
+			
+			if x.code == self.code:
+
+				self.armateExtra=True
+
 
 
 
