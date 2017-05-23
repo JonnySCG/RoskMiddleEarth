@@ -7,14 +7,27 @@ class Partita():
 	"""Partita: oggetto che rappresenta il gioco vero e proprio"""
 	def __init__(self,numPmax):
 
+		self.data=None
+
+		if __name__=="__main__":
+
+			with open('json.json') as data_file:
+
+				self.data = json.load(data_file)
+
 		self.numPmax=numPmax
 		self.STATO=0
-		self.giocatori=[] #lista di oggetti del tipo Giocatore
+		self.giocatori=[]
 		self.numP=0
 		self.listaIP=[]
 
 		self.colori=["blu","rosso","giallo","nero","verde","viola"]
 		
+		#error
+		#  |
+		#  |
+		#  V
+
 		self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"])
 		self.carte=u.parser(Carta,data["carte"])
 		self.territoriGenerali=u.parser(Territorio,data["territori"])
@@ -479,7 +492,7 @@ class Partita():
 				if x<=3: y=0
 				elif x>=4 and x<=9: y=1
 				elif x>=10 and x<=15: y=2
-				elif x=16: y=3
+				elif x==16: y=3
 				else: self.response("Azione non disponibile")
 
 				self.giocatoreDelTurno.NumArmy+=(x+y)
@@ -687,8 +700,13 @@ class Carta(object):
 		self.cartaT=None
 		self.proprietario=None
 		self.armateExtra=False
+		self.match=None
 
-		for x in Partita.territoriFissi: #TODO
+		if self in x.carte: #TODO
+
+			self.match=x
+
+		for x in match.territoriFissi: #TODO
 
 			if x.codiceTerritorio==self.codiceTerritorio:
 
@@ -725,7 +743,7 @@ class CartaObiettivo(object):
 
 					arrayno.append(x)
 
-			if len(arrayno)==0
+			if len(arrayno)==0:
 
 				self.obCompletato=True
 
@@ -845,7 +863,7 @@ class CartaObiettivo(object):
 
 			if colorePresente==True:
 
-				playerDaSconfiggere.eliminato==True:
+				if playerDaSconfiggere.eliminato==True:
 
 					self.obCompletato=True
 
@@ -869,7 +887,7 @@ class CartaObiettivo(object):
 
 			if colorePresente==True:
 
-				playerDaSconfiggere.eliminato==True:
+				if playerDaSconfiggere.eliminato==True:
 
 					self.obCompletato=True
 
@@ -893,7 +911,7 @@ class CartaObiettivo(object):
 
 			if colorePresente==True:
 
-				playerDaSconfiggere.eliminato==True:
+				if playerDaSconfiggere.eliminato==True:
 
 					self.obCompletato=True
 
@@ -917,7 +935,7 @@ class CartaObiettivo(object):
 
 			if colorePresente==True:
 
-				playerDaSconfiggere.eliminato==True:
+				if playerDaSconfiggere.eliminato==True:
 
 					self.obCompletato=True
 
@@ -941,7 +959,7 @@ class CartaObiettivo(object):
 
 			if colorePresente==True:
 
-				playerDaSconfiggere.eliminato==True:
+				if playerDaSconfiggere.eliminato==True:
 
 					self.obCompletato=True
 
@@ -965,7 +983,7 @@ class CartaObiettivo(object):
 
 			if colorePresente==True:
 
-				playerDaSconfiggere.eliminato==True:
+				if playerDaSconfiggere.eliminato==True:
 
 					self.obCompletato=True
 
@@ -975,17 +993,5 @@ class CartaObiettivo(object):
 			
 					self.obCompletato=True
 
-			
-
-
-if __name__=="__main__":
-
-	with open('json.json') as data_file:    
-
-		data = json.load(data_file)
-
-		a= u.parser(CartaObiettivo,data["obiettivi"])
-		b= u.parser(Carta,data["carte"])
-		c= u.parser(Territorio,data["territori"])
 
 

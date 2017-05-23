@@ -40,8 +40,5 @@ while True:
 	}
 	
 	switch[p.STATO]()
-
-	print(p.STATO, p.numP)
-	print(p.cliente,p.listaIP)
-	#print(query)
+	
 	p.soCKET.close()
