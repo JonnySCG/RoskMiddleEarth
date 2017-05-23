@@ -376,7 +376,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se1",
-				"nome":""
+				"nome":"Estremo Harad"
 
 			},
 			{
@@ -384,7 +384,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se2",
-				"nome":""
+				"nome":"Grande Golfo"
 
 			},
 			{
@@ -392,7 +392,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se3",
-				"nome":""
+				"nome":"Medio Harad"
 
 			},
 			{
@@ -400,7 +400,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se4",
-				"nome":""
+				"nome":"Monti Gialli"
 
 			},
 			{
@@ -408,7 +408,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se5",
-				"nome":""
+				"nome":"Monti Grigi"
 
 			},
 			{
@@ -416,7 +416,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se6",
-				"nome":""
+				"nome":"Muri del Sole"
 
 			},
 			{
@@ -424,7 +424,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se7",
-				"nome":""
+				"nome":"Stretto del mondo"
 
 			},
 			{
@@ -432,7 +432,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se8",
-				"nome":""
+				"nome":"Terre dell'Est"
 
 			},
 			{
@@ -440,7 +440,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se9",
-				"nome":""
+				"nome":"Terre Oscure"
 
 			},
 			{
@@ -448,7 +448,7 @@
 				"colore":"",
 				"continente":"Sud Endor",
 				"codice":"se10",
-				"nome":""
+				"nome":"Vicino Harad"
 
 			}
 			
@@ -457,296 +457,296 @@
 "territori":[
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b1",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b2",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b3",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b4",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b5",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b6",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b7",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b8",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"b9",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo1",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo2",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo3",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo4",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo5",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo6",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo7",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo8",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo9",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"eo10",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"na1",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"na2",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"na3",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"na4",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"na5",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"na6",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"ne1",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"ne2",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"ne3",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"ne4",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"ne5",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa1",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa2",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa3",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa4",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa5",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa6",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa7",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa8",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"sa9",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se1",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se2",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se3",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se4",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se5",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se6",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se7",
+					"figura":"troll"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se8",
+					"figura":"balrog"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se9",
+					"figura":"drago"
 
 				},
 				{
 
-					"codice":"",
-					"figura":""
+					"codice":"se10",
+					"figura":"troll"
 
 				},
 				{
