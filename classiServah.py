@@ -14,9 +14,12 @@ class Partita():
 		self.listaIP=[]
 
 		self.colori=["blu","rosso","giallo","nero","verde","viola"]
-		self.obiettivi=[]
-		self.carteTerritori=[]
-		self.carteTerritoriFisse=self.carteTerritori
+		
+		self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"])
+		self.carte=u.parser(Carta,data["carte"])
+		self.territoriGenerali=u.parser(Territorio,data["territori"])
+
+		self.territoriFissi=self.territoriGenerali
 
 		self.giocatoreDelTurno=None
 
@@ -147,7 +150,7 @@ class Partita():
 	def analizzaRichiesteOK(self):
 
 		#distribuzione territori
-		self.DistribuzioneRoba(self.carteTerritori, self.giocatori[0].territori, self.giocatori[1].territori,True)
+		self.DistribuzioneRoba(self.territoriGenerali, self.giocatori[0].territori, self.giocatori[1].territori,True)
 		
 		#distribuzione obiettivo
 		self.DistribuzioneRoba(self.obiettivi, self.giocatori[0].obiettivoGiocatore , self.giocatori[1].obiettivoGiocatore , False)
@@ -668,23 +671,28 @@ class Territorio(object):
 	"""docstring for Territorio"""
 
 	def __init__(self,json):
-		self.nomeT=nome
+		self.nomeT=json["territori"]["nome"]
 		self.numArmyT=0
-		self.codiceTerritorio=""
-		self.continente=""
+		self.codiceTerritorio=json["territori"]["codice"]
+		self.continente=json["territori"]["continente"]
 		self.proprietarioT=None
-		self.coloreTerritorio=colore
+		self.coloreTerritorio=json["territori"]["colore"]
 
 class Carta(object):
 	"""docstring for Carta"""
 	def __init__(self,json):
 
-		self.figura=figura
-		self.code=""
-		self.codiceTerritorio=""
-		self.continente=nomeContinente
+		self.figura=json["carte"]["figura"]
+		self.codiceTerritorio=json["carte"]["codice"]
+		self.cartaT=None
 		self.proprietario=None
 		self.armateExtra=False
+
+		for x in Partita.territoriFissi: #TODO
+
+			if x.codiceTerritorio==self.codiceTerritorio:
+
+				self.cartaT=x
 
 		for x in self.proprietario.territori:
 			
@@ -703,11 +711,11 @@ class CartaObiettivo(object):
 		self.ID=json["obiettivi"]["ID"]
 		self.obCompletato=False
 
-		if json["obiettivi"]["ID"]=="ob24" and len(self.proprietario.territori)>=24:
+		if json["obiettivi"]["ID"]=="ob28" and len(self.proprietario.territori)>=28:
 			
 			self.obCompletato=True
 
-		elif json["obiettivi"]["ID"]=="ob18" and len(self.proprietario.territori)>=18:
+		elif json["obiettivi"]["ID"]=="ob21" and len(self.proprietario.territori)>=21:
 
 			arrayno=[]
 

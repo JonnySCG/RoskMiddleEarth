@@ -1,12 +1,12 @@
 {
 "obiettivi":[
 				{
-					"stringa":"Conquista 24 territori",
-					"ID":"ob24"
+					"stringa":"Conquista 28 territori",
+					"ID":"ob28"
 				},
 				{
-					"stringa":"Conquista 18 territori occupandoli con almeno 2 armate ognuno",
-					"ID":"ob18"
+					"stringa":"Conquista 21 territori occupandoli con almeno 2 armate ognuno",
+					"ID":"ob21"
 				},
 				{
 					"stringa":"Conquista la totalità del Beleriand e del Nord Endor",
@@ -59,14 +59,708 @@
 			],
 "carte":[
 
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			},
+			{
+
+				"colore":"",
+				"continente":"",
+				"codice":"",
+				"nome":""
+
+			}
 			
-
-
-
 		],
 
 "territori":[
+				{
 
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"",
+					"figura":""
+
+				},
+				{
+
+					"codice":"j1",
+					"figura":"jolly"
+
+				},
+				{
+
+					"codice":"j2",
+					"figura":"jolly"
+
+				},
 
 
 			]
