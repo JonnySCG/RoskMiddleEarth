@@ -17,8 +17,8 @@ class Partita():
 
 		self.numPmax=numPmax
 		self.STATO=0
-		self.giocatori=[]
 		self.numP=0
+		self.giocatori=[]
 		self.listaIP=[]
 
 		self.colori=["blu","rosso","giallo","nero","verde","viola"]
@@ -690,6 +690,20 @@ class Territorio(object):
 		self.continente=json["territori"]["continente"]
 		self.proprietarioT=None
 		self.coloreTerritorio=json["territori"]["colore"]
+		self.nomiTconfinanti=json["territori"]["tConfinanti"]
+		self.territoriConfinanti=[]
+		self.match=None
+
+		if self in x.territoriGenerali: #TODO
+
+			self.match=x
+
+		for x in match.territori: 
+			
+			if x.nomeT in self.nomiTconfinanti:
+
+				self.territoriConfinanti.append(x)
+		
 
 class Carta(object):
 	"""docstring for Carta"""
