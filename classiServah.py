@@ -495,6 +495,64 @@ class Partita():
 				elif x==16: y=3
 				else: self.response("Azione non disponibile")
 
+				arrayno1=[]
+				arrayno2=[]
+				arrayno3=[]
+				arrayno4=[]
+				arrayno5=[]
+				arrayno6=[]
+
+				for x in self.giocatoreDelTurno.territori:
+					
+					if x.continente =="Beleriand":
+
+						arrayno1.append(x)
+
+					if x.continente =="Endor Orientale":
+
+						arrayno2.append(x)
+
+					if x.continente =="Nord Aman":
+
+						arrayno3.append(x)
+
+					if x.continente =="Nord Endor":
+
+						arrayno4.append(x)
+
+					if x.continente =="Sud Aman":
+
+						arrayno5.append(x)
+
+					if x.continente =="Sud Endor":
+
+						arrayno6.append(x)
+
+				if len(arrayno1):
+					
+					self.giocatoreDelTurno.NumArmy+=6
+
+				if len(arrayno2):
+					
+					self.giocatoreDelTurno.NumArmy+=8
+
+				if len(arrayno3):
+					
+					self.giocatoreDelTurno.NumArmy+=4
+
+				if len(arrayno4):
+					
+					self.giocatoreDelTurno.NumArmy+=3
+
+				if len(arrayno5):
+					
+					self.giocatoreDelTurno.NumArmy+=5
+
+				if len(arrayno6):
+					
+					self.giocatoreDelTurno.NumArmy+=7
+
+
 				self.giocatoreDelTurno.NumArmy+=(x+y)
 
 				self.response("Combinazione analizzata: {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
@@ -507,6 +565,11 @@ class Partita():
 				self.response("Azione non disponibile")
 		else:
 			self.response("Azione non disponibile")
+
+
+	def battaglia(self):
+		
+		
 
 
 ##0000000000000000000000000000000000000000000000000000000000000000000000000
