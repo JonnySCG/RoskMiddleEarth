@@ -7,13 +7,19 @@ class Partita():
 	"""Partita: oggetto che rappresenta il gioco vero e proprio"""
 	def __init__(self,numPmax):
 
-		self.data=None
+		self.obiettivi=[]
+		self.carte=[]
+		self.territoriGenerali=[]
 
 		if __name__=="__main__":
 
 			with open('json.json') as data_file:
 
-				self.data = json.load(data_file)
+				data = json.load(data_file)
+
+				self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"])
+				self.carte=u.parser(Carta,data["carte"])
+				self.territoriGenerali=u.parser(Territorio,data["territori"])
 
 		self.numPmax=numPmax
 		self.STATO=0
@@ -22,15 +28,6 @@ class Partita():
 		self.listaIP=[]
 
 		self.colori=["blu","rosso","giallo","nero","verde","viola"]
-		
-		#error
-		#  |
-		#  |
-		#  V
-
-		self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"])
-		self.carte=u.parser(Carta,data["carte"])
-		self.territoriGenerali=u.parser(Territorio,data["territori"])
 
 		self.territoriFissi=self.territoriGenerali
 
@@ -99,10 +96,8 @@ class Partita():
 
 			self.response("Azione non disponibile.")
 
-
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-
+#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#  STATO 0      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	def analizzaPrimaRequest(self):
 
@@ -119,8 +114,8 @@ class Partita():
 		else:
 		 	self.soCKET.sendall(u.responseHTTP(None,"404 NOTFOUND"))
 
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
+#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#  STATO 0.1    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	def attesaAltriPlayers(self):
 		
@@ -157,8 +152,8 @@ class Partita():
 
 	 			self.soCKET.sendall(u.responseHTTP(None,"404 NOTFOUND"))
 
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
+#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#  STATO 0.2    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	def analizzaRichiesteOK(self):
 
@@ -253,8 +248,8 @@ class Partita():
 
 		return var
 
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
+#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#  STATO 1.1    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	def confermePrepartita(self):
 
@@ -329,8 +324,6 @@ class Partita():
 
 			self.rispostina()
 
-
-
 	def verificaDisTerritori(self):
 
 		var=True
@@ -345,8 +338,8 @@ class Partita():
 
 		return var
 
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
+#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#  STATO 1.5    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	def disArmy(self):
 
@@ -448,7 +441,6 @@ class Partita():
 
 			self.rispostina()
 
-
 	def passaAllaPartita(self):
 
 		var=True
@@ -464,7 +456,7 @@ class Partita():
 		return var
 
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#  STATO 2.1    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	def incassareArmate(self):
 
@@ -564,20 +556,8 @@ class Partita():
 			else:
 				self.response("Azione non disponibile")
 		else:
-			self.response("Azione non disponibile")
-
-
-	def battaglia(self):
+			self.response("Azione non disponibile")		
 		
-		
-
-
-##0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-#0000000000000000000000000000000000000000000000000000000000000000000000000
-
 	def estrapolaCarte(self,codici):
 
 		codiciGenerali=[]
@@ -744,7 +724,6 @@ class Giocatore(object):
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 
 class Territorio(object):
-	"""docstring for Territorio"""
 
 	def __init__(self,json):
 		self.nomeT=json["territori"]["nome"]
@@ -755,7 +734,7 @@ class Territorio(object):
 		self.coloreTerritorio=json["territori"]["colore"]
 		self.nomiTconfinanti=json["territori"]["tConfinanti"]
 		self.territoriConfinanti=[]
-		self.match=None
+		self.match=None #TODO
 
 		if self in x.territoriGenerali: #TODO
 
@@ -769,7 +748,7 @@ class Territorio(object):
 		
 
 class Carta(object):
-	"""docstring for Carta"""
+
 	def __init__(self,json):
 
 		self.figura=json["carte"]["figura"]
@@ -777,7 +756,7 @@ class Carta(object):
 		self.cartaT=None
 		self.proprietario=None
 		self.armateExtra=False
-		self.match=None
+		self.match=None #TODO
 
 		if self in x.carte: #TODO
 
@@ -796,10 +775,8 @@ class Carta(object):
 				self.armateExtra=True
 
 
-
-
 class CartaObiettivo(object):
-	"""docstring for Obiettivi"""
+
 	def __init__(self,json):
 		self.stringa=json["obiettivi"]["stringa"]
 		self.proprietario=None
