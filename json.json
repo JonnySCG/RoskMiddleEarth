@@ -503,315 +503,315 @@
 				
 			],
 
-"territori":[
-				{
+"carte":[
+			{
 
-					"codice":"b1",
-					"figura":"troll"
+				"codice":"b1",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"b2",
-					"figura":"balrog"
+				"codice":"b2",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"b3",
-					"figura":"drago"
+				"codice":"b3",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"b4",
-					"figura":"troll"
+				"codice":"b4",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"b5",
-					"figura":"balrog"
+				"codice":"b5",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"b6",
-					"figura":"drago"
+				"codice":"b6",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"b7",
-					"figura":"troll"
+				"codice":"b7",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"b8",
-					"figura":"balrog"
+				"codice":"b8",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"b9",
-					"figura":"drago"
+				"codice":"b9",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo1",
-					"figura":"troll"
+				"codice":"eo1",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo2",
-					"figura":"balrog"
+				"codice":"eo2",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo3",
-					"figura":"drago"
+				"codice":"eo3",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo4",
-					"figura":"troll"
+				"codice":"eo4",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo5",
-					"figura":"balrog"
+				"codice":"eo5",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo6",
-					"figura":"drago"
+				"codice":"eo6",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo7",
-					"figura":"troll"
+				"codice":"eo7",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo8",
-					"figura":"balrog"
+				"codice":"eo8",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo9",
-					"figura":"drago"
+				"codice":"eo9",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"eo10",
-					"figura":"troll"
+				"codice":"eo10",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"na1",
-					"figura":"balrog"
+				"codice":"na1",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"na2",
-					"figura":"drago"
+				"codice":"na2",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"na3",
-					"figura":"troll"
+				"codice":"na3",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"na4",
-					"figura":"balrog"
+				"codice":"na4",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"na5",
-					"figura":"drago"
+				"codice":"na5",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"na6",
-					"figura":"troll"
+				"codice":"na6",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"ne1",
-					"figura":"balrog"
+				"codice":"ne1",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"ne2",
-					"figura":"drago"
+				"codice":"ne2",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"ne3",
-					"figura":"troll"
+				"codice":"ne3",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"ne4",
-					"figura":"balrog"
+				"codice":"ne4",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"ne5",
-					"figura":"drago"
+				"codice":"ne5",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa1",
-					"figura":"troll"
+				"codice":"sa1",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa2",
-					"figura":"balrog"
+				"codice":"sa2",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa3",
-					"figura":"drago"
+				"codice":"sa3",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa4",
-					"figura":"troll"
+				"codice":"sa4",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa5",
-					"figura":"balrog"
+				"codice":"sa5",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa6",
-					"figura":"drago"
+				"codice":"sa6",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa7",
-					"figura":"troll"
+				"codice":"sa7",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa8",
-					"figura":"balrog"
+				"codice":"sa8",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"sa9",
-					"figura":"drago"
+				"codice":"sa9",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se1",
-					"figura":"troll"
+				"codice":"se1",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se2",
-					"figura":"balrog"
+				"codice":"se2",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se3",
-					"figura":"drago"
+				"codice":"se3",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se4",
-					"figura":"troll"
+				"codice":"se4",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se5",
-					"figura":"balrog"
+				"codice":"se5",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se6",
-					"figura":"drago"
+				"codice":"se6",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se7",
-					"figura":"troll"
+				"codice":"se7",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se8",
-					"figura":"balrog"
+				"codice":"se8",
+				"figura":"balrog"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se9",
-					"figura":"drago"
+				"codice":"se9",
+				"figura":"drago"
 
-				},
-				{
+			},
+			{
 
-					"codice":"se10",
-					"figura":"troll"
+				"codice":"se10",
+				"figura":"troll"
 
-				},
-				{
+			},
+			{
 
-					"codice":"j1",
-					"figura":"jolly"
+				"codice":"j1",
+				"figura":"jolly"
 
-				},
-				{
+			},
+			{
 
-					"codice":"j2",
-					"figura":"jolly"
+				"codice":"j2",
+				"figura":"jolly"
 
-				},
+			}
 
 
-			]
+		]
 
 }

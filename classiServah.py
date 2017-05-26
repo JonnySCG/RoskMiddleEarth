@@ -10,16 +10,17 @@ class Partita():
 		self.obiettivi=[]
 		self.carte=[]
 		self.territoriGenerali=[]
+		self.territoriFissi=[]
 
-		if __name__=="__main__":
 
-			with open('json.json') as data_file:
+		with open('json.json') as data_file:
 
-				data = json.load(data_file)
+			data = json.load(data_file)
 
-				self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"])
-				self.carte=u.parser(Carta,data["carte"])
-				self.territoriGenerali=u.parser(Territorio,data["territori"])
+			self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"],self)
+			self.territoriGenerali=u.parser(Territorio,data["territori"],self)
+			self.territoriFissi=self.territoriGenerali[:]
+			self.carte=u.parser(Carta,data["carte"],self)
 
 		self.numPmax=numPmax
 		self.STATO=0
@@ -28,8 +29,6 @@ class Partita():
 		self.listaIP=[]
 
 		self.colori=["blu","rosso","giallo","nero","verde","viola"]
-
-		self.territoriFissi=self.territoriGenerali
 
 		self.giocatoreDelTurno=None
 
@@ -44,12 +43,17 @@ class Partita():
 	def response(self, risposta, codice="200 OK"):
 		self.soCKET.sendall(u.responseHTTP(risposta,codice))
 
-	def DistribuzioneRoba(self,Lista,listina1,listina2,listina3=None,listina4=None,listina5=None,listina6=None,totale=False):
+	def DistribuzioneRoba(self,Listona,listina1,listina2,listina3=None,listina4=None,listina5=None,listina6=None,totale=False):
 
-		a=Lista
+		#Listona contains all the objects (like Territori, colori, ecc)
+		a=Listona
 		from random import shuffle
 		shuffle(a)
 
+		#Let's create a container where we will put the list of each player
+		lista=[]
+
+		#Shall we distribute all the compoenents of Listona, or only one for each player?
 		if totale==True:
 
 			if numPmax==2:
@@ -70,6 +74,7 @@ class Partita():
 			else:
 				self.response("Parametri partita sballati")
 
+			#distribution magic !!! <<< --- QUI
 			for i,val in enumerate(a):
 				lista[i%self.numPmax].append(val)
 
@@ -166,6 +171,9 @@ class Partita():
 		#distribuzione colore
 		self.DistribuzioneRoba(self.colori, self.giocatori[0].colore , self.giocatori[1].colore , False)		
 
+		for x in self.territoriGenerali:
+
+			x.addTConfinanti()
 
 		u.debug("sto analizzando richieste",4)
 
@@ -520,27 +528,27 @@ class Partita():
 
 						arrayno6.append(x)
 
-				if len(arrayno1):
+				if len(arrayno1)==9:
 					
 					self.giocatoreDelTurno.NumArmy+=6
 
-				if len(arrayno2):
+				if len(arrayno2)==10:
 					
 					self.giocatoreDelTurno.NumArmy+=8
 
-				if len(arrayno3):
+				if len(arrayno3)==6:
 					
 					self.giocatoreDelTurno.NumArmy+=4
 
-				if len(arrayno4):
+				if len(arrayno4)==5:
 					
 					self.giocatoreDelTurno.NumArmy+=3
 
-				if len(arrayno5):
+				if len(arrayno5)==9:
 					
 					self.giocatoreDelTurno.NumArmy+=5
 
-				if len(arrayno6):
+				if len(arrayno6)==10:
 					
 					self.giocatoreDelTurno.NumArmy+=7
 
@@ -548,9 +556,6 @@ class Partita():
 				self.giocatoreDelTurno.NumArmy+=(x+y)
 
 				self.response("Combinazione analizzata: {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
-
-			elif "fine2.1" in self.query and self.query["fine2.1"]==["OK"]:
-				
 				self.STATO=2.2
 
 			else:
@@ -588,45 +593,49 @@ class Partita():
 		c2=carteCombo[1].figura
 		c3=carteCombo[2].figura
 
+		c1x=carteCombo[0]
+		c2x=carteCombo[1]
+		c3x=carteCombo[2]
+
 		if c1==c2 and c1==c3:
 
 			if c1=="troll":
 
 				self.giocatoreDelTurno.NumArmy+=8
 
-				if c1.armateExtra==True:
+				if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c2.armateExtra==True:
+				if c2x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c3.armateExtra==True:
+				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
 			elif c1=="balrog":
 
 				self.giocatoreDelTurno.NumArmy+=10
 
-				if c1.armateExtra==True:
+				if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c2.armateExtra==True:
+				if c2x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c3.armateExtra==True:
+				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
 			elif c1=="drago":
 
 				self.giocatoreDelTurno.NumArmy+=12
 
-				if c1.armateExtra==True:
+				if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c2.armateExtra==True:
+				if c2x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c3.armateExtra==True:
+				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
 			else:
@@ -637,13 +646,13 @@ class Partita():
 
 			self.giocatoreDelTurno.NumArmy+=14
 
-			if c1.armateExtra==True:
+			if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-			if c2.armateExtra==True:
+			if c2x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-			if c3.armateExtra==True:
+			if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
 		elif c1 =="jolly" or c2=="jolly" or c3=="jolly":
@@ -652,39 +661,39 @@ class Partita():
 
 				self.giocatoreDelTurno.NumArmy+=15
 
-				if c1.armateExtra==True:
+				if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c2.armateExtra==True:
+				if c2x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c3.armateExtra==True:
+				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
 			elif c2 =="jolly" and c1==c3:
 
 				self.giocatoreDelTurno.NumArmy+=15
 
-				if c1.armateExtra==True:
+				if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c2.armateExtra==True:
+				if c2x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c3.armateExtra==True:
+				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
 			elif c3 =="jolly" and c2==c1:			
 
 				self.giocatoreDelTurno.NumArmy+=15
 
-				if c1.armateExtra==True:
+				if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c2.armateExtra==True:
+				if c2x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-				if c3.armateExtra==True:
+				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
 			else:
@@ -696,6 +705,49 @@ class Partita():
 			self.response("Combinazione non valida")
 
 
+	def vuoiCombattere(self):
+		
+		arriva request: contiene un territorio?
+
+			si. Vuole attaccare
+				
+				verifica se "territorio" valido
+
+					si. rispondi tutto OK
+
+						stato 2.21
+
+					no. rispondi errorino
+
+
+			no. Vuole passare alla fase successiva (2.3)
+				rispondere qualcosa 
+
+				return
+
+	def dimmiDestinazione():
+		
+		arriva request: contiene destinazione?
+
+			verifica se "destinazione" valida
+
+				si. rispondi tutto OK
+
+					stato 2.22
+
+				no. rispondi errorino
+
+	def conQuanteArmate():
+		
+		arriva request: numero Armate con cui attaccare
+
+			verifica se "numero" valido
+
+				si. rispondi tutto OK 
+
+					stato 2.23
+
+				no. rispondi errorino
 
 
 class Giocatore(object):
@@ -725,7 +777,7 @@ class Giocatore(object):
 
 class Territorio(object):
 
-	def __init__(self,json):
+	def __init__(self,json,match):
 		self.nomeT=json["territori"]["nome"]
 		self.numArmyT=0
 		self.codiceTerritorio=json["territori"]["codice"]
@@ -734,39 +786,40 @@ class Territorio(object):
 		self.coloreTerritorio=json["territori"]["colore"]
 		self.nomiTconfinanti=json["territori"]["tConfinanti"]
 		self.territoriConfinanti=[]
-		self.match=None #TODO
+		self.match=match
 
-		if self in x.territoriGenerali: #TODO
 
-			self.match=x
-
-		for x in match.territori: 
+	def addTConfinanti(self):
+	
+		for x in self.match.territori: 
 			
-			if x.nomeT in self.nomiTconfinanti:
+			if x.nomeT in self.nomiTconfinanti: # TODO sostitute nomeT with code
 
 				self.territoriConfinanti.append(x)
 		
 
 class Carta(object):
 
-	def __init__(self,json):
+	def __init__(self,json,match):
 
 		self.figura=json["carte"]["figura"]
 		self.codiceTerritorio=json["carte"]["codice"]
 		self.cartaT=None
 		self.proprietario=None
 		self.armateExtra=False
-		self.match=None #TODO
+		self.match=match
 
-		if self in x.carte: #TODO
-
-			self.match=x
-
-		for x in match.territoriFissi: #TODO
+		for x in self.match.territoriFissi:
 
 			if x.codiceTerritorio==self.codiceTerritorio:
 
 				self.cartaT=x
+
+	def controllaArmateExtra(self):
+
+		if self.proprietario == None:
+
+			print "QUESTA CARTA NON HA PROPRIETARIO"
 
 		for x in self.proprietario.territori:
 			
@@ -777,11 +830,12 @@ class Carta(object):
 
 class CartaObiettivo(object):
 
-	def __init__(self,json):
+	def __init__(self,json,match):
 		self.stringa=json["obiettivi"]["stringa"]
 		self.proprietario=None
 		self.ID=json["obiettivi"]["ID"]
 		self.obCompletato=False
+		self.match=match
 
 		if json["obiettivi"]["ID"]=="ob28" and len(self.proprietario.territori)>=28:
 			
