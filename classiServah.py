@@ -43,7 +43,7 @@ class Partita():
 	def response(self, risposta, codice="200 OK"):
 		self.soCKET.sendall(u.responseHTTP(risposta,codice))
 
-	def DistribuzioneRoba(self,Listona,listina1,listina2,listina3=None,listina4=None,listina5=None,listina6=None,totale=False):
+	def DistribuzioneTerritori(self,Listona):
 
 		#Listona contains all the objects (like Territori, colori, ecc)
 		a=Listona
@@ -57,18 +57,48 @@ class Partita():
 		if totale==True:
 
 			if numPmax==2:
+
+				listina1=self.giocatori[0].territori
+				listina2=self.giocatori[1].territori
+
 				lista=[listina1,listina2]
 
 			elif numPmax==3:
+
+				listina1=self.giocatori[0].territori
+				listina2=self.giocatori[1].territori
+				listina3=self.giocatori[2].territori
+
 				lista=[listina1,listina2,listina3]
 
 			elif numPmax==4:
+
+				listina1=self.giocatori[0].territori
+				listina2=self.giocatori[1].territori
+				listina3=self.giocatori[2].territori
+				listina4=self.giocatori[3].territori
+
 				lista=[listina1,listina2,listina3,listina4]
 
 			elif numPmax==5:
+
+				listina1=self.giocatori[0].territori
+				listina2=self.giocatori[1].territori
+				listina3=self.giocatori[2].territori
+				listina4=self.giocatori[3].territori
+				listina5=self.giocatori[4].territori
+
 				lista=[listina1,listina2,listina3,listina4,listina5]
 
 			elif numPmax==6:
+
+				listina1=self.giocatori[0].territori
+				listina2=self.giocatori[1].territori
+				listina3=self.giocatori[2].territori
+				listina4=self.giocatori[3].territori
+				listina5=self.giocatori[4].territori
+				listina6=self.giocatori[5].territori
+
 				lista=[listina1,listina2,listina3,listina4,listina5,listina6]
 
 			else:
@@ -78,28 +108,45 @@ class Partita():
 			for i,val in enumerate(a):
 				lista[i%self.numPmax].append(val)
 
-		else:
+	def DistribuzioneRoba(Listona):
+		
+		a=Listona
 
-			listina1=a[0]
-			listina2=a[4]
+		if a==self.obiettivi:
+
+			self.giocatori[0].obiettivoGiocatore=a[0]
+			self.giocatori[1].obiettivoGiocatore=a[4]
 
 			if numPmax>=3:
-				listina3=a[5]
+				self.giocatori[2].obiettivoGiocatore=a[5]
 
 				if numPmax>=4:
-					listina4=a[2]
+					self.giocatori[3].obiettivoGiocatore=a[2]
 
 					if numPmax>=5:
-						listina5=a[3]
+						self.giocatori[4].obiettivoGiocatore=a[3]
 
 						if numPmax==6:
-							listina6=a[1]
+							self.giocatori[5].obiettivoGiocatore=a[1]
 
-	def controllaRequest(self):
 
-		if self.cliente[0] in self.giocatori and self.query:
+		elif a==self.colori:
 
-			self.response("Azione non disponibile.")
+			self.giocatori[0].colore=a[0]
+			self.giocatori[1].colore=a[4]
+
+			if numPmax>=3:
+				self.giocatori[2].colore=a[5]
+
+				if numPmax>=4:
+					self.giocatori[3].colore=a[2]
+
+					if numPmax>=5:
+						self.giocatori[4].colore=a[3]
+
+						if numPmax==6:
+							self.giocatori[5].colore=a[1]
+
 
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 #  STATO 0      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -163,13 +210,13 @@ class Partita():
 	def analizzaRichiesteOK(self):
 
 		#distribuzione territori
-		self.DistribuzioneRoba(self.territoriGenerali, self.giocatori[0].territori, self.giocatori[1].territori,True)
+		self.DistribuzioneTerritori()
 		
 		#distribuzione obiettivo
-		self.DistribuzioneRoba(self.obiettivi, self.giocatori[0].obiettivoGiocatore , self.giocatori[1].obiettivoGiocatore , False)
+		self.DistribuzioneRoba(self.obiettivi)
 
 		#distribuzione colore
-		self.DistribuzioneRoba(self.colori, self.giocatori[0].colore , self.giocatori[1].colore , False)		
+		self.DistribuzioneRoba(self.colori)		
 
 		for x in self.territoriGenerali:
 
@@ -468,101 +515,105 @@ class Partita():
 
 	def incassareArmate(self):
 
-		self.controllaRequest()
+		if self.cliente[0] in self.listaIP:
 
-		if self.cliente[0] == giocatoreDelTurno.IP:
+			if self.cliente[0] == giocatoreDelTurno.IP:
 
-			if "aggiornami" in self.query and self.query["aggiornami"]==["1"]:
+				if "aggiornami" in self.query and self.query["aggiornami"]==["1"]:
 				
-				self.response("E' il tuo turno")
+					self.response("E' il tuo turno")
 
-			elif "carta1" in self.query and "carta2" in self.query and "carta3" in self.query:
+				elif "carta1" in self.query and "carta2" in self.query and "carta3" in self.query:
 
-				codiciQuery=[]
+					codiciQuery=[]
 
-				codiciQuery.append(self.query["carta1"])
-				codiciQuery.append(self.query["carta2"])
-				codiciQuery.append(self.query["carta3"])
+					codiciQuery.append(self.query["carta1"])
+					codiciQuery.append(self.query["carta2"])
+					codiciQuery.append(self.query["carta3"])
 
-				self.ArmyDaCarte(self.estrapolaCarte(codiciQuery))
+					self.ArmyDaCarte(self.estrapolaCarte(codiciQuery))
 
-				x=len(self.giocatoreDelTurno.territori)/3
-				y=0
+					x=len(self.giocatoreDelTurno.territori)/3
+					y=0
 
-				if x<=3: y=0
-				elif x>=4 and x<=9: y=1
-				elif x>=10 and x<=15: y=2
-				elif x==16: y=3
-				else: self.response("Azione non disponibile")
+					if x<=3: y=0
+					elif x>=4 and x<=9: y=1
+					elif x>=10 and x<=15: y=2
+					elif x==16: y=3
+					else: self.response("Azione non disponibile")
 
-				arrayno1=[]
-				arrayno2=[]
-				arrayno3=[]
-				arrayno4=[]
-				arrayno5=[]
-				arrayno6=[]
+					arrayno1=[]
+					arrayno2=[]
+					arrayno3=[]
+					arrayno4=[]
+					arrayno5=[]
+					arrayno6=[]
 
-				for x in self.giocatoreDelTurno.territori:
+					for x in self.giocatoreDelTurno.territori:
 					
-					if x.continente =="Beleriand":
+						if x.continente =="Beleriand":
 
-						arrayno1.append(x)
+							arrayno1.append(x)
 
-					if x.continente =="Endor Orientale":
+						if x.continente =="Endor Orientale":
 
-						arrayno2.append(x)
+							arrayno2.append(x)
 
-					if x.continente =="Nord Aman":
+						if x.continente =="Nord Aman":
 
-						arrayno3.append(x)
+							arrayno3.append(x)
 
-					if x.continente =="Nord Endor":
+						if x.continente =="Nord Endor":
 
-						arrayno4.append(x)
+							arrayno4.append(x)
 
-					if x.continente =="Sud Aman":
+						if x.continente =="Sud Aman":
 
-						arrayno5.append(x)
+							arrayno5.append(x)
 
-					if x.continente =="Sud Endor":
+						if x.continente =="Sud Endor":
 
-						arrayno6.append(x)
+							arrayno6.append(x)
 
-				if len(arrayno1)==9:
+					if len(arrayno1)==9:
 					
-					self.giocatoreDelTurno.NumArmy+=6
+						self.giocatoreDelTurno.NumArmy+=6
 
-				if len(arrayno2)==10:
+					if len(arrayno2)==10:
 					
-					self.giocatoreDelTurno.NumArmy+=8
+						self.giocatoreDelTurno.NumArmy+=8
 
-				if len(arrayno3)==6:
+					if len(arrayno3)==6:
 					
-					self.giocatoreDelTurno.NumArmy+=4
+						self.giocatoreDelTurno.NumArmy+=4
 
-				if len(arrayno4)==5:
+					if len(arrayno4)==5:
 					
-					self.giocatoreDelTurno.NumArmy+=3
+						self.giocatoreDelTurno.NumArmy+=3
 
-				if len(arrayno5)==9:
+					if len(arrayno5)==9:
 					
-					self.giocatoreDelTurno.NumArmy+=5
+						self.giocatoreDelTurno.NumArmy+=5
 
-				if len(arrayno6)==10:
+					if len(arrayno6)==10:
 					
-					self.giocatoreDelTurno.NumArmy+=7
+						self.giocatoreDelTurno.NumArmy+=7
 
 
-				self.giocatoreDelTurno.NumArmy+=(x+y)
+					self.giocatoreDelTurno.NumArmy+=(x+y)
 
-				self.response("Combinazione analizzata: {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
-				self.STATO=2.2
+					self.response("Combinazione analizzata: {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
+					self.STATO=2.2
 
-			else:
-				self.response("Azione non disponibile")
-		else:
-			self.response("Azione non disponibile")		
+				else:
+					self.response("Azione non disponibile")
 		
+			else:
+				self.response("Azione non disponibile")		
+		
+		else:
+			self.rispostina()
+
 	def estrapolaCarte(self,codici):
 
 		codiciGenerali=[]
