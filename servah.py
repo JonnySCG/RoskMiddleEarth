@@ -35,7 +35,11 @@ while True:
 	1.1: p.confermePrepartita ,
 	1.5: p.disArmy ,
 	2.1: p.incassareArmate ,
-	2.2: p.battaglia ,
+	2.15:p.distribuzioneArmateDuranteIlTurno ,
+	2.2: p.vuoiCombattere ,
+	2.21:p.dimmiDestinazione ,
+	2.22:p.conQuanteArmate ,
+	2.23:DummyFunction ,
 	2.3: DummyFunction
 	
 	}

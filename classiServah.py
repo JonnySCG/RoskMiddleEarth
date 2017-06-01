@@ -322,46 +322,26 @@ class Partita():
 				
 				if "conferma" in self.query and self.query["conferma"]==["OK"]:
 
-					if player.colorSelect==True:
-
-						if player.obiettivoDist==True:
-
-							if player.disTerritori==True:
-
-								self.response("Azione non disponibile.")
-								self.response("In attesa degli altri giocatori.")
-
-							else:
-
-								player.disTerritori=True
-
-								if verificaDisTerritori()==True:
-
-									self.STATO=1.5
-									self.response("Distribuisci le armate sui tuoi territori.")
-
-								else:
-
-									self.response("In attesa degli altri giocatori.")
-
-						else:
-
-							player.obiettivoDist=True
+					if verificaDisTerritori()==True:
+						
+						self.STATO=1.5
+						self.response("Distribuisci le armate sui tuoi territori.")
 
 					else:
 
-						player.colorSelect=True
+						self.response("In attesa degli altri giocatori.")
+
 
 				elif "attesa" in self.query:
 
 					if self.query["attesa"]==["2"]:
 
-						self.response("Benvenuto nella Terra di Mezzo")
-						self.response("Il tuo colore e il {}".format(player.colore))
+						#TODO Inviare tuttos
+						self.response("")
 
 					elif self.query["attesa"]==["3"]:
 
-						self.response("Attendere gli altri giocatori")
+						self.response("In attesa degli altri giocatori.")
 
 					else:
 
@@ -370,6 +350,7 @@ class Partita():
 				else:
 
 					self.response("Azione non disponibile")
+
 
 			else:
 
@@ -385,7 +366,7 @@ class Partita():
 
 		for g in self.giocatori:
 
-			if g.disTerritori==False:
+			if g.conferma2==False:
 
 				var=False
 				
@@ -398,13 +379,17 @@ class Partita():
 
 	def disArmy(self):
 
-		if self.passaAllaPartita()==True:
-
-			self.STATO=2
-
 		#distribuzione armate sui territori
 
 		if self.cliente[0] in self.listaIP:
+
+			player=None
+
+			for x in self.giocatori:
+				
+				if x.IP == self.cliente[0]:
+					
+					player=x
 
 			if self.query:
 
@@ -423,8 +408,13 @@ class Partita():
 
 						elif "aggiornami" in self.query and self.query["aggiornami"]==["1"]:
 
-							pass
-							#TODO rispondi qualcosa
+							self.response("")
+							#TODO rispondi tuttos
+
+
+						elif "attesa" in self.query and self.query["attesa"]==["4"]:
+
+							self.response("Attendere gli altri giocatori")
 
 						else:
 
@@ -437,19 +427,38 @@ class Partita():
 							if "finito" in self.query and self.query["finito"]==["true"]:
 
 								player.finitoDisArmy=True
-								self.response("Attendere gli altri giocatori")
 
-							elif "azione" in self.query and "territorio" in self.query and self.query["azione"]==["remove"] and self.query["territorio"] in player.nomiTerritori:
+								if self.passaAllaPartita()==True:
 
-								territorio=None
+									self.STATO=2.1
+									self.response("Le armate sono distribuite: BUONA PARTITA!")
 
-								for g in player.territori:
-									if g.nomeT==self.query["territorio"]:
+								else:
+
+									self.response("Attendere gli altri giocatori")
+
+							elif "azione" in self.query and "territorio" in self.query and self.query["azione"]==["remove"] and self.query["territorio"]:									
+
+								for g in self.territoriFissi:
+									
+									if g.code==self.query["territorio"]:
 										territorio=g
 
-								territorio.numArmyT=territorio.numArmyT-1
-								player.NumArmy=player.NumArmy+1
-								self.response(self.tutto)
+								if territorio in player.territori:
+
+									if territorio.numArmyT>=2:
+
+										territorio.numArmyT=territorio.numArmyT-1
+										player.NumArmy=player.NumArmy+1
+										self.response(self.tutto)
+
+									else:
+
+										self.response("Azione non disponibile.")
+
+								else:
+
+									self.response("Azione non disponibile.")
 
 							else:
 
@@ -457,25 +466,37 @@ class Partita():
 
 						else:
 
-							if "azione" in self.query and "territorio" in self.query and self.query["territorio"] in player.nomiTerritori:
+							if "azione" in self.query and "territorio" in self.query and self.query["territorio"]:
 
 								territorio=None
 
-								for g in player.territori:
+								for g in self.territoriFissi:
 									if g.nomeT==self.query["territorio"]:
 										territorio=g
 
-								if self.query["azione"]==["add"]:
+								if territorio in player.territori:
+									
+									if self.query["azione"]==["add"]:
 
-									territorio.numArmyT=territorio.numArmyT+1
-									self.response(self.tutto)
-									player.NumArmy=player.NumArmy-1
+										territorio.numArmyT=territorio.numArmyT+1
+										self.response(self.tutto)
+										player.NumArmy=player.NumArmy-1
 
-								elif self.query["azione"]==["remove"]:
+									elif self.query["azione"]==["remove"]:
 
-									territorio.numArmyT=territorio.numArmyT-1
-									self.response(self.tutto)
-									player.NumArmy=player.NumArmy+1
+										if territorio.numArmyT>=2:
+
+											territorio.numArmyT=territorio.numArmyT-1
+											self.response(self.tutto)
+											player.NumArmy=player.NumArmy+1
+
+										else:
+
+											self.response("Azione non disponibile.")
+
+									else:
+
+										self.response("Azione non disponibile")
 
 								else:
 
@@ -483,11 +504,12 @@ class Partita():
 
 							elif "attesa" in self.query and self.query["attesa"]==["3"]:
 
-								self.response("Distribuisci le armate sui tuoi territori.")
+									self.response("Distribuisci le armate sui tuoi territori.")
+
 
 							else:
 
-								self.response("Azione non disponibile")
+									self.response("Azione non disponibile")
 			else:
 
 				self.response("Azione non disponibile")
@@ -517,9 +539,9 @@ class Partita():
 
 		if self.cliente[0] in self.listaIP:
 
-			if self.cliente[0] == giocatoreDelTurno.IP:
+			if self.cliente[0] == self.giocatoreDelTurno.IP:
 
-				if "aggiornami" in self.query and self.query["aggiornami"]==["1"]:
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
 				
 					self.response("E' il tuo turno")
 
@@ -603,7 +625,22 @@ class Partita():
 					self.giocatoreDelTurno.NumArmy+=(x+y)
 
 					self.response("Combinazione analizzata: {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
-					self.STATO=2.2
+					self.STATO=2.15
+
+				elif "DistLeArmy" in self.query and self.query["DistLeArmy"]==["OK"]:
+
+					x=len(self.giocatoreDelTurno.territori)/3
+					y=0
+
+					if x<=3: y=0
+					elif x>=4 and x<=9: y=1
+					elif x>=10 and x<=15: y=2
+					elif x==16: y=3
+
+					self.giocatoreDelTurno.NumArmy+=(x+y)
+
+					self.STATO=2.15
+					self.response("Distribuisci le armate guadagnate:{} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
 
 				else:
 					self.response("Azione non disponibile")
@@ -755,52 +792,138 @@ class Partita():
 
 			self.response("Combinazione non valida")
 
+	def distribuzioneArmateDuranteIlTurno(self):
+		
+		if self.cliente[0] in self.listaIP:
+
+			if self.cliente[0] == self.giocatoreDelTurno.IP:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+				
+					self.response("E' il tuo turno")
+
+				else:
+					self.response("Azione non disponibile")
+		
+			else:
+				self.response("Azione non disponibile")		
+		
+		else:
+			self.rispostina()
 
 	def vuoiCombattere(self):
+
+		self.territorioAttacco=None
+
+		if self.cliente[0] in self.listaIP:
+
+			if self.cliente[0] == self.giocatoreDelTurno.IP:
+
+				if "territorio" in self.query:
+
+					territorio=None
+
+					for g in self.territoriFissi:
+						if g.nomeT==self.query["territorio"]:
+							territorio=g
+
+					if territorio in self.giocatoreDelTurno.territori and territorio.numArmyT>=2:
+
+						self.territorioAttacco=territorio
+						self.STATO=2.21
+						self.response("Scegli quale territorio attaccare.")
+
+					else:
+
+						self.response("Azione non disponibile")
+
+				elif "avanti" in self.query and self.query["avanti"]==["OK"]:
+
+					self.STATO=2.3
+					self.response("Ultima fase del turno. Sposta delle armate da un territorio a un altro.")
+
+				else:
+
+					self.response("Azione non disponibile.")
+
+			else:
+
+				self.response("Azione non disponibile")		
 		
-		arriva request: contiene un territorio?
+		else:
+			self.rispostina()
 
-			si. Vuole attaccare
-				
-				verifica se "territorio" valido
-
-					si. rispondi tutto OK
-
-						stato 2.21
-
-					no. rispondi errorino
-
-
-			no. Vuole passare alla fase successiva (2.3)
-				rispondere qualcosa 
-
-				return
-
-	def dimmiDestinazione():
+	def dimmiDestinazione(self):
 		
-		arriva request: contiene destinazione?
+		self.territorioDifesa=None
+		self.difensore=None
 
-			verifica se "destinazione" valida
+		if self.cliente[0] in self.listaIP:
 
-				si. rispondi tutto OK
+			if self.cliente[0] == self.giocatoreDelTurno.IP:
 
-					stato 2.22
+				if "territorio" in self.query:
 
-				no. rispondi errorino
+					territorio=None
 
-	def conQuanteArmate():
+					for g in self.territoriFissi:
+						if g.nomeT==self.query["territorio"]:
+							territorio=g
+
+					if territorio in self.territorioAttacco.territoriConfinanti and territorio not in self.giocatoreDelTurno.territori:
+
+						self.territorioDifesa=territorio
+
+						for g in self.giocatori:
+							
+							if self.territorioDifesa in g.territori:
+								
+								self.difensore=g
+
+						self.STATO=2.22
+						self.response("Scegli con quante armate attaccare.")
+
+					else:
+
+						self.response("Azione non disponibile")
+
+				else:
+
+					self.response("Azione non disponibile.")
+
+			else:
+
+				self.response("Azione non disponibile")		
 		
-		arriva request: numero Armate con cui attaccare
+		else:
+			self.rispostina()
 
-			verifica se "numero" valido
+	def conQuanteArmate(self):
 
-				si. rispondi tutto OK 
+		self.NumArmyATTACCO=0
 
-					stato 2.23
+		if self.cliente[0] in self.listaIP:
 
-				no. rispondi errorino
+			if self.cliente[0] == self.giocatoreDelTurno.IP:
 
+				if "armate" in self.query and self.query["armate"]<=3 and self.query["armate"]>=1 and self.query["armate"]<self.territorioAttacco.numArmyT:
+					
+					self.NumArmyATTACCO=self.query["armate"]
+					self.STATO=2.23
+					self.response("Aspetta la risposta del difensore.")
 
+				else:
+
+					self.response("Azione non disponibile")					
+
+			else:
+
+				self.response("Azione non disponibile")		
+		
+		else:
+
+			self.rispostina()
+		
 class Giocatore(object):
 
 	def __init__(self,ordine,socket):
@@ -811,14 +934,14 @@ class Giocatore(object):
 		self.colore=""
 		self.obiettivoGiocatore=None
 		self.conferma=False
-		self.colorSelect=False
-		self.obiettivoDist=False
-		self.disTerritori=False
+		self.conferma2=False
 		self.NumArmy=0
 		self.finitoDisArmy=False
 		self.territori=[]
+		self.codeTerritori=[]
 		self.carteCombinazioni=[]
 		self.eliminato=False
+
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000
 #0000000000000000000000000000000000000000000000000000000000000000000000000
