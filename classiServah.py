@@ -1057,9 +1057,15 @@ class Partita(object):
 
 					if self.query["armate"]>=1 and self.query["armate"]<=3 and self.query["armate"]<self.territorioDifesa.numArmyT:
 
-						self.NumArmyDIFESA=self.query["armate"]
-						self.response("Inizio della battaglia.")
-						self.STATO=2.24
+						if self.query["armate"]<=NumArmyATTACCO:
+
+							self.NumArmyDIFESA=self.query["armate"]
+							self.response("Inizio della battaglia.")
+							self.STATO=2.24
+
+						else:
+
+							self.response("Azione non disponibile")
 
 					else:
 
@@ -1085,6 +1091,22 @@ class Partita(object):
 
 	def battaglia(self):
 
+		dadoA1=None
+		dadoA2=None
+		dadoA3=None
+
+		dadoD1=None
+		dadoD2=None
+		dadoD3=None
+
 	def fineOinizio(self):
+
+		self.difensore=None
+		self.territorioDifesa=None
+		self.territorioAttacco=None
+		self.NumArmyATTACCO=None
+		self.NumArmyDIFESA=None
+
+		
 
 
