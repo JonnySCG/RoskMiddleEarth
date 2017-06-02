@@ -39,7 +39,9 @@ while True:
 	2.2: p.vuoiCombattere ,
 	2.21:p.dimmiDestinazione ,
 	2.22:p.conQuanteArmate ,
-	2.23:DummyFunction ,
+	2.23:p.difensoreNumArmy ,
+	2.24:p.battaglia ,
+	2.25:p.fineOinizio ,
 	2.3: DummyFunction
 	
 	}

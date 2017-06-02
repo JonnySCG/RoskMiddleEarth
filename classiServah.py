@@ -1,14 +1,11 @@
 import utilities as u
 import json
-
 from oggettiRisiko import Giocatore
 from oggettiRisiko import Territorio
 from oggettiRisiko import CartaObiettivo
 from oggettiRisiko import Carta
 
-class Partita():
-
-	"""Partita: oggetto che rappresenta il gioco vero e proprio"""
+class Partita(object):
 
 	def __init__(self,numPmax):
 
@@ -153,7 +150,6 @@ class Partita():
 
 						if numPmax==6:
 							self.giocatori[5].colore=a[1]
-
 
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 #  STATO 0      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -935,7 +931,12 @@ class Partita():
 
 			else:
 
-				self.response("Azione non disponibile")		
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+					
+					self.response("E' il turno di {}. Ti faremo sapere se e quando attacchera' un tuo territorio.".format(self.giocatoreDelTurno))
+				else:
+
+					self.response("Azione non disponibile")
 		
 		else:
 			self.rispostina()
@@ -980,7 +981,12 @@ class Partita():
 
 			else:
 
-				self.response("Azione non disponibile")		
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+					
+					self.response("E' il turno di {}. Ti faremo sapere se e quando attacchera' un tuo territorio.".format(self.giocatoreDelTurno))
+				else:
+
+					self.response("Azione non disponibile")		
 		
 		else:
 			self.rispostina()
@@ -1005,8 +1011,80 @@ class Partita():
 
 			else:
 
-				self.response("Azione non disponibile")		
+				if self.cliente[0]==self.difensore.IP:
+
+					if "attesa" in self.query and self.query["attesa"]==["4"]:
+
+						if self.NumArmyATTACCO==0:
+					
+							self.response("{} ti sta attaccando. Territorio attaccante: {}. Territorio difensore (di tua proprieta): {}. Aspetta che scelga con quante armate.".format(self.giocatoreDelTurno,self.territorioAttacco,self.territorioDifesa))
+			
+						elif self.NumArmyATTACCO>0 and self.NumArmyATTACCO<=3:
+
+							self.response("{} ha deciso di attaccarti con {} armate".format(self.giocatoreDelTurno,self.NumArmyATTACCO))
+
+						else:
+
+							self.response("Azione non disponibile")
+
+					else:
+
+						self.response("Azione non disponibile")
+
+				else:
+
+					if "attesa" in self.query and self.query["attesa"]==["4"]:
+					
+						self.response("{}({}) sta attaccando {}({}). Tra poco potrai assistere alla battaglia.".format(self.territorioAttacco,self.giocatoreDelTurno,self.territorioDifesa,self.difensore))
+				
+					else:
+
+						self.response("Azione non disponibile")
 		
 		else:
 
 			self.rispostina()
+
+	def difensoreNumArmy(self):
+
+		self.NumArmyDIFESA=0
+
+		if self.cliente[0] in self.listaIP:
+
+			if self.cliente[0] == self.difensore.IP:
+
+				if "armate" in self.query:
+
+					if self.query["armate"]>=1 and self.query["armate"]<=3 and self.query["armate"]<self.territorioDifesa.numArmyT:
+
+						self.NumArmyDIFESA=self.query["armate"]
+						self.response("Inizio della battaglia.")
+						self.STATO=2.24
+
+					else:
+
+						self.response("Azione non disponibile")
+
+				else:
+
+					self.response("Azione non disponibile")
+
+			else:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+				
+					self.response("{} sta scegliendo il numero di armate con cui difendersi.".format(self.difensore))
+
+				else:
+
+					self.response("Azione non disponibile.")
+
+		else:
+
+			self.rispostina()
+
+	def battaglia(self):
+
+	def fineOinizio(self):
+
+
