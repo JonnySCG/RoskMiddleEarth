@@ -4,6 +4,7 @@ from oggettiRisiko import Giocatore
 from oggettiRisiko import Territorio
 from oggettiRisiko import CartaObiettivo
 from oggettiRisiko import Carta
+from random import randint
 
 class Partita(object):
 
@@ -1091,6 +1092,12 @@ class Partita(object):
 
 	def battaglia(self):
 
+		arraynoATT=[]
+		arraynoDEF=[]
+
+		arraynoATT,arraynoDEF=self.dadi()
+
+	def dadi(self):
 		dadoA1=None
 		dadoA2=None
 		dadoA3=None
@@ -1099,6 +1106,53 @@ class Partita(object):
 		dadoD2=None
 		dadoD3=None
 
+		arraynoATT=[]
+		arraynoDEF=[]
+
+		if self.NumArmyATTACCO==1:
+
+			dadoA1=randint(1,6)
+			dadoA2=0
+			dadoA3=0
+
+		elif self.NumArmyATTACCO==2:
+
+			dadoA1=randint(1,6)
+			dadoA2=randint(1,6)
+			dadoA3=0
+
+		elif self.NumArmyATTACCO==3:
+
+			dadoA1=randint(1,6)
+			dadoA2=randint(1,6)
+			dadoA3=randint(1,6)
+
+		if self.NumArmyDIFESA==1:
+
+			dadoD1=randint(1,6)
+			dadoD2=0
+			dadoD3=0
+
+		elif self.NumArmyDIFESA==2:
+
+			dadoD1=randint(1,6)
+			dadoD2=randint(1,6)
+			dadoD3=0
+
+		elif self.NumArmyDIFESA==3:
+
+			dadoD1=randint(1,6)
+			dadoD2=randint(1,6)
+			dadoD3=randint(1,6)
+
+		arraynoATT.append(dadoA1,dadoA2,dadoA3)
+		arraynoDEF.append(dadoD1,dadoD2,dadoD3)
+
+		sorted(arraynoATT,key=int,reverse=True)
+		sorted(arraynoDEF,key=int,reverse=True)
+
+		return arraynoATT,arraynoDEF
+
 	def fineOinizio(self):
 
 		self.difensore=None
@@ -1106,7 +1160,3 @@ class Partita(object):
 		self.territorioAttacco=None
 		self.NumArmyATTACCO=None
 		self.NumArmyDIFESA=None
-
-		
-
-
