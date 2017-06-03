@@ -1137,9 +1137,15 @@ class Partita(object):
 
 					if confermap2=True:
 
-						self.STATO=2.25
-						self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
+						if self.giocatoreDelTurno.obiettivoGiocatore.obCompletato:
+						
+							self.response("Complimenti, hai raggiunto il tuo obiettivo. Goditi la gloria eterna!" )
+							self.STATO=3
 
+						else:
+
+							self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
+							self.STATO=2.25
 					else:
 
 						confermap1=True
@@ -1391,7 +1397,15 @@ class Partita(object):
 
 				if "conferma" in self.query and self.query["conferma"]==["OK"]:
 
-					self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
+					if self.giocatoreDelTurno.obiettivoGiocatore.obCompletato:
+					
+						self.response("Complimenti, hai raggiunto il tuo obiettivo. Goditi la gloria eterna!" )
+						self.STATO=3
+
+					else:
+
+						self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
+						self.STATO=2.25
 
 				elif "territorio" in self.query:
 
@@ -1404,8 +1418,8 @@ class Partita(object):
 					if territorio in self.giocatoreDelTurno.territori and territorio.numArmyT>=2:
 
 						self.territorioAttacco=territorio
-						self.STATO=2.21
 						self.response("Scegli quale territorio attaccare.")
+						self.STATO=2.21
 
 					else:
 
@@ -1413,8 +1427,8 @@ class Partita(object):
 
 				elif "avanti" in self.query and self.query["avanti"]==["OK"]:
 
-					self.STATO=2.3
 					self.response("Ultima fase del turno. Sposta delle armate da un territorio a un altro.")
+					self.STATO=2.3
 
 				else:
 
