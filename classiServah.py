@@ -1384,4 +1384,53 @@ class Partita(object):
 		self.territorioAttacco=None
 		self.NumArmyATTACCO=None
 		self.NumArmyDIFESA=None
+
+		if self.cliente[0] in self.listaIP:
+
+			if self.cliente[0] == self.giocatoreDelTurno.IP:
+
+				if "conferma" in self.query and self.query["conferma"]==["OK"]:
+
+					self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
+
+				elif "territorio" in self.query:
+
+					territorio=None
+
+					for g in self.territoriFissi:
+						if g.nomeT==self.query["territorio"]:
+							territorio=g
+
+					if territorio in self.giocatoreDelTurno.territori and territorio.numArmyT>=2:
+
+						self.territorioAttacco=territorio
+						self.STATO=2.21
+						self.response("Scegli quale territorio attaccare.")
+
+					else:
+
+						self.response("Azione non disponibile")
+
+				elif "avanti" in self.query and self.query["avanti"]==["OK"]:
+
+					self.STATO=2.3
+					self.response("Ultima fase del turno. Sposta delle armate da un territorio a un altro.")
+
+				else:
+
+					self.response("Azione non disponibile.")
+
+			else:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+					
+					self.response("E' il turno di {}. Ti faremo sapere se e quando attacchera' un tuo territorio.".format(self.giocatoreDelTurno))
+				else:
+
+					self.response("Azione non disponibile")
+		
+		else:
+			self.rispostina()
+
+
 		
