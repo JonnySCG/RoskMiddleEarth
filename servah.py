@@ -49,3 +49,4 @@ while True:
 	switch[p.STATO]()
 	
 	p.soCKET.close()
+	

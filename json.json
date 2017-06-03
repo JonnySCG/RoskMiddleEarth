@@ -1,5 +1,4 @@
 {
-
 "obiettivi":[
 				{
 					"stringa":"Conquista 28 territori",
@@ -501,9 +500,7 @@
 					"tConfinanti":["Stretto del mondo","Monti Grigi","Medio Harad"]
 
 				}
-				
 			],
-
 "carte":[
 			{
 
@@ -811,8 +808,5 @@
 				"figura":"jolly"
 
 			}
-
-
 		]
-
 }

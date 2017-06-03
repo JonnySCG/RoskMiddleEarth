@@ -5,6 +5,7 @@ def estrapola(testo,divisore,posizione):
 	return stringhetta[posizione]
 
 def responseHTTP(risposta,codice):
+	
 	return "HTTP/1.1 {} \r\n\r\n {}".format(codice,risposta)
 
 def debug(out,LEVEL):

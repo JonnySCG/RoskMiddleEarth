@@ -1056,7 +1056,7 @@ class Partita(object):
 
 				if "armate" in self.query:
 
-					if self.query["armate"]>=1 and self.query["armate"]<=3 and self.query["armate"]<self.territorioDifesa.numArmyT:
+					if self.query["armate"]>=1 and self.query["armate"]<=3 and self.query["armate"]<=self.territorioDifesa.numArmyT:
 
 						if self.query["armate"]<=NumArmyATTACCO:
 
@@ -1095,9 +1095,17 @@ class Partita(object):
 		arraynoATT=[]
 		arraynoDEF=[]
 
+		armatePerseATT=0
+		armatePerseDEF=0
+
 		arraynoATT,arraynoDEF=self.dadi()
 
-	def dadi(self):
+		armatePerseATT,armatePerseDEF=self.armatePerse(arraynoATT,arraynoDEF,self.NumArmyATTACCO,self.NumArmyDIFESA)
+
+
+
+	def dadi(self,nA=self.NumArmyATTACCO,nD=self.NumArmyDIFESA):
+
 		dadoA1=None
 		dadoA2=None
 		dadoA3=None
@@ -1153,6 +1161,129 @@ class Partita(object):
 
 		return arraynoATT,arraynoDEF
 
+	def armatePerse(self,list1,list2,nA,nD):
+
+		apA=None
+		apD=None
+
+		if nA==nD:
+
+			if nA==1:
+
+				if list2[0]>=list1[0]:
+					apA=apA+1
+
+				else:
+					apD=apD+1
+
+			elif nA==2:
+
+				if list2[0]>=list1[0]:
+					apA=apA+1
+
+				else:
+					apD=apD+1
+
+				if list2[1]>=list1[1]:
+					apA=apA+1
+
+				else:
+					apD=apD+1
+
+			elif nA==3:
+
+				if list2[0]>=list1[0]:
+					apA=apA+1
+
+				else:
+					apD=apD+1
+
+				if list2[1]>=list1[1]:
+					apA=apA+1
+
+				else:
+					apD=apD+1
+
+				if list2[2]>=list1[2]:
+					apA=apA+1
+
+				else:
+					apD=apD+1
+
+
+				
+		elif nA>nD:
+
+			if nA==2:
+
+				if list2[0]>=list1[0]:
+					apA=apA+1
+
+				else:
+					apD=apD+1
+
+			elif nA==3:
+
+				if nD==1:
+
+					if list2[0]>=list1[0]:
+						apA=apA+1
+
+					else:
+						apD=apD+1
+
+				else:
+
+					if list2[0]>=list1[0]:
+						apA=apA+1
+
+					else:
+						apD=apD+1
+
+					if list2[1]>=list1[1]:
+						apA=apA+1
+
+					else:
+						apD=apD+1
+
+
+
+		elif nA<nD:
+
+			if nD==2:
+
+				if list2[0]>=list1[0]:
+					apA=apA+1
+
+				else:
+					apD=apD+1
+
+			elif nD==3:
+
+				if nA==1:
+
+					if list2[0]>=list1[0]:
+						apA=apA+1
+
+					else:
+						apD=apD+1
+
+				else:
+
+					if list2[0]>=list1[0]:
+						apA=apA+1
+
+					else:
+						apD=apD+1
+
+					if list2[1]>=list1[1]:
+						apA=apA+1
+
+					else:
+						apD=apD+1
+
+		return apA,apD
+
 	def fineOinizio(self):
 
 		self.difensore=None
@@ -1160,3 +1291,4 @@ class Partita(object):
 		self.territorioAttacco=None
 		self.NumArmyATTACCO=None
 		self.NumArmyDIFESA=None
+		
