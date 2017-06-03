@@ -1010,23 +1010,17 @@ class Partita(object):
 
 					self.response("Azione non disponibile")					
 
-			else:
+			elif self.cliente[0]==self.difensore.IP:
 
-				if self.cliente[0]==self.difensore.IP:
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
 
-					if "attesa" in self.query and self.query["attesa"]==["4"]:
+					if self.NumArmyATTACCO==0:
+				
+						self.response("{} ti sta attaccando. Territorio attaccante: {}. Territorio difensore (di tua proprieta): {}. Aspetta che scelga con quante armate.".format(self.giocatoreDelTurno,self.territorioAttacco,self.territorioDifesa))
+		
+					elif self.NumArmyATTACCO>0 and self.NumArmyATTACCO<=3:
 
-						if self.NumArmyATTACCO==0:
-					
-							self.response("{} ti sta attaccando. Territorio attaccante: {}. Territorio difensore (di tua proprieta): {}. Aspetta che scelga con quante armate.".format(self.giocatoreDelTurno,self.territorioAttacco,self.territorioDifesa))
-			
-						elif self.NumArmyATTACCO>0 and self.NumArmyATTACCO<=3:
-
-							self.response("{} ha deciso di attaccarti con {} armate".format(self.giocatoreDelTurno,self.NumArmyATTACCO))
-
-						else:
-
-							self.response("Azione non disponibile")
+						self.response("{} ha deciso di attaccarti con {} armate".format(self.giocatoreDelTurno,self.NumArmyATTACCO))
 
 					else:
 
@@ -1034,13 +1028,17 @@ class Partita(object):
 
 				else:
 
-					if "attesa" in self.query and self.query["attesa"]==["4"]:
-					
-						self.response("{}({}) sta attaccando {}({}). Tra poco potrai assistere alla battaglia.".format(self.territorioAttacco,self.giocatoreDelTurno,self.territorioDifesa,self.difensore))
-				
-					else:
+					self.response("Azione non disponibile")
 
-						self.response("Azione non disponibile")
+			else:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+				
+					self.response("{}({}) sta attaccando {}({}). Tra poco potrai assistere alla battaglia.".format(self.territorioAttacco,self.giocatoreDelTurno,self.territorioDifesa,self.difensore))
+			
+				else:
+
+					self.response("Azione non disponibile")
 		
 		else:
 
@@ -1095,6 +1093,13 @@ class Partita(object):
 		arraynoATT=[]
 		arraynoDEF=[]
 
+		confermap1=False
+		confermap2=False
+
+		armateDaTrasportare=0
+
+		conquistaRiuscita=False
+
 		armatePerseATT=0
 		armatePerseDEF=0
 
@@ -1102,7 +1107,95 @@ class Partita(object):
 
 		armatePerseATT,armatePerseDEF=self.armatePerse(arraynoATT,arraynoDEF,self.NumArmyATTACCO,self.NumArmyDIFESA)
 
+		if armatePerseDEF==self.territorioDifesa.numArmyT:
+			
+			self.difensore.territori.remove(self.territorioDifesa)
+			self.giocatoreDelTurno.territori.add(self.territorioDifesa)
+			conquistaRiuscita=True
+			armateDaTrasportare=self.NumArmyATTACCO-armatePerseATT
+			self.territorioAttacco.numArmyT=self.territorioAttacco.numArmyT-self.NumArmyATTACCO
+			self.territorioDifesa.numArmyT=armateDaTrasportare
+		#00000000000000000000000000000000000000000000000000000
 
+		if self.cliente[0] in self.listaIP:
+
+			self.response("Dadi attaccante:{},{},{}. Dadi difensore:{},{},{}".format(arraynoATT[0],arraynoATT[1],arraynoATT[2],arraynoDEF[0],arraynoDEF[1],arraynoDEF[2]))
+
+			if self.cliente[0] == self.giocatoreDelTurno.IP:	
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+
+					if conquistaRiuscita==True:
+
+						self.response("Hai conquistato {}, perdendo {} armate. {} delle armate che hai usato in battaglia ora occupano il territorio. Conferma di voler concludere la battaglia.".format(self.territorioDifesa,armatePerseATT,armateDaTrasportare))
+
+					else:
+
+						self.response("Bilancio battaglia >> Tu: {} armate perse. {}: {} armate perse".format(armatePerseATT,self.difensore,armatePerseDEF))
+
+				elif "conferma" in self.query and self.query["conferma"]==["OK"]:
+
+					if confermap2=True:
+
+						self.STATO=2.25
+						self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
+
+					else:
+
+						confermap1=True
+						self.response("In attesa della conferma dell'avversario.")
+
+				else:
+
+					self.response("Azione non disponibile.")
+
+			elif self.cliente[0]==self.difensore.IP:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+
+					if conquistaRiuscita==True:
+
+						self.response("Hai perso {}, insieme a tutte le armate con cui ti sei difeso. Conferma di voler concludere la battaglia.".format(self.territorioDifesa))
+
+					else:
+
+						self.response("Bilancio battaglia >> {}: {} armate perse. Tu: {} armate perse".format(self.giocatoreDelTurno,armatePerseATT,armatePerseDEF))
+
+				elif "conferma" in self.query and self.query["conferma"]==["OK"]:
+
+					if confermap1=True:
+
+						self.STATO=2.25
+						self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
+
+					else:
+
+						confermap2=True
+						self.response("In attesa della conferma dell'avversario.")
+
+				else:
+
+					self.response("Azione non disponibile")
+
+			else:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+				
+					if conquistaRiuscita==True:
+					
+						self.response("{} ha conquistato {}.".format(self.giocatoreDelTurno,self.territorioDifesa))
+
+					else:
+
+						self.response("Bilancio battaglia >> {}: {} armate perse. {}: {} armate perse".format(self.giocatoreDelTurno,armatePerseATT,self.difensore,armatePerseDEF))
+			
+				else:
+
+					self.response("Azione non disponibile")
+	
+		else:
+
+			self.rispostina()
 
 	def dadi(self,nA=self.NumArmyATTACCO,nD=self.NumArmyDIFESA):
 
