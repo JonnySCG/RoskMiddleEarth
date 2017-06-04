@@ -65,7 +65,7 @@
 					"continente":"Beleriand",
 					"codice":"b1",
 					"nome":"Ard-Galen",
-					"tConfinanti":["Dorthonion","Angband","Ered Luin","Monti di Ferro","Hitlum"]
+					"tConfinanti":["b4","ne1","b5","ne4","b7"]
 
 				},
 				{
@@ -74,7 +74,7 @@
 					"continente":"Beleriand",
 					"codice":"b2",
 					"nome":"Baia di Balar",
-					"tConfinanti":["Torre di Elwig","Falas","Doriath","Taur-im-Duinath"]
+					"tConfinanti":["na6","b6","b3","b8"]
 
 				},
 				{
@@ -83,7 +83,7 @@
 					"continente":"Beleriand",
 					"codice":"b3",
 					"nome":"Doriath",
-					"tConfinanti":["Ered Luin","Ossiriand","Taur-im-Duinath","Baia di Balar","Falas","Hitlum","Dorthonion","Ard-Galen"]
+					"tConfinanti":["b5","b9","b8","b2","b6","b7","b4","b1"]
 
 				},
 				{
@@ -92,7 +92,7 @@
 					"continente":"Beleriand",
 					"codice":"b4",
 					"nome":"Dorthonion",
-					"tConfinanti":["Hitlum","Doriath","Ard-Galen"]
+					"tConfinanti":["b7","b3","b1"]
 
 				},
 				{
@@ -101,7 +101,7 @@
 					"continente":"Beleriand",
 					"codice":"b5",
 					"nome":"Ered Luin",
-					"tConfinanti":["Grande Golfo","Ossiriand","Doriath","Ard-Galen","Monti di Ferro","Foreste del Sud","Nord Eriador"]
+					"tConfinanti":["se2","b9","b3","b1","ne4","eo1","eo7"]
 
 				},
 				{
@@ -110,7 +110,7 @@
 					"continente":"Beleriand",
 					"codice":"b6",
 					"nome":"Falas",
-					"tConfinanti":["Baia di Balar","Doriath","Hitlum"]
+					"tConfinanti":["b2","b3","b7"]
 
 				},
 				{
@@ -119,7 +119,7 @@
 					"continente":"Beleriand",
 					"codice":"b7",
 					"nome":"Hitlum",
-					"tConfinanti":["Helcarraxe","Monti di Ferro","Ard-Galen","Dorthonion","Doriath","Falas"]
+					"tConfinanti":["ne3","ne4","b1","b4","b3","b6"]
 
 				},
 				{
@@ -128,7 +128,7 @@
 					"continente":"Beleriand",
 					"codice":"b8",
 					"nome":"Taur-im-Duinath",
-					"tConfinanti":["Baia di Balar","Ossiriand","Grande Golfo","Doriath"]
+					"tConfinanti":["b2","b9","se2","b3"]
 
 				},
 				{
@@ -137,7 +137,7 @@
 					"continente":"Beleriand",
 					"codice":"b9",
 					"nome":"Ossiriand",
-					"tConfinanti":["Doriath","Taur-im-Duinath","Grande Golfo","Ered Luin"]
+					"tConfinanti":["b3","b8","se2","b5"]
 
 				},
 				{
@@ -146,7 +146,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo1",
 					"nome":"Foreste del Sud",
-					"tConfinanti":["Ered Luin","Nord Eriador","Grande Golfo","Monti bianchi","Montagne Nebbiose"]
+					"tConfinanti":["b5","eo7","se2","eo6","eo5"]
 
 				},
 				{
@@ -155,7 +155,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo2",
 					"nome":"Foreste selvaggie",
-					"tConfinanti":["Mare di Helcar","Sud Palisor","Orocarni","Hildorien"]
+					"tConfinanti":["eo4","eo10","eo8","eo3"]
 
 				},
 				{
@@ -164,7 +164,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo3",
 					"nome":"Hildorien",
-					"tConfinanti":["Foreste selvaggie","Orocarni","Sud Palisor","Muri del Sole"]
+					"tConfinanti":["eo2","eo8","eo10","se6"]
 
 				},
 				{
@@ -173,7 +173,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo4",
 					"nome":"Mare di Helcar",
-					"tConfinanti":["Foreste selvaggie","Orocarni","Sud Palisor","Monti bianchi","Rhovanion","Stretto del mondo"]
+					"tConfinanti":["eo2","eo8","eo10","eo6","eo9","se7"]
 
 				},
 				{
@@ -182,7 +182,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo5",
 					"nome":"Montagne Nebbiose",
-					"tConfinanti":["Rhovanion","Monti di Ferro","Nord Eriador","Foreste del Sud","Monti bianchi"]
+					"tConfinanti":["eo9","ne4","eo7","eo1","eo6"]
 
 				},
 				{
@@ -191,7 +191,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo6",
 					"nome":"Monti bianchi",
-					"tConfinanti":["Montagne Nebbiose","Foreste del Sud","Grande Golfo","Stretto del mondo","Mare di Helcar","Rhovanion"]
+					"tConfinanti":["eo5","eo1","se2","se7","eo4","eo9"]
 
 				},
 				{
@@ -200,7 +200,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo7",
 					"nome":"Nord Eriador",
-					"tConfinanti":["Monti di Ferro","Foreste del Sud","Ered Luin","Montagne Nebbiose"]
+					"tConfinanti":["ne4","eo1","b5","eo5"]
 
 				},
 				{
@@ -209,7 +209,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo8",
 					"nome":"Orocarni",
-					"tConfinanti":["Monti di Ferro","Rhovanion","Mare di Helcar","Foreste selvaggie","Hildorien"]
+					"tConfinanti":["ne4","eo9","eo4","eo2","eo3"]
 
 				},
 				{
@@ -218,7 +218,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo9",
 					"nome":"Rhovanion",
-					"tConfinanti":["Orocarni","Mare di Helcar","Monti bianchi","Montagne Nebbiose","Monti di Ferro"]
+					"tConfinanti":["eo8","eo4","eo6","eo5","ne4"]
 
 				},
 				{
@@ -227,7 +227,7 @@
 					"continente":"Endor Orientale",
 					"codice":"eo10",
 					"nome":"Sud Palisor",
-					"tConfinanti":["Terre Oscure","Hildorien","Foreste selvaggie","Mare di Helcar","Stretto del mondo"]
+					"tConfinanti":["se9","eo3","eo2","eo4","se7"]
 
 				},
 				{
@@ -236,7 +236,7 @@
 					"continente":"Nord Aman",
 					"codice":"na1",
 					"nome":"Araman",
-					"tConfinanti":["Helcarraxe","Peleori settentrionali","Torre di Elwig","Baia di Eldamar"]
+					"tConfinanti":["ne3","na4","na6","na2"]
 
 				},
 				{
@@ -245,7 +245,7 @@
 					"continente":"Nord Aman",
 					"codice":"na2",
 					"nome":"Baia di Eldamar",
-					"tConfinanti":["Tol Eressea","Araman","Avathar","Taniquetil","Peleori settentrionali","Peleori meridionali"]
+					"tConfinanti":["sa9","na1","sa2","sa8","na4","sa6"]
 
 				},
 				{
@@ -254,7 +254,7 @@
 					"continente":"Nord Aman",
 					"codice":"na3",
 					"nome":"Lorien",
-					"tConfinanti":["Aule di Mandos","Ezelorrah","Pianure settentrionali di Valinor"]
+					"tConfinanti":["sa1","sa4","na5"]
 
 				},
 				{
@@ -263,7 +263,7 @@
 					"continente":"Nord Aman",
 					"codice":"na4",
 					"nome":"Peleori settentrionali",
-					"tConfinanti":["Taniquetil","Ezelorrah","Baia di Eldamar","Pianure settentrionali di Valinor","Araman"]
+					"tConfinanti":["sa8","sa4","na2","na5","na1"]
 
 				},
 				{
@@ -272,7 +272,7 @@
 					"continente":"Nord Aman",
 					"codice":"na5",
 					"nome":"Pianure settentrionali di Valinor",
-					"tConfinanti":["Ezelorrah","Lorien","Peleori settentrionali"]
+					"tConfinanti":["sa4","na3","na4"]
 
 				},
 				{
@@ -281,7 +281,7 @@
 					"continente":"Nord Aman",
 					"codice":"na6",
 					"nome":"Torre di Elwig",
-					"tConfinanti":["Araman","Baia di Balar"]
+					"tConfinanti":["na1","b2"]
 
 				},
 				{
@@ -290,7 +290,7 @@
 					"continente":"Nord Endor",
 					"codice":"ne1",
 					"nome":"Angband",
-					"tConfinanti":["Ard-Galen","Monti di Ferro"]
+					"tConfinanti":["b1","ne4"]
 
 				},
 				{
@@ -299,7 +299,7 @@
 					"continente":"Nord Endor",
 					"codice":"ne2",
 					"nome":"Dor Daidelos",
-					"tConfinanti":["Helcarraxe","Monti di Ferro","Rovine di Utumno"]
+					"tConfinanti":["ne3","ne4","ne5"]
 
 				},
 				{
@@ -308,7 +308,7 @@
 					"continente":"Nord Endor",
 					"codice":"ne3",
 					"nome":"Helcarraxe",
-					"tConfinanti":["Araman","Dor Daidelos","Hitlum","Monti di Ferro"]
+					"tConfinanti":["na1","ne2","b7","ne4"]
 
 				},
 				{
@@ -317,7 +317,7 @@
 					"continente":"Nord Endor",
 					"codice":"ne4",
 					"nome":"Monti di Ferro",
-					"tConfinanti":["Dor Daidelos","Rovine di Utumno","Angband","Helcarraxe","Hitlum","Ard-Galen","Ered Luin","Nord Eriador","Montagne Nebbiose","Rhovanion","Orocarni"]
+					"tConfinanti":["ne2","ne5","ne1","ne3","b7","b1","b5","eo7","eo5","eo9","eo8"]
 
 				},
 				{
@@ -326,7 +326,7 @@
 					"continente":"Nord Endor",
 					"codice":"ne5",
 					"nome":"Rovine di Utumno",
-					"tConfinanti":["Monti di Ferro","Dor Daidelos"]
+					"tConfinanti":["ne4","ne2"]
 
 				},
 				{
@@ -335,7 +335,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa1",
 					"nome":"Aule di Mandos",
-					"tConfinanti":["Ezelorrah","Lorien","Pianure di Yavanna"]
+					"tConfinanti":["sa4","na3","sa7"]
 
 				},
 				{
@@ -344,7 +344,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa2",
 					"nome":"Avathar",
-					"tConfinanti":["Caverna di Ungoliath","Terre Oscure","Peleori meridionali","Baia di Eldamar"]
+					"tConfinanti":["sa3","se9","sa6","na2"]
 
 				},
 				{
@@ -353,7 +353,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa3",
 					"nome":"Caverna di Ungoliath",
-					"tConfinanti":["Avathar"]
+					"tConfinanti":["sa2"]
 
 				},
 				{
@@ -362,7 +362,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa4",
 					"nome":"Ezelorrah",
-					"tConfinanti":["Pianure di Yavanna","Aule di Mandos","Lorien","Pianure settentrionali di Valinor","Taniquetil","Peleori settentrionali","Peleori meridionali"]
+					"tConfinanti":["sa7","sa1","na3","na5","sa8","na4","sa6"]
 
 				},
 				{
@@ -371,7 +371,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa5",
 					"nome":"Foreste di Orome",
-					"tConfinanti":["Peleori meridionali","Pianure di Yavanna"]
+					"tConfinanti":["sa6","sa7"]
 
 				},
 				{
@@ -380,7 +380,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa6",
 					"nome":"Peleori meridionali",
-					"tConfinanti":["Foreste di Orome","Avathar","Pianure di Yavanna","Taniquetil","Baia di Eldamar","Ezelorrah"]
+					"tConfinanti":["sa5","sa2","sa7","sa8","na2","sa4"]
 
 				},
 				{
@@ -389,7 +389,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa7",
 					"nome":"Pianure di Yavanna",
-					"tConfinanti":["Foreste di Orome","Peleori meridionali","Ezelorrah","Aule di Mandos"]
+					"tConfinanti":["sa5","sa6","sa4","sa1"]
 
 				},
 				{
@@ -398,7 +398,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa8",
 					"nome":"Taniquetil",
-					"tConfinanti":["Ezelorrah","Peleori settentrionali","Peleori meridionali","Baia di Eldamar"]
+					"tConfinanti":["sa4","na4","sa6","na2"]
 
 
 				},
@@ -408,7 +408,7 @@
 					"continente":"Sud Aman",
 					"codice":"sa9",
 					"nome":"Tol Eressea",
-					"tConfinanti":["Medio Harad","Baia di Eldamar"]
+					"tConfinanti":["se3","na2"]
 
 				},
 				{
@@ -417,7 +417,7 @@
 					"continente":"Sud Endor",
 					"codice":"se1",
 					"nome":"Estremo Harad",
-					"tConfinanti":["Terre Oscure","Medio Harad"]
+					"tConfinanti":["se9","se3"]
 
 				},
 				{
@@ -426,7 +426,7 @@
 					"continente":"Sud Endor",
 					"codice":"se2",
 					"nome":"Grande Golfo",
-					"tConfinanti":["Medio Harad","Monti Grigi","Stretto del mondo","Monti bianchi","Foreste del Sud","Ered Luin","Ossiriand","Taur-im-Duinath"]
+					"tConfinanti":["se3","se5","se7","eo6","eo1","b5","b9","b8"]
 
 				},
 				{
@@ -435,7 +435,7 @@
 					"continente":"Sud Endor",
 					"codice":"se3",
 					"nome":"Medio Harad",
-					"tConfinanti":["Tol Eressea","Grande Golfo","Monti Grigi","Vicino Harad","Estremo Harad"]
+					"tConfinanti":["sa9","se2","se5","se10","se1"]
 				},
 				{
 
@@ -443,7 +443,7 @@
 					"continente":"Sud Endor",
 					"codice":"se4",
 					"nome":"Monti Gialli",
-					"tConfinanti":["Terre Oscure","Muri del Sole"]
+					"tConfinanti":["se9","se6"]
 
 				},
 				{
@@ -452,7 +452,7 @@
 					"continente":"Sud Endor",
 					"codice":"se5",
 					"nome":"Monti Grigi",
-					"tConfinanti":["Grande Golfo","Stretto del mondo","Vicino Harad","Medio Harad"]
+					"tConfinanti":["se2","se7","se10","se3"]
 
 				},
 				{
@@ -461,7 +461,7 @@
 					"continente":"Sud Endor",
 					"codice":"se6",
 					"nome":"Muri del Sole",
-					"tConfinanti":["Hildorien","Monti Gialli","Estremo Est"]
+					"tConfinanti":["eo3","se4","se8"]
 
 				},
 				{
@@ -470,7 +470,7 @@
 					"continente":"Sud Endor",
 					"codice":"se7",
 					"nome":"Stretto del mondo",
-					"tConfinanti":["Mare di Helcar","Monti bianchi","Grande Golfo","Sud Palisor","Monti Grigi","Vicino Harad"]
+					"tConfinanti":["eo4","eo6","se2","eo10","se5","se10"]
 
 				},
 				{
@@ -479,7 +479,7 @@
 					"continente":"Sud Endor",
 					"codice":"se8",
 					"nome":"Estremo Est",
-					"tConfinanti":["Muri del Sole"]
+					"tConfinanti":["se6"]
 
 				},
 				{
@@ -488,7 +488,7 @@
 					"continente":"Sud Endor",
 					"codice":"se9",
 					"nome":"Terre Oscure",
-					"tConfinanti":["Monti Gialli","Estremo Harad","Avathar","Sud Palisor"]
+					"tConfinanti":["se4","se1","sa2","eo10"]
 
 				},
 				{
@@ -497,7 +497,7 @@
 					"continente":"Sud Endor",
 					"codice":"se10",
 					"nome":"Vicino Harad",
-					"tConfinanti":["Stretto del mondo","Monti Grigi","Medio Harad"]
+					"tConfinanti":["se7","se5","se3"]
 
 				}
 			],
