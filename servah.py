@@ -44,7 +44,6 @@ while True:
 	2.25:p.fineOinizio ,
 	2.31:p.pescaCarta ,
 	2.32:p.spostaTerritorio ,
-	2.3: DummyFunction
 
 	3:p.finePartita
 	

@@ -542,6 +542,8 @@ class Partita(object):
 
 	def incassareArmate(self):
 
+		self.prossimoGiocatoreTurno=None
+
 		if self.cliente[0] in self.listaIP:
 
 			if self.cliente[0] == self.giocatoreDelTurno.IP:
@@ -1013,7 +1015,7 @@ class Partita(object):
 					territorio=None
 
 					for g in self.territoriFissi:
-						if g.nomeT==self.query["territorio"]:
+						if g.code==self.query["territorio"]:
 							territorio=g
 
 					if territorio in self.giocatoreDelTurno.territori and territorio.numArmyT>=2:
@@ -1220,6 +1222,13 @@ class Partita(object):
 			armateDaTrasportare=self.NumArmyATTACCO-armatePerseATT
 			self.territorioAttacco.numArmyT=self.territorioAttacco.numArmyT-self.NumArmyATTACCO
 			self.territorioDifesa.numArmyT=armateDaTrasportare
+
+		if conquistaRiuscita=True and len(self.difensore.territori)==0:
+			
+			self.difensore.eliminato=True
+			self.giocatori.remove(self.difensore)
+			self.giocatoreDelTurno.giocatoriEliminati.append(self.difensore)
+
 		#00000000000000000000000000000000000000000000000000000
 
 		if self.cliente[0] in self.listaIP:
@@ -1232,8 +1241,14 @@ class Partita(object):
 
 					if conquistaRiuscita==True:
 
-						self.almenoUnaConquista=True
-						self.response("Hai conquistato {}, perdendo {} armate. {} delle armate che hai usato in battaglia ora occupano il territorio. Conferma di voler concludere la battaglia.".format(self.territorioDifesa,armatePerseATT,armateDaTrasportare))
+						if self.difensore.eliminato==True:
+							
+							self.response("Hai conquistato {}, eliminando {}, e perdendo {} armate. {} delle armate che hai usato in battaglia ora occupano il territorio. Conferma di voler concludere la battaglia.".format(armatePerseATT,self.difensore,self.difensore,armatePerseDEF))
+
+						else:
+
+							self.almenoUnaConquista=True
+							self.response("Hai conquistato {}, perdendo {} armate. {} delle armate che hai usato in battaglia ora occupano il territorio. Conferma di voler concludere la battaglia.".format(self.territorioDifesa,armatePerseATT,armateDaTrasportare))
 
 					else:
 
@@ -1267,7 +1282,13 @@ class Partita(object):
 
 					if conquistaRiuscita==True:
 
-						self.response("Hai perso {}, insieme a tutte le armate con cui ti sei difeso. Conferma di voler concludere la battaglia.".format(self.territorioDifesa))
+						if if self.difensore.eliminato==True:
+							
+							self.response("Sei stato eliminato.")
+
+						else:
+
+							self.response("Hai perso {}, insieme a tutte le armate con cui ti sei difeso. Conferma di voler concludere la battaglia.".format(self.territorioDifesa))
 
 					else:
 
@@ -1517,7 +1538,7 @@ class Partita(object):
 					territorio=None
 
 					for g in self.territoriFissi:
-						if g.nomeT==self.query["territorio"]:
+						if g.code==self.query["territorio"]:
 							territorio=g
 
 					if territorio in self.giocatoreDelTurno.territori and territorio.numArmyT>=2:
@@ -1563,8 +1584,6 @@ class Partita(object):
 
 	def pescareCarta(self):
 
-		self.prossimoGiocatoreTurno=None
-
 		if self.numeroGiocatoreDelTurno<=self.numP-1:
 
 			self.prossimoGiocatoreTurno=self.giocatori[self.numeroGiocatoreDelTurno+1]
@@ -1573,6 +1592,14 @@ class Partita(object):
 
 			self.prossimoGiocatoreTurno=self.giocatori[self.numeroGiocatoreDelTurno-self.numP]
 
+		#00000000000000000000000000000000000000000000000000000000000000000
+
+		if len(self.carte)==0:
+			
+			self.carte=self.carteUsate[:]
+			self.carteUsate=[]
+
+		cartaPescata=None
 
 
 		#00000000000000000000000000000000000000000000000000000000000000000
@@ -1583,7 +1610,11 @@ class Partita(object):
 
 				if "pesca" in self.query and self.query["pesca"]==["OK"]:
 
-				elif "avanti" in self.query and self.query["avanti"]==["OK"]:
+					shuffle(carte)
+					cartaPescata=carte[0]
+					self.giocatoreDelTurno.carteCombinazioni.append(cartaPescata)
+					self.carte.remove(cartaPescata)
+					self.STATO=2.32
 
 				else:
 
@@ -1610,8 +1641,65 @@ class Partita(object):
 		
 		else:
 			self.rispostina()
-
-
-		
+	
 	def spostareArmy(self):
+
+		if self.cliente[0] in self.listaIP:
+
+			if self.cliente[0] == self.giocatoreDelTurno.IP:
+
+				if "territorio1" in self.query and "num" in self.query and "territorio2" in self.query:
+
+					territorio1=None
+					territorio2=None
+					numArmateDaSpostare=self.query["num"]
+
+					for g in self.territoriFissi:
+
+						if g.code==self.query["territorio1"]:
+							territorio1=g
+
+						if g.code==self.query["territorio2"]:
+							territorio2=g
+
+					if territorio1 in self.giocatoreDelTurno.territori and territorio1.numArmyT-numArmateDaSpostare>=1:
+
+						if territorio2 in territorio1.territoriConfinanti and territorio2 in self.giocatoreDelTurno.territori:
+
+							territorio1.numArmyT-=numArmateDaSpostare
+							territorio2.numArmyT+=numArmateDaSpostare
+							self.giocatoreDelTurno=self.prossimoGiocatoreTurno
+							self.STATO=2.1
+
+						else:
+
+							self.response("Azione non disponibile.")
+
+					else:
+
+						self.response("Azione non disponibile")
+
+				elif "avanti" in self.query and self.query["avanti"]==["OK"]:
+
+					self.giocatoreDelTurno=self.prossimoGiocatoreTurno
+					self.STATO=2.1
+
+				else:
+
+					self.response("Azione non disponibile.")
+
+			else:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+					
+					self.response("{} sta concludendo il suo turno.".format(self.giocatoreDelTurno))
+				else:
+
+					self.response("Azione non disponibile")
+		
+		else:
+			self.rispostina()
+
+	def finePartita(self):
+		
 		

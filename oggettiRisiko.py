@@ -19,6 +19,7 @@ class Giocatore(object):
 		self.codeTerritori=[]
 		self.carteCombinazioni=[]
 		self.eliminato=False
+		self.giocatoriEliminati=[]
 
 class Territorio(object):
 
@@ -81,11 +82,11 @@ class CartaObiettivo(object):
 		self.obCompletato=False
 		self.match=match
 
-		if json["obiettivi"]["ID"]=="ob28" and len(self.proprietario.territori)>=28:
+		if self.ID=="ob28" and len(self.proprietario.territori)>=28:
 			
 			self.obCompletato=True
 
-		elif json["obiettivi"]["ID"]=="ob21" and len(self.proprietario.territori)>=21:
+		elif self.ID=="ob21" and len(self.proprietario.territori)>=21:
 
 			arrayno=[]
 
@@ -99,7 +100,7 @@ class CartaObiettivo(object):
 
 				self.obCompletato=True
 
-		elif json["obiettivi"]["ID"]=="obT1":
+		elif self.ID=="obT1":
 
 			c1="Beleriand"
 			c2="Nord Endor"
@@ -116,7 +117,7 @@ class CartaObiettivo(object):
 
 				self.obCompletato=True
 
-		elif json["obiettivi"]["ID"]=="obT2":
+		elif self.ID=="obT2":
 
 			c1="Sud Aman"
 			c2="Nord Endor"
@@ -133,7 +134,7 @@ class CartaObiettivo(object):
 
 				self.obCompletato=True	
 
-		elif json["obiettivi"]["ID"]=="obT3":
+		elif self.ID=="obT3":
 
 			c1="Sud Aman"
 			c2="Nord Aman"
@@ -150,7 +151,7 @@ class CartaObiettivo(object):
 
 				self.obCompletato=True
 
-		elif json["obiettivi"]["ID"]=="obT4":
+		elif self.ID=="obT4":
 
 			c1="Beleriand"
 			c2="Sud Aman"
@@ -167,7 +168,7 @@ class CartaObiettivo(object):
 
 				self.obCompletato=True	
 
-		elif json["obiettivi"]["ID"]=="obT5":
+		elif self.ID=="obT5":
 
 			c1="Beleriand"
 			c2="Endor Orientale"
@@ -184,7 +185,7 @@ class CartaObiettivo(object):
 
 				self.obCompletato=True
 
-		elif json["obiettivi"]["ID"]=="obT6":
+		elif self.ID=="obT6":
 
 			c1="Sud Endor"
 			c2="Endor Orientale"
@@ -201,7 +202,7 @@ class CartaObiettivo(object):
 
 				self.obCompletato=True
 
-		elif json["obiettivi"]["ID"]=="obA1":
+		elif self.ID=="obA1":
 
 			colorePresente=False
 			playerDaSconfiggere=None
@@ -217,15 +218,19 @@ class CartaObiettivo(object):
 
 				if playerDaSconfiggere.eliminato==True:
 
-					self.obCompletato=True
+					if playerDaSconfiggere in proprietario.giocatoriEliminati:
+						
+						self.obCompletato=True
+
+					else:
+
+						self.ID="ob28"
 
 			else:
 
-				if len(self.proprietario.territori)>=24:
-			
-					self.obCompletato=True
+				self.ID="ob28"
 
-		elif json["obiettivi"]["ID"]=="obA2":
+		elif self.ID=="obA2":
 
 			colorePresente=False
 			playerDaSconfiggere=None
@@ -241,15 +246,18 @@ class CartaObiettivo(object):
 
 				if playerDaSconfiggere.eliminato==True:
 
-					self.obCompletato=True
+					if playerDaSconfiggere in proprietario.giocatoriEliminati:
+						
+						self.obCompletato=True
 
+					else:
+
+						self.ID="ob28"
 			else:
 
-				if len(self.proprietario.territori)>=24:
-			
-					self.obCompletato=True
+				self.ID="ob28"
 
-		elif json["obiettivi"]["ID"]=="obA3":
+		elif self.ID=="obA3":
 
 			colorePresente=False
 			playerDaSconfiggere=None
@@ -265,15 +273,19 @@ class CartaObiettivo(object):
 
 				if playerDaSconfiggere.eliminato==True:
 
-					self.obCompletato=True
+					if playerDaSconfiggere in proprietario.giocatoriEliminati:
+						
+						self.obCompletato=True
+
+					else:
+
+						self.ID="ob28"
 
 			else:
 
-				if len(self.proprietario.territori)>=24:
-			
-					self.obCompletato=True
+				self.ID="ob28"
 
-		elif json["obiettivi"]["ID"]=="obA4":
+		elif self.ID=="obA4":
 
 			colorePresente=False
 			playerDaSconfiggere=None
@@ -289,15 +301,19 @@ class CartaObiettivo(object):
 
 				if playerDaSconfiggere.eliminato==True:
 
-					self.obCompletato=True
+					if playerDaSconfiggere in proprietario.giocatoriEliminati:
+						
+						self.obCompletato=True
+
+					else:
+
+						self.ID="ob28"e
 
 			else:
 
-				if len(self.proprietario.territori)>=24:
-			
-					self.obCompletato=True
+				self.ID="ob28"
 
-		elif json["obiettivi"]["ID"]=="obA5":
+		elif self.ID=="obA5":
 
 			colorePresente=False
 			playerDaSconfiggere=None
@@ -313,15 +329,19 @@ class CartaObiettivo(object):
 
 				if playerDaSconfiggere.eliminato==True:
 
-					self.obCompletato=True
+					if playerDaSconfiggere in proprietario.giocatoriEliminati:
+						
+						self.obCompletato=True
+
+					else:
+
+						self.ID="ob28"
 
 			else:
 
-				if len(self.proprietario.territori)>=24:
-			
-					self.obCompletato=True
+				self.ID="ob28"
 
-		elif json["obiettivi"]["ID"]=="obA6":
+		elif self.ID=="obA6":
 
 			colorePresente=False
 			playerDaSconfiggere=None
@@ -337,10 +357,14 @@ class CartaObiettivo(object):
 
 				if playerDaSconfiggere.eliminato==True:
 
-					self.obCompletato=True
+					if playerDaSconfiggere in proprietario.giocatoriEliminati:
+						
+						self.obCompletato=True
+
+					else:
+
+						self.ID="ob28"
 
 			else:
 
-				if len(self.proprietario.territori)>=24:
-			
-					self.obCompletato=True
+				self.ID="ob28"
