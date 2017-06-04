@@ -39,7 +39,7 @@ class Territorio(object):
 	
 		for x in self.match.territori: 
 			
-			if x.nomeT in self.nomiTconfinanti: # TODO sostitute nomeT with code
+			if x.codiceTerritorio in self.nomiTconfinanti: # TODO sostitute nomeT with code
 
 				self.territoriConfinanti.append(x)
 		
