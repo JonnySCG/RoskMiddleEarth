@@ -28,7 +28,7 @@ while True:
 		u.response("I am a Teapot","418 OK")
 
 	switch={
-	0: p.analizzaPrimaRequest ,
+	0:   p.analizzaPrimaRequest ,
 	0.1: p.attesaAltriPlayers ,
 	0.2: p.analizzaRichiesteOK ,
 	1.1: p.confermePrepartita ,
@@ -44,7 +44,7 @@ while True:
 	2.31:p.pescaCarta ,
 	2.32:p.spostaTerritorio ,
 
-	3:p.finePartita
+	3:   p.finePartita
 	
 	}
 	

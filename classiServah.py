@@ -164,13 +164,14 @@ class Partita(object):
 			if self.numP==0:
 				player=Giocatore(1,self.cliente) #creazione giocatore
 				permesso=self.aggiungiP(player)
-				self.soCKET.sendall(u.responseHTTP("benvenuto nella partita, in attesa di altri giocatori","200 OK"))
+				self.response("benvenuto nella partita, in attesa di altri giocatori")
 				u.debug("sto cambiando stato",4)
 				self.giocatoreDelTurno=self.giocatori[self.numeroGiocatoreDelTurno]
 				self.STATO=0.1
 				
 		else:
-		 	self.soCKET.sendall(u.responseHTTP(None,"404 NOTFOUND"))
+
+		 	self.response(None,"404 NOTFOUND")
 
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 #  STATO 0.1    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -188,27 +189,30 @@ class Partita(object):
 				permesso=self.aggiungiP(player)
 				
 				if self.numP==self.numPmax:
-	 				self.soCKET.sendall(u.responseHTTP("Numero giocatori raggiunto. Confermare di voler iniziare la partita","200 OK"))	
-	 				self.STATO=0.2
+					self.response("Numero giocatori raggiunto. Confermare di voler iniziare la partita")	
+					self.STATO=0.2
 
-	 			else:
-	 				self.soCKET.sendall(u.responseHTTP("benvenuto nella partita, in attesa di altri giocatori","200 OK"))
+				else:
+					self.response("benvenuto nella partita, in attesa di altri giocatori")
 
-	 		else:
-	 			self.soCKET.sendall(u.responseHTTP("Sei gia entrato nella lista dei giocatori della partita. In attesa di altri giocatori.","200 OK"))
+			else:
+				self.response("benvenuto nella partita, in attesa di altri giocatori.")
 
-	 	else:
+		else:
 
-	 		if self.cliente[0] in self.listaIP:
+			if self.cliente[0] in self.listaIP:
 
-	 			if self.query["attesa"]==["1"]:
-	 				
-	 					self.soCKET.sendall(u.responseHTTP("benvenuto nella partita, in attesa di altri giocatori","200 OK"))
-	 			
-	 		
-	 		else:
+				if self.query["attesa"]==["1"]:
+					
+					self.response("benvenuto nella partita, in attesa di altri giocatori")
+				
+				else:
 
-	 			self.soCKET.sendall(u.responseHTTP(None,"404 NOTFOUND"))
+					self.response("benvenuto nella partita, in attesa di altri giocatori")
+
+			else:
+
+				self.response(None,"404 NOTFOUND")
 
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 #  STATO 0.2    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -251,20 +255,20 @@ class Partita(object):
 
 				if self.verificaOK()==True:
 
-					self.response("Benvenuto nella Terra di Mezzo. Il tuo colore e il {}".format(player.colore))
-					
+					#TODO Inviare tuttos
+					self.response("Benvenuto nella Terra di Mezzo.{},{},{}. Vai alla distribuzione delle armate sui territori".format(player.colore,player.territori,player.obiettivoGiocatore))
 
 					self.STATO=1.1
 
 				else:
 
-					self.soCKET.sendall(u.responseHTTP("Aspettare la conferma degli altri giocatori.","200 OK"))
+					self.response("Aspettare la conferma degli altri giocatori.","200 OK"))
 					
 			elif "attesa" in self.query:
 
 				if self.query["attesa"]==["1"]:
 
-	 				self.soCKET.sendall(u.responseHTTP("Numero giocatori raggiunto. Confermare di voler iniziare la partita","200 OK"))
+	 				self.response("Numero giocatori raggiunto. Confermare di voler iniziare la partita","200 OK"))
 
 	 			elif self.query["attesa"]==["2"]:
 
@@ -274,22 +278,22 @@ class Partita(object):
 
 					if player.conferma==True:
 
-						self.soCKET.sendall(u.responseHTTP("Azione non disponibile. Aspettare la conferma degli altri giocatori.","200 OK"))
+						self.response("Azione non disponibile. Aspettare la conferma degli altri giocatori.","200 OK"))
 
 					else:
 
-						self.soCKET.sendall(u.responseHTTP("Azione non disponibile. Inviare la conferma.","200 OK"))
+						self.response("Azione non disponibile. Inviare la conferma.","200 OK"))
 
 
 			else:
 
 				if player.conferma==True:
 
-						self.soCKET.sendall(u.responseHTTP("Azione non disponibile. Aspettare la conferma degli altri giocatori.","200 OK"))
+						self.response("Azione non disponibile. Aspettare la conferma degli altri giocatori.","200 OK"))
 
 				else:
 
-						self.soCKET.sendall(u.responseHTTP("Azione non disponibile. Inviare la conferma.","200 OK"))
+						self.response("Azione non disponibile. Inviare la conferma.","200 OK"))
 
 		else:
 			self.rispostina()
@@ -325,7 +329,7 @@ class Partita(object):
 
 			if self.query:
 				
-				if "conferma" in self.query and self.query["conferma"]==["OK"]:
+				if "conferma2" in self.query and self.query["conferma2"]==["OK"]:
 
 					if verificaDisTerritori()==True:
 						
@@ -342,7 +346,7 @@ class Partita(object):
 					if self.query["attesa"]==["2"]:
 
 						#TODO Inviare tuttos
-						self.response("")
+						self.response("Benvenuto nella Terra di Mezzo.{},{},{}. Vai alla distribuzione delle armate sui territori".format(player.colore,player.territori,player.obiettivoGiocatore))
 
 					elif self.query["attesa"]==["3"]:
 
