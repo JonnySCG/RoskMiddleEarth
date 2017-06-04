@@ -14,6 +14,7 @@ class Partita(object):
 		self.carte=[]
 		self.territoriGenerali=[]
 		self.territoriFissi=[]
+		self.carteUsate=[]
 
 
 		with open('json.json') as data_file:
@@ -34,6 +35,7 @@ class Partita(object):
 		self.colori=["blu","rosso","giallo","nero","verde","viola"]
 
 		self.giocatoreDelTurno=None
+		self.numeroGiocatoreDelTurno=0
 
 	def aggiungiP(self,player):
 
@@ -164,7 +166,7 @@ class Partita(object):
 				permesso=self.aggiungiP(player)
 				self.soCKET.sendall(u.responseHTTP("benvenuto nella partita, in attesa di altri giocatori","200 OK"))
 				u.debug("sto cambiando stato",4)
-				self.giocatoreDelTurno=self.giocatori[0]
+				self.giocatoreDelTurno=self.giocatori[self.numeroGiocatoreDelTurno]
 				self.STATO=0.1
 				
 		else:
@@ -627,7 +629,7 @@ class Partita(object):
 
 					self.giocatoreDelTurno.NumArmy+=(x+y)
 
-					self.response("Combinazione analizzata: {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
+					self.response("Combinazione analizzata. {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
 					self.STATO=2.15
 
 				elif "DistLeArmy" in self.query and self.query["DistLeArmy"]==["OK"]:
@@ -639,6 +641,56 @@ class Partita(object):
 					elif x>=4 and x<=9: y=1
 					elif x>=10 and x<=15: y=2
 					elif x==16: y=3
+
+					for x in self.giocatoreDelTurno.territori:
+					
+						if x.continente =="Beleriand":
+
+							arrayno1.append(x)
+
+						if x.continente =="Endor Orientale":
+
+							arrayno2.append(x)
+
+						if x.continente =="Nord Aman":
+
+							arrayno3.append(x)
+
+						if x.continente =="Nord Endor":
+
+							arrayno4.append(x)
+
+						if x.continente =="Sud Aman":
+
+							arrayno5.append(x)
+
+						if x.continente =="Sud Endor":
+
+							arrayno6.append(x)
+
+					if len(arrayno1)==9:
+					
+						self.giocatoreDelTurno.NumArmy+=6
+
+					if len(arrayno2)==10:
+					
+						self.giocatoreDelTurno.NumArmy+=8
+
+					if len(arrayno3)==6:
+					
+						self.giocatoreDelTurno.NumArmy+=4
+
+					if len(arrayno4)==5:
+					
+						self.giocatoreDelTurno.NumArmy+=3
+
+					if len(arrayno5)==9:
+					
+						self.giocatoreDelTurno.NumArmy+=5
+
+					if len(arrayno6)==10:
+					
+						self.giocatoreDelTurno.NumArmy+=7
 
 					self.giocatoreDelTurno.NumArmy+=(x+y)
 
@@ -664,7 +716,6 @@ class Partita(object):
 
 		codiciGenerali=[]
 		carteDaRitornare=[]
-		combinazioneBuona=True
 
 		for x in self.giocatoreDelTurno.carteCombinazioni:
 
@@ -709,6 +760,14 @@ class Partita(object):
 				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
+				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
+
+				self.carteUsate.append(c1x)
+				self.carteUsate.append(c2x)
+				self.carteUsate.append(c3x)
+
 			elif c1=="balrog":
 
 				self.giocatoreDelTurno.NumArmy+=10
@@ -722,9 +781,18 @@ class Partita(object):
 				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
+				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
+
+				self.carteUsate.append(c1x)
+				self.carteUsate.append(c2x)
+				self.carteUsate.append(c3x)
+
 			elif c1=="drago":
 
 				self.giocatoreDelTurno.NumArmy+=12
+				
 
 				if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
@@ -735,13 +803,19 @@ class Partita(object):
 				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
+				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
+
+				self.carteUsate.append(c1x)
+				self.carteUsate.append(c2x)
+				self.carteUsate.append(c3x)
+
 			else:
 
 				self.response("Azione non disponibile")
 
-		elif c1!=c2 and c1!=c3 and c2!=c3:
-
-			self.giocatoreDelTurno.NumArmy+=14
+		elif c1!=c2 and c1!=c3 
 
 			if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
@@ -752,10 +826,17 @@ class Partita(object):
 			if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
+			self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
+			self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
+			self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
+
+			self.carteUsate.append(c1x)
+			self.carteUsate.append(c2x)
+			self.carteUsate.append(c3x)
+
 		elif c1 =="jolly" or c2=="jolly" or c3=="jolly":
 
-			if c1 =="jolly" and c2==c3:
-
+			if c1 == "jolly" and c2==c3:
 				self.giocatoreDelTurno.NumArmy+=15
 
 				if c1x.armateExtra==True:
@@ -767,8 +848,15 @@ class Partita(object):
 				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-			elif c2 =="jolly" and c1==c3:
+				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+				self.carteUsate.append(c1x)
+				self.carteUsate.append(c2x)
+				self.carteUsate.append(c3x)
+
+			elif c2 == "jolly" and c1==c3:
 				self.giocatoreDelTurno.NumArmy+=15
 
 				if c1x.armateExtra==True:
@@ -780,8 +868,15 @@ class Partita(object):
 				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
 
-			elif c3 =="jolly" and c2==c1:			
+				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+				self.carteUsate.append(c1x)
+				self.carteUsate.append(c2x)
+				self.carteUsate.append(c3x)
+
+			elif c3 =="jolly" and c1==c2:
 				self.giocatoreDelTurno.NumArmy+=15
 
 				if c1x.armateExtra==True:
@@ -792,6 +887,14 @@ class Partita(object):
 
 				if c3x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
+
+				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
+				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
+
+				self.carteUsate.append(c1x)
+				self.carteUsate.append(c2x)
+				self.carteUsate.append(c3x)
 
 			else:
 
@@ -896,6 +999,8 @@ class Partita(object):
 #  STATO 2.2    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	def vuoiCombattere(self):
+
+		self.almenoUnaConquista=False
 
 		self.territorioAttacco=None
 
@@ -1127,6 +1232,7 @@ class Partita(object):
 
 					if conquistaRiuscita==True:
 
+						self.almenoUnaConquista=True
 						self.response("Hai conquistato {}, perdendo {} armate. {} delle armate che hai usato in battaglia ora occupano il territorio. Conferma di voler concludere la battaglia.".format(self.territorioDifesa,armatePerseATT,armateDaTrasportare))
 
 					else:
@@ -1405,7 +1511,6 @@ class Partita(object):
 					else:
 
 						self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
-						self.STATO=2.25
 
 				elif "territorio" in self.query:
 
@@ -1427,8 +1532,15 @@ class Partita(object):
 
 				elif "avanti" in self.query and self.query["avanti"]==["OK"]:
 
-					self.response("Ultima fase del turno. Sposta delle armate da un territorio a un altro.")
-					self.STATO=2.3
+					if self.almenoUnaConquista==True:
+
+						self.response("Puoi pescare una carta.")
+						self.STATO=2.31
+
+					else:
+
+						self.response("Ultima fase del turno. Sposta delle armate da un territorio a un altro.")
+						self.STATO=2.32
 
 				else:
 
@@ -1444,7 +1556,62 @@ class Partita(object):
 					self.response("Azione non disponibile")
 		
 		else:
+			self.rispostina()		
+
+#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#  STATO 2.3    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+	def pescareCarta(self):
+
+		self.prossimoGiocatoreTurno=None
+
+		if self.numeroGiocatoreDelTurno<=self.numP-1:
+
+			self.prossimoGiocatoreTurno=self.giocatori[self.numeroGiocatoreDelTurno+1]
+
+		else:
+
+			self.prossimoGiocatoreTurno=self.giocatori[self.numeroGiocatoreDelTurno-self.numP]
+
+
+
+		#00000000000000000000000000000000000000000000000000000000000000000
+
+		if self.cliente[0] in self.listaIP:
+
+			if self.cliente[0] == self.giocatoreDelTurno.IP:
+
+				if "pesca" in self.query and self.query["pesca"]==["OK"]:
+
+				elif "avanti" in self.query and self.query["avanti"]==["OK"]:
+
+				else:
+
+					self.response("Azione non disponibile.")
+
+
+			elif self.cliente[0] == self.prossimoGiocatoreTurno.IP:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+					
+					self.response("{} sta per concludere il suo turno. Preparati, il prossimo sei tu.".format(self.giocatoreDelTurno))
+				else:
+
+					self.response("Azione non disponibile")
+
+			else:
+
+				if "attesa" in self.query and self.query["attesa"]==["4"]:
+					
+					self.response("{} sta per concludere il suo turno. Il prossimo è {}".format(self.giocatoreDelTurno,self.prossimoGiocatoreTurno))
+				else:
+
+					self.response("Azione non disponibile")
+		
+		else:
 			self.rispostina()
 
 
+		
+	def spostareArmy(self):
 		
