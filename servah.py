@@ -3,7 +3,6 @@ import os
 from urlparse import urlparse
 from urlparse import parse_qs
 from classiServah import Partita
-from oggettiRisiko import Giocatore
 import utilities as u
 
 
@@ -16,7 +15,7 @@ sok.listen(1)
 
 print("forza roma")
 
-p=Partita(2)
+p=Partita(3)
 
 while True:
 	p.soCKET,p.cliente=sok.accept()

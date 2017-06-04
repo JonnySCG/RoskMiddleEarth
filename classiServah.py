@@ -1700,6 +1700,61 @@ class Partita(object):
 		else:
 			self.rispostina()
 
+#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#  STATO 3      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
 	def finePartita(self):
-		
+
+		if self.cliente[0] in self.listaIP:
+
+			player=None
+
+			for g in self.giocatori:
+					
+				if g.IP==self.cliente[0]:
+
+					player=g
+
+			if "attesa" in self.query and self.query["attesa"]==["4"]:
+
+				self.response("{} ha raggiunto il suo obiettivo ({}). Conferma per concludere la partita o aspetta 30 secondi".format(self.giocatoreDelTurno,self.giocatoreDelTurno.obiettivoGiocatore.stringa))
+
+				#TODO timer da 30 secondi
+
+				self.obiettivi=[]
+				self.carte=[]
+				self.territoriGenerali=[]
+				self.territoriFissi=[]
+				self.carteUsate=[]
+				with open('json.json') as data_file:
+					data = json.load(data_file)
+					self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"],self)
+					self.territoriGenerali=u.parser(Territorio,data["territori"],self)
+					self.territoriFissi=self.territoriGenerali[:]
+					self.carte=u.parser(Carta,data["carte"],self)
+				self.numPmax=numPmax
+				self.numP=0
+				self.giocatori=[]
+				self.listaIP=[]
+				self.colori=["blu","rosso","giallo","nero","verde","viola"]
+				self.giocatoreDelTurno=None
+				self.numeroGiocatoreDelTurno=0
+
+				self.STATO=0
+
+			if "conclusione" in self.query and self.query["conclusione"]==["OK"]:	
+
+				self.response("Sei uscito dalla partita.")
+
+				self.giocatori.remove(player)
+
+		else:
+
+			self.response("La partita in corso sta terminando.")
+
+
+
+
+
+
 		
