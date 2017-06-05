@@ -1528,7 +1528,7 @@ class Partita(object):
 
 				if "conferma" in self.query and self.query["conferma"]==["OK"]:
 
-					self.giocatoreDelTurno.obiettivoGiocatore.controllaObCompletato()
+					self.giocatoreDelTurno.obiettivoGiocatore.controllaObCompletato(s)
 
 					if self.giocatoreDelTurno.obiettivoGiocatore.obCompletato== True:
 					
@@ -1755,6 +1755,12 @@ class Partita(object):
 		else:
 
 			self.response("La partita in corso sta terminando.")
+
+	def inviaTutto(self):
+
+		toReturn={}
+
+		return json.dumps(toReturn)
 
 
 

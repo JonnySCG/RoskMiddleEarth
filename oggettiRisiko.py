@@ -33,7 +33,6 @@ class Territorio(object):
 		self.territoriConfinanti=[]
 		self.match=match
 
-
 	def addTConfinanti(self):
 	
 		for x in self.match.territori: 
