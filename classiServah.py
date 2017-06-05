@@ -61,14 +61,14 @@ class Partita(object):
 
 		#Shall we distribute all the compoenents of Listona, or only one for each player?
 
-		if numPmax==2:
+		if self.numPmax==2:
 
 			listina1=self.giocatori[0].territori
 			listina2=self.giocatori[1].territori
 
 			lista=[listina1,listina2]
 
-		elif numPmax==3:
+		elif self.numPmax==3:
 
 			listina1=self.giocatori[0].territori
 			listina2=self.giocatori[1].territori
@@ -76,7 +76,7 @@ class Partita(object):
 
 			lista=[listina1,listina2,listina3]
 
-		elif numPmax==4:
+		elif self.numPmax==4:
 
 			listina1=self.giocatori[0].territori
 			listina2=self.giocatori[1].territori
@@ -85,7 +85,7 @@ class Partita(object):
 
 			lista=[listina1,listina2,listina3,listina4]
 
-		elif numPmax==5:
+		elif self.numPmax==5:
 
 			listina1=self.giocatori[0].territori
 			listina2=self.giocatori[1].territori
@@ -95,7 +95,7 @@ class Partita(object):
 
 			lista=[listina1,listina2,listina3,listina4,listina5]
 
-		elif numPmax==6:
+		elif self.numPmax==6:
 
 			listina1=self.giocatori[0].territori
 			listina2=self.giocatori[1].territori
@@ -122,16 +122,16 @@ class Partita(object):
 			self.giocatori[0].obiettivoGiocatore=a[0]
 			self.giocatori[1].obiettivoGiocatore=a[4]
 
-			if numPmax>=3:
+			if self.numPmax>=3:
 				self.giocatori[2].obiettivoGiocatore=a[5]
 
-				if numPmax>=4:
+				if self.numPmax>=4:
 					self.giocatori[3].obiettivoGiocatore=a[2]
 
-					if numPmax>=5:
+					if self.numPmax>=5:
 						self.giocatori[4].obiettivoGiocatore=a[3]
 
-						if numPmax==6:
+						if self.numPmax==6:
 							self.giocatori[5].obiettivoGiocatore=a[1]
 
 
@@ -140,16 +140,16 @@ class Partita(object):
 			self.giocatori[0].colore=a[0]
 			self.giocatori[1].colore=a[4]
 
-			if numPmax>=3:
+			if self.numPmax>=3:
 				self.giocatori[2].colore=a[5]
 
-				if numPmax>=4:
+				if self.numPmax>=4:
 					self.giocatori[3].colore=a[2]
 
-					if numPmax>=5:
+					if self.numPmax>=5:
 						self.giocatori[4].colore=a[3]
 
-						if numPmax==6:
+						if self.numPmax==6:
 							self.giocatori[5].colore=a[1]
 
 #OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
