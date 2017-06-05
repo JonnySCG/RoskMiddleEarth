@@ -53,9 +53,9 @@ class Partita(object):
 	def DistribuzioneTerritori(self):
 
 		#Listona contains all the objects (like Territori, colori, ecc)
-		a=Listona
+		self.territoriGenerali
 		from random import shuffle
-		shuffle(a)
+		shuffle(self.territoriGenerali)
 
 		#Let's create a container where we will put the list of each player
 		lista=[]
@@ -112,7 +112,7 @@ class Partita(object):
 				self.response("Parametri partita sballati")
 
 			#distribution magic !!! <<< --- QUI
-			for i,val in enumerate(a):
+			for i,val in enumerate(self.territoriGenerali):
 				lista[i%self.numPmax].append(val)
 
 	def DistribuzioneRoba(self,Listona):
