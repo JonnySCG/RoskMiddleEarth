@@ -42,7 +42,7 @@ while True:
 	2.23:p.difensoreNumArmy ,
 	2.24:p.battaglia ,
 	2.25:p.fineOinizio ,
-	2.31:p.pescaCarta ,
+	2.31:p.pescareCarta ,
 	2.32:p.spostaTerritorio ,
 
 	3:   p.finePartita
