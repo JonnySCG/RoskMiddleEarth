@@ -115,7 +115,7 @@ class Partita(object):
 			for i,val in enumerate(a):
 				lista[i%self.numPmax].append(val)
 
-	def DistribuzioneRoba(Listona):
+	def DistribuzioneRoba(self,Listona):
 		
 		a=Listona
 
