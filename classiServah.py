@@ -50,7 +50,7 @@ class Partita(object):
 
 		self.soCKET.sendall(u.responseHTTP(risposta,codice))
 
-	def DistribuzioneTerritori(self,Listona):
+	def DistribuzioneTerritori(self):
 
 		#Listona contains all the objects (like Territori, colori, ecc)
 		a=Listona
