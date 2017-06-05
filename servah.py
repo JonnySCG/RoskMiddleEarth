@@ -43,7 +43,7 @@ while True:
 	2.24:p.battaglia ,
 	2.25:p.fineOinizio ,
 	2.31:p.pescareCarta ,
-	2.32:p.spostaTerritorio ,
+	2.32:p.spostareArmy ,
 
 	3:   p.finePartita
 	
