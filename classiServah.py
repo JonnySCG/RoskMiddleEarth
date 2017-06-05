@@ -53,7 +53,6 @@ class Partita(object):
 	def DistribuzioneTerritori(self):
 
 		#Listona contains all the objects (like Territori, colori, ecc)
-		self.territoriGenerali
 		from random import shuffle
 		shuffle(self.territoriGenerali)
 
@@ -61,59 +60,58 @@ class Partita(object):
 		lista=[]
 
 		#Shall we distribute all the compoenents of Listona, or only one for each player?
-		if totale==True:
 
-			if numPmax==2:
+		if numPmax==2:
 
-				listina1=self.giocatori[0].territori
-				listina2=self.giocatori[1].territori
+			listina1=self.giocatori[0].territori
+			listina2=self.giocatori[1].territori
 
-				lista=[listina1,listina2]
+			lista=[listina1,listina2]
 
-			elif numPmax==3:
+		elif numPmax==3:
 
-				listina1=self.giocatori[0].territori
-				listina2=self.giocatori[1].territori
-				listina3=self.giocatori[2].territori
+			listina1=self.giocatori[0].territori
+			listina2=self.giocatori[1].territori
+			listina3=self.giocatori[2].territori
 
-				lista=[listina1,listina2,listina3]
+			lista=[listina1,listina2,listina3]
 
-			elif numPmax==4:
+		elif numPmax==4:
 
-				listina1=self.giocatori[0].territori
-				listina2=self.giocatori[1].territori
-				listina3=self.giocatori[2].territori
-				listina4=self.giocatori[3].territori
+			listina1=self.giocatori[0].territori
+			listina2=self.giocatori[1].territori
+			listina3=self.giocatori[2].territori
+			listina4=self.giocatori[3].territori
 
-				lista=[listina1,listina2,listina3,listina4]
+			lista=[listina1,listina2,listina3,listina4]
 
-			elif numPmax==5:
+		elif numPmax==5:
 
-				listina1=self.giocatori[0].territori
-				listina2=self.giocatori[1].territori
-				listina3=self.giocatori[2].territori
-				listina4=self.giocatori[3].territori
-				listina5=self.giocatori[4].territori
+			listina1=self.giocatori[0].territori
+			listina2=self.giocatori[1].territori
+			listina3=self.giocatori[2].territori
+			listina4=self.giocatori[3].territori
+			listina5=self.giocatori[4].territori
 
-				lista=[listina1,listina2,listina3,listina4,listina5]
+			lista=[listina1,listina2,listina3,listina4,listina5]
 
-			elif numPmax==6:
+		elif numPmax==6:
 
-				listina1=self.giocatori[0].territori
-				listina2=self.giocatori[1].territori
-				listina3=self.giocatori[2].territori
-				listina4=self.giocatori[3].territori
-				listina5=self.giocatori[4].territori
-				listina6=self.giocatori[5].territori
+			listina1=self.giocatori[0].territori
+			listina2=self.giocatori[1].territori
+			listina3=self.giocatori[2].territori
+			listina4=self.giocatori[3].territori
+			listina5=self.giocatori[4].territori
+			listina6=self.giocatori[5].territori
 
-				lista=[listina1,listina2,listina3,listina4,listina5,listina6]
+			lista=[listina1,listina2,listina3,listina4,listina5,listina6]
 
-			else:
-				self.response("Parametri partita sballati")
+		else:
+			self.response("Parametri partita sballati")
 
-			#distribution magic !!! <<< --- QUI
-			for i,val in enumerate(self.territoriGenerali):
-				lista[i%self.numPmax].append(val)
+		#distribution magic !!! <<< --- QUI
+		for i,val in enumerate(self.territoriGenerali):
+			lista[i%self.numPmax].append(val)
 
 	def DistribuzioneRoba(self,Listona):
 		
