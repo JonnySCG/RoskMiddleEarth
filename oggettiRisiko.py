@@ -13,10 +13,9 @@ class Giocatore(object):
 		self.conferma=False
 		self.conferma2=False
 		self.NumArmy=0
-		self.NumArmyDisponibili=135
+		#self.NumArmyDisponibili=135
 		self.finitoDisArmy=False
 		self.territori=[]
-		self.codeTerritori=[]
 		self.carteCombinazioni=[]
 		self.eliminato=False
 		self.giocatoriEliminati=[]

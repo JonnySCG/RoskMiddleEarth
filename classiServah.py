@@ -16,7 +16,6 @@ class Partita(object):
 		self.territoriFissi=[]
 		self.carteUsate=[]
 
-
 		with open('json.json') as data_file:
 
 			data = json.load(data_file)
@@ -223,7 +222,35 @@ class Partita(object):
 		self.DistribuzioneRoba(self.obiettivi)
 
 		#distribuzione colore
-		self.DistribuzioneRoba(self.colori)		
+		self.DistribuzioneRoba(self.colori)
+
+		if self.numPmax==3:
+
+			for x in self.giocatori:
+				
+				x.numArmy=41
+				x.numArmyDisponibili-=41
+
+		if self.numPmax==4:
+
+			for x in self.giocatori:
+				
+				x.numArmy=35			
+				x.numArmyDisponibili-=35
+
+		if self.numPmax==5:
+
+			for x in self.giocatori:
+				
+				x.numArmy=29
+				x.numArmyDisponibili-=29
+
+		if self.numPmax==6:
+
+			for x in self.giocatori:
+				
+				x.numArmy=23
+				x.numArmyDisponibili-=23
 
 		for x in self.territoriFissi:
 
@@ -258,8 +285,7 @@ class Partita(object):
 
 				if self.verificaOK()==True:
 
-					#TODO Inviare tuttos
-					self.response("Benvenuto nella Terra di Mezzo.{},{},{}. Vai alla distribuzione delle armate sui territori".format(player.colore,player.territori,player.obiettivoGiocatore))
+					self.response("Benvenuto nella Terra di Mezzo. Colore della tua armata: {}, Il tuo obiettivo: {}, Armate da distribuire: {}. Lista dei tuoi territori: {}. Vai alla distribuzione delle armate sui territori".format(player.colore , player.obiettivoGiocatore.code , player.numArmy , x.code for x in player.territori))
 
 					self.STATO=1.1
 
@@ -348,8 +374,7 @@ class Partita(object):
 
 					if self.query["attesa"]==["2"]:
 
-						#TODO Inviare tuttos
-						self.response("Benvenuto nella Terra di Mezzo.{},{},{}. Vai alla distribuzione delle armate sui territori".format(player.colore,player.territori,player.obiettivoGiocatore))
+						self.response("Benvenuto nella Terra di Mezzo. Colore della tua armata: {}, Il tuo obiettivo: {}, Armate da distribuire: {}. Lista dei tuoi territori: {}. Vai alla distribuzione delle armate sui territori".format(player.colore , player.obiettivoGiocatore.code , player.numArmy , x.code for x in player.territori))
 
 					elif self.query["attesa"]==["3"]:
 
@@ -602,7 +627,7 @@ class Partita(object):
 						z+=7
 
 					self.STATO=2.15
-					self.response("Armate guadagnate grazia al numero dei territori posseduti:{}. Armate guadagnate grazie al monopolio su interi continenti: {}. Decidi se inviare una combinazione di carte, o se passare direttamente alla disposizione delle armate." .format((x+y),z))
+					self.response("E' il tuo turno. Armate guadagnate grazia al numero dei territori posseduti:{}. Armate guadagnate grazie al monopolio su interi continenti: {}. Decidi se inviare una combinazione di carte, o se passare direttamente alla disposizione delle armate." .format((x+y),z))
 
 					self.giocatoreDelTurno.numArmy+=(x+y+z)
 
@@ -618,12 +643,13 @@ class Partita(object):
 
 					self.giocatoreDelTurno.numArmy+=w
 
+					#self.giocatoreDelTurno.numArmyDisponibili-=numArmy
 					self.response("Combinazione analizzata: {} armate guadagnate con le tre carte. Totale armate da distribuire: {}" .format(w,self.giocatoreDelTurno.NumArmy))
 					self.STATO=2.15
 
 				elif "DistLeArmy" in self.query and self.query["DistLeArmy"]==["OK"]:
 
-					self.giocatoreDelTurno.numArmyDisponibili-=numArmy
+					#self.giocatoreDelTurno.numArmyDisponibili-=numArmy
 					response("Distribuisci le armate guadagnate.")
 					self.STATO=2.15
 
