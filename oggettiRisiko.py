@@ -5,7 +5,7 @@ class Giocatore(object):
 
 	def __init__(self,ordine,socket):
 	
-		self.ordine=ordine
+		self.ordine=ordine#
 		self.socket=socket
 		self.IP=self.socket[0]
 		self.colore=""
@@ -13,6 +13,7 @@ class Giocatore(object):
 		self.conferma=False
 		self.conferma2=False
 		self.NumArmy=0
+		self.NumArmyDisponibili=135
 		self.finitoDisArmy=False
 		self.territori=[]
 		self.codeTerritori=[]
@@ -35,7 +36,7 @@ class Territorio(object):
 
 	def addTConfinanti(self):
 	
-		for x in self.match.territori: 
+		for x in self.match.territoriFissi: 
 			
 			if x.codiceTerritorio in self.nomiTconfinanti: # TODO sostitute nomeT with code
 

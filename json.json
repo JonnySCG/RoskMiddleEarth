@@ -61,7 +61,6 @@
 
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b1",
 					"nome":"Ard-Galen",
@@ -70,7 +69,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b2",
 					"nome":"Baia di Balar",
@@ -79,7 +77,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b3",
 					"nome":"Doriath",
@@ -88,7 +85,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b4",
 					"nome":"Dorthonion",
@@ -97,7 +93,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b5",
 					"nome":"Ered Luin",
@@ -106,7 +101,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b6",
 					"nome":"Falas",
@@ -115,7 +109,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b7",
 					"nome":"Hitlum",
@@ -124,7 +117,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b8",
 					"nome":"Taur-im-Duinath",
@@ -133,7 +125,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Beleriand",
 					"codice":"b9",
 					"nome":"Ossiriand",
@@ -142,7 +133,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo1",
 					"nome":"Foreste del Sud",
@@ -151,7 +141,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo2",
 					"nome":"Foreste selvaggie",
@@ -160,7 +149,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo3",
 					"nome":"Hildorien",
@@ -169,7 +157,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo4",
 					"nome":"Mare di Helcar",
@@ -178,7 +165,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo5",
 					"nome":"Montagne Nebbiose",
@@ -187,7 +173,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo6",
 					"nome":"Monti bianchi",
@@ -196,7 +181,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo7",
 					"nome":"Nord Eriador",
@@ -205,7 +189,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo8",
 					"nome":"Orocarni",
@@ -214,7 +197,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo9",
 					"nome":"Rhovanion",
@@ -223,7 +205,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Endor Orientale",
 					"codice":"eo10",
 					"nome":"Sud Palisor",
@@ -232,7 +213,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Aman",
 					"codice":"na1",
 					"nome":"Araman",
@@ -241,7 +221,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Aman",
 					"codice":"na2",
 					"nome":"Baia di Eldamar",
@@ -250,7 +229,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Aman",
 					"codice":"na3",
 					"nome":"Lorien",
@@ -259,7 +237,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Aman",
 					"codice":"na4",
 					"nome":"Peleori settentrionali",
@@ -268,7 +245,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Aman",
 					"codice":"na5",
 					"nome":"Pianure settentrionali di Valinor",
@@ -277,7 +253,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Aman",
 					"codice":"na6",
 					"nome":"Torre di Elwig",
@@ -286,7 +261,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Endor",
 					"codice":"ne1",
 					"nome":"Angband",
@@ -295,7 +269,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Endor",
 					"codice":"ne2",
 					"nome":"Dor Daidelos",
@@ -304,7 +277,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Endor",
 					"codice":"ne3",
 					"nome":"Helcarraxe",
@@ -313,7 +285,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Endor",
 					"codice":"ne4",
 					"nome":"Monti di Ferro",
@@ -322,7 +293,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Nord Endor",
 					"codice":"ne5",
 					"nome":"Rovine di Utumno",
@@ -331,7 +301,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa1",
 					"nome":"Aule di Mandos",
@@ -340,7 +309,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa2",
 					"nome":"Avathar",
@@ -349,7 +317,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa3",
 					"nome":"Caverna di Ungoliath",
@@ -358,7 +325,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa4",
 					"nome":"Ezelorrah",
@@ -367,7 +333,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa5",
 					"nome":"Foreste di Orome",
@@ -376,7 +341,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa6",
 					"nome":"Peleori meridionali",
@@ -385,7 +349,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa7",
 					"nome":"Pianure di Yavanna",
@@ -394,7 +357,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa8",
 					"nome":"Taniquetil",
@@ -404,7 +366,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Aman",
 					"codice":"sa9",
 					"nome":"Tol Eressea",
@@ -413,7 +374,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se1",
 					"nome":"Estremo Harad",
@@ -422,7 +382,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se2",
 					"nome":"Grande Golfo",
@@ -431,7 +390,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se3",
 					"nome":"Medio Harad",
@@ -439,7 +397,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se4",
 					"nome":"Monti Gialli",
@@ -448,7 +405,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se5",
 					"nome":"Monti Grigi",
@@ -457,7 +413,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se6",
 					"nome":"Muri del Sole",
@@ -466,7 +421,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se7",
 					"nome":"Stretto del mondo",
@@ -475,7 +429,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se8",
 					"nome":"Estremo Est",
@@ -484,7 +437,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se9",
 					"nome":"Terre Oscure",
@@ -493,7 +445,6 @@
 				},
 				{
 
-					"colore":"",
 					"continente":"Sud Endor",
 					"codice":"se10",
 					"nome":"Vicino Harad",

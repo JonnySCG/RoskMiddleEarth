@@ -35,7 +35,6 @@ class Partita(object):
 		self.colori=["blu","rosso","giallo","nero","verde","viola"]
 
 		self.giocatoreDelTurno=None
-		self.numeroGiocatoreDelTurno=0
 
 	def aggiungiP(self,player):
 
@@ -226,9 +225,15 @@ class Partita(object):
 		#distribuzione colore
 		self.DistribuzioneRoba(self.colori)		
 
-		for x in self.territoriGenerali:
+		for x in self.territoriFissi:
 
 			x.addTConfinanti()
+
+		for x in self.giocatori:
+
+			if x.obiettivoGiocatore in self.obiettivi:
+
+				x.obiettivoGiocatore.proprietario=x
 
 		u.debug("sto analizzando richieste",4)
 
@@ -367,21 +372,6 @@ class Partita(object):
 
 			self.rispostina()
 
-	def verificaDisTerritori(self):
-
-		var=True
-
-		for g in self.giocatori:
-
-			if g.conferma2==False:
-
-				var=False
-				
-				break		
-
-		return var
-
-#OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 #  STATO 1.5    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	def disArmy(self):
@@ -552,7 +542,69 @@ class Partita(object):
 
 				if "attesa" in self.query and self.query["attesa"]==["4"]:
 				
-					self.response("E' il tuo turno")
+					x=len(self.giocatoreDelTurno.territori)/3
+					y=0
+					z=0
+
+					if x<=3: y=0
+					elif x>=4 and x<=9: y=1
+					elif x>=10 and x<=15: y=2
+					elif x==16: y=3
+
+					for x in self.giocatoreDelTurno.territori:
+					
+						if x.continente =="Beleriand":
+
+							arrayno1.append(x)
+
+						if x.continente =="Endor Orientale":
+
+							arrayno2.append(x)
+
+						if x.continente =="Nord Aman":
+
+							arrayno3.append(x)
+
+						if x.continente =="Nord Endor":
+
+							arrayno4.append(x)
+
+						if x.continente =="Sud Aman":
+
+							arrayno5.append(x)
+
+						if x.continente =="Sud Endor":
+
+							arrayno6.append(x)
+
+					if len(arrayno1)==9:
+					
+						z+=6
+
+					if len(arrayno2)==10:
+					
+						z+=8
+
+					if len(arrayno3)==6:
+					
+						z+=4
+
+					if len(arrayno4)==5:
+					
+						z+=3
+
+					if len(arrayno5)==9:
+					
+						z+=5
+
+					if len(arrayno6)==10:
+					
+						z+=7
+
+					self.STATO=2.15
+					self.response("Armate guadagnate grazia al numero dei territori posseduti:{}. Armate guadagnate grazie al monopolio su interi continenti: {}. Decidi se inviare una combinazione di carte, o se passare direttamente alla disposizione delle armate." .format((x+y),z))
+
+					self.giocatoreDelTurno.numArmy+=(x+y+z)
 
 				elif "carta1" in self.query and "carta2" in self.query and "carta3" in self.query:
 
@@ -562,146 +614,21 @@ class Partita(object):
 					codiciQuery.append(self.query["carta2"])
 					codiciQuery.append(self.query["carta3"])
 
-					self.ArmyDaCarte(self.estrapolaCarte(codiciQuery))
+					w=self.ArmyDaCarte(self.estrapolaCarte(codiciQuery))
 
-					x=len(self.giocatoreDelTurno.territori)/3
-					y=0
+					self.giocatoreDelTurno.numArmy+=w
 
-					if x<=3: y=0
-					elif x>=4 and x<=9: y=1
-					elif x>=10 and x<=15: y=2
-					elif x==16: y=3
-					else: self.response("Azione non disponibile")
-
-					arrayno1=[]
-					arrayno2=[]
-					arrayno3=[]
-					arrayno4=[]
-					arrayno5=[]
-					arrayno6=[]
-
-					for x in self.giocatoreDelTurno.territori:
-					
-						if x.continente =="Beleriand":
-
-							arrayno1.append(x)
-
-						if x.continente =="Endor Orientale":
-
-							arrayno2.append(x)
-
-						if x.continente =="Nord Aman":
-
-							arrayno3.append(x)
-
-						if x.continente =="Nord Endor":
-
-							arrayno4.append(x)
-
-						if x.continente =="Sud Aman":
-
-							arrayno5.append(x)
-
-						if x.continente =="Sud Endor":
-
-							arrayno6.append(x)
-
-					if len(arrayno1)==9:
-					
-						self.giocatoreDelTurno.NumArmy+=6
-
-					if len(arrayno2)==10:
-					
-						self.giocatoreDelTurno.NumArmy+=8
-
-					if len(arrayno3)==6:
-					
-						self.giocatoreDelTurno.NumArmy+=4
-
-					if len(arrayno4)==5:
-					
-						self.giocatoreDelTurno.NumArmy+=3
-
-					if len(arrayno5)==9:
-					
-						self.giocatoreDelTurno.NumArmy+=5
-
-					if len(arrayno6)==10:
-					
-						self.giocatoreDelTurno.NumArmy+=7
-
-
-					self.giocatoreDelTurno.NumArmy+=(x+y)
-
-					self.response("Combinazione analizzata. {} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
+					self.response("Combinazione analizzata: {} armate guadagnate con le tre carte. Totale armate da distribuire: {}" .format(w,self.giocatoreDelTurno.NumArmy))
 					self.STATO=2.15
 
 				elif "DistLeArmy" in self.query and self.query["DistLeArmy"]==["OK"]:
 
-					x=len(self.giocatoreDelTurno.territori)/3
-					y=0
-
-					if x<=3: y=0
-					elif x>=4 and x<=9: y=1
-					elif x>=10 and x<=15: y=2
-					elif x==16: y=3
-
-					for x in self.giocatoreDelTurno.territori:
-					
-						if x.continente =="Beleriand":
-
-							arrayno1.append(x)
-
-						if x.continente =="Endor Orientale":
-
-							arrayno2.append(x)
-
-						if x.continente =="Nord Aman":
-
-							arrayno3.append(x)
-
-						if x.continente =="Nord Endor":
-
-							arrayno4.append(x)
-
-						if x.continente =="Sud Aman":
-
-							arrayno5.append(x)
-
-						if x.continente =="Sud Endor":
-
-							arrayno6.append(x)
-
-					if len(arrayno1)==9:
-					
-						self.giocatoreDelTurno.NumArmy+=6
-
-					if len(arrayno2)==10:
-					
-						self.giocatoreDelTurno.NumArmy+=8
-
-					if len(arrayno3)==6:
-					
-						self.giocatoreDelTurno.NumArmy+=4
-
-					if len(arrayno4)==5:
-					
-						self.giocatoreDelTurno.NumArmy+=3
-
-					if len(arrayno5)==9:
-					
-						self.giocatoreDelTurno.NumArmy+=5
-
-					if len(arrayno6)==10:
-					
-						self.giocatoreDelTurno.NumArmy+=7
-
-					self.giocatoreDelTurno.NumArmy+=(x+y)
-
+					self.giocatoreDelTurno.numArmyDisponibili-=numArmy
+					response("Distribuisci le armate guadagnate.")
 					self.STATO=2.15
-					self.response("Distribuisci le armate guadagnate:{} armate da distribuire" .format(self.giocatoreDelTurno.NumArmy))
 
 				else:
+
 					self.response("Azione non disponibile")
 		
 			else:
@@ -749,71 +676,95 @@ class Partita(object):
 		c2x=carteCombo[1]
 		c3x=carteCombo[2]
 
+		c1x.proprietario=None
+		c2x.proprietario=None
+		c3x.proprietario=None
+
+		numeroDaRitornare=0
+
 		if c1==c2 and c1==c3:
 
 			if c1=="troll":
 
-				self.giocatoreDelTurno.NumArmy+=8
+				numeroDaRitornare+=8
 
 				if c1x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c2x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c3x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+				c1x.proprietario=None
+				c2x.proprietario=None
+				c3x.proprietario=None
+
 				self.carteUsate.append(c1x)
 				self.carteUsate.append(c2x)
 				self.carteUsate.append(c3x)
+
+				return numeroDaRitornare
 
 			elif c1=="balrog":
 
-				self.giocatoreDelTurno.NumArmy+=10
+				numeroDaRitornare+=10
 
 				if c1x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c2x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c3x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+				c1x.proprietario=None
+				c2x.proprietario=None
+				c3x.proprietario=None
+
 				self.carteUsate.append(c1x)
 				self.carteUsate.append(c2x)
 				self.carteUsate.append(c3x)
+
+				return numeroDaRitornare
 
 			elif c1=="drago":
 
-				self.giocatoreDelTurno.NumArmy+=12
+				numeroDaRitornare+=12
 				
 
 				if c1x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c2x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c3x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+				c1x.proprietario=None
+				c2x.proprietario=None
+				c3x.proprietario=None
+
 				self.carteUsate.append(c1x)
 				self.carteUsate.append(c2x)
 				self.carteUsate.append(c3x)
+
+				return numeroDaRitornare
 
 			else:
 
@@ -822,83 +773,108 @@ class Partita(object):
 		elif c1!=c2 and c1!=c3:
 
 			if c1x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 			if c2x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 			if c3x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 			self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
 			self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
 			self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+			c1x.proprietario=None
+			c2x.proprietario=None
+			c3x.proprietario=None
+
 			self.carteUsate.append(c1x)
 			self.carteUsate.append(c2x)
 			self.carteUsate.append(c3x)
 
+			return numeroDaRitornare
+
 		elif c1 =="jolly" or c2=="jolly" or c3=="jolly":
 
 			if c1 == "jolly" and c2==c3:
-				self.giocatoreDelTurno.NumArmy+=15
+				numeroDaRitornare+=15
 
 				if c1x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c2x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c3x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+				c1x.proprietario=None
+				c2x.proprietario=None
+				c3x.proprietario=None
+
 				self.carteUsate.append(c1x)
 				self.carteUsate.append(c2x)
 				self.carteUsate.append(c3x)
+
+				return numeroDaRitornare
 
 			elif c2 == "jolly" and c1==c3:
-				self.giocatoreDelTurno.NumArmy+=15
+				numeroDaRitornare+=15
 
 				if c1x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c2x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c3x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+				c1x.proprietario=None
+				c2x.proprietario=None
+				c3x.proprietario=None
+
 				self.carteUsate.append(c1x)
 				self.carteUsate.append(c2x)
 				self.carteUsate.append(c3x)
+
+				return numeroDaRitornare
 
 			elif c3 =="jolly" and c1==c2:
-				self.giocatoreDelTurno.NumArmy+=15
+
+				numeroDaRitornare+=15
 
 				if c1x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c2x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				if c3x.armateExtra==True:
-					self.giocatoreDelTurno.NumArmy+=2
+					numeroDaRitornare+=2
 
 				self.giocatoreDelTurno.carteCombinazioni.remove(c1x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c2x)
 				self.giocatoreDelTurno.carteCombinazioni.remove(c3x)
 
+				c1x.proprietario=None
+				c2x.proprietario=None
+				c3x.proprietario=None
+
 				self.carteUsate.append(c1x)
 				self.carteUsate.append(c2x)
 				self.carteUsate.append(c3x)
+
+				return numeroDaRitornare
 
 			else:
 
@@ -1526,7 +1502,7 @@ class Partita(object):
 
 				if "conferma" in self.query and self.query["conferma"]==["OK"]:
 
-					self.giocatoreDelTurno.obiettivoGiocatore.controllaObCompletato(s)
+					self.giocatoreDelTurno.obiettivoGiocatore.controllaObCompletato()
 
 					if self.giocatoreDelTurno.obiettivoGiocatore.obCompletato== True:
 					
@@ -1590,11 +1566,11 @@ class Partita(object):
 
 		if self.numeroGiocatoreDelTurno<=self.numP-1:
 
-			self.prossimoGiocatoreTurno=self.giocatori[self.numeroGiocatoreDelTurno+1]
+			self.prossimoGiocatoreTurno=self.giocatori[self.giocatoreDelTurno.ordine+1]
 
 		else:
 
-			self.prossimoGiocatoreTurno=self.giocatori[self.numeroGiocatoreDelTurno-self.numP]
+			self.prossimoGiocatoreTurno=self.giocatori[0]
 
 		#00000000000000000000000000000000000000000000000000000000000000000
 
@@ -1616,6 +1592,7 @@ class Partita(object):
 
 					shuffle(carte)
 					cartaPescata=carte[0]
+					cartaPescata.proprietario=self.giocatoreDelTurno
 					self.giocatoreDelTurno.carteCombinazioni.append(cartaPescata)
 					self.carte.remove(cartaPescata)
 					self.STATO=2.32
@@ -1745,7 +1722,6 @@ class Partita(object):
 					self.listaIP=[]
 					self.colori=["blu","rosso","giallo","nero","verde","viola"]
 					self.giocatoreDelTurno=None
-					self.numeroGiocatoreDelTurno=0
 
 					self.STATO=0
 
