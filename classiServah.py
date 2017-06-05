@@ -262,13 +262,13 @@ class Partita(object):
 
 				else:
 
-					self.response("Aspettare la conferma degli altri giocatori.","200 OK"))
+					self.response("Aspettare la conferma degli altri giocatori.","200 OK")
 					
 			elif "attesa" in self.query:
 
 				if self.query["attesa"]==["1"]:
 
-	 				self.response("Numero giocatori raggiunto. Confermare di voler iniziare la partita","200 OK"))
+	 				self.response("Numero giocatori raggiunto. Confermare di voler iniziare la partita","200 OK")
 
 	 			elif self.query["attesa"]==["2"]:
 
@@ -278,22 +278,22 @@ class Partita(object):
 
 					if player.conferma==True:
 
-						self.response("Azione non disponibile. Aspettare la conferma degli altri giocatori.","200 OK"))
+						self.response("Azione non disponibile. Aspettare la conferma degli altri giocatori.","200 OK")
 
 					else:
 
-						self.response("Azione non disponibile. Inviare la conferma.","200 OK"))
+						self.response("Azione non disponibile. Inviare la conferma.","200 OK")
 
 
 			else:
 
 				if player.conferma==True:
 
-						self.response("Azione non disponibile. Aspettare la conferma degli altri giocatori.","200 OK"))
+						self.response("Azione non disponibile. Aspettare la conferma degli altri giocatori.","200 OK")
 
 				else:
 
-						self.response("Azione non disponibile. Inviare la conferma.","200 OK"))
+						self.response("Azione non disponibile. Inviare la conferma.","200 OK")
 
 		else:
 			self.rispostina()
@@ -821,7 +821,7 @@ class Partita(object):
 
 				self.response("Azione non disponibile")
 
-		elif c1!=c2 and c1!=c3 
+		elif c1!=c2 and c1!=c3:
 
 			if c1x.armateExtra==True:
 					self.giocatoreDelTurno.NumArmy+=2
@@ -1227,7 +1227,7 @@ class Partita(object):
 			self.territorioAttacco.numArmyT=self.territorioAttacco.numArmyT-self.NumArmyATTACCO
 			self.territorioDifesa.numArmyT=armateDaTrasportare
 
-		if conquistaRiuscita=True and len(self.difensore.territori)==0:
+		if conquistaRiuscita==True and len(self.difensore.territori)==0:
 			
 			self.difensore.eliminato=True
 			self.giocatori.remove(self.difensore)
@@ -1260,7 +1260,7 @@ class Partita(object):
 
 				elif "conferma" in self.query and self.query["conferma"]==["OK"]:
 
-					if confermap2=True:
+					if confermap2==True:
 
 						if self.giocatoreDelTurno.obiettivoGiocatore.obCompletato:
 						
@@ -1286,7 +1286,7 @@ class Partita(object):
 
 					if conquistaRiuscita==True:
 
-						if if self.difensore.eliminato==True:
+						if self.difensore.eliminato==True:
 							
 							self.response("Sei stato eliminato.")
 
@@ -1300,7 +1300,7 @@ class Partita(object):
 
 				elif "conferma" in self.query and self.query["conferma"]==["OK"]:
 
-					if confermap1=True:
+					if confermap1==True:
 
 						self.STATO=2.25
 						self.response("Conclusione battaglia. Vuoi iniziarne un'altra o concludere il tuo turno?")
@@ -1334,7 +1334,7 @@ class Partita(object):
 
 			self.rispostina()
 
-	def dadi(self,nA=self.NumArmyATTACCO,nD=self.NumArmyDIFESA):
+	def dadi(self):
 
 		dadoA1=None
 		dadoA2=None
@@ -1528,7 +1528,9 @@ class Partita(object):
 
 				if "conferma" in self.query and self.query["conferma"]==["OK"]:
 
-					if self.giocatoreDelTurno.obiettivoGiocatore.obCompletato:
+					self.giocatoreDelTurno.obiettivoGiocatore.controllaObCompletato()
+
+					if self.giocatoreDelTurno.obiettivoGiocatore.obCompletato== True:
 					
 						self.response("Complimenti, hai raggiunto il tuo obiettivo. Goditi la gloria eterna!" )
 						self.STATO=3
@@ -1638,14 +1640,16 @@ class Partita(object):
 
 				if "attesa" in self.query and self.query["attesa"]==["4"]:
 					
-					self.response("{} sta per concludere il suo turno. Il prossimo è {}".format(self.giocatoreDelTurno,self.prossimoGiocatoreTurno))
+					self.response("{} sta per concludere il suo turno. Il prossimo e' {}".format(self.giocatoreDelTurno,self.prossimoGiocatoreTurno))
+
 				else:
 
 					self.response("Azione non disponibile")
 		
 		else:
+
 			self.rispostina()
-	
+
 	def spostareArmy(self):
 
 		if self.cliente[0] in self.listaIP:
@@ -1721,36 +1725,32 @@ class Partita(object):
 
 			if "attesa" in self.query and self.query["attesa"]==["4"]:
 
-				self.response("{} ha raggiunto il suo obiettivo ({}). Conferma per concludere la partita o aspetta 30 secondi".format(self.giocatoreDelTurno,self.giocatoreDelTurno.obiettivoGiocatore.stringa))
-
-				#TODO timer da 30 secondi
-
-				self.obiettivi=[]
-				self.carte=[]
-				self.territoriGenerali=[]
-				self.territoriFissi=[]
-				self.carteUsate=[]
-				with open('json.json') as data_file:
-					data = json.load(data_file)
-					self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"],self)
-					self.territoriGenerali=u.parser(Territorio,data["territori"],self)
-					self.territoriFissi=self.territoriGenerali[:]
-					self.carte=u.parser(Carta,data["carte"],self)
-				self.numPmax=numPmax
-				self.numP=0
-				self.giocatori=[]
-				self.listaIP=[]
-				self.colori=["blu","rosso","giallo","nero","verde","viola"]
-				self.giocatoreDelTurno=None
-				self.numeroGiocatoreDelTurno=0
-
-				self.STATO=0
-
-			if "conclusione" in self.query and self.query["conclusione"]==["OK"]:	
-
-				self.response("Sei uscito dalla partita.")
-
+				self.response("{} ha raggiunto il suo obiettivo ({}). La partita e' terminata".format(self.giocatoreDelTurno,self.giocatoreDelTurno.obiettivoGiocatore.stringa))
 				self.giocatori.remove(player)
+
+				if len(self.giocatori)==0:
+				
+					self.obiettivi=[]
+					self.carte=[]
+					self.territoriGenerali=[]
+					self.territoriFissi=[]
+					self.carteUsate=[]
+					with open('json.json') as data_file:
+						data = json.load(data_file)
+						self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"],self)
+						self.territoriGenerali=u.parser(Territorio,data["territori"],self)
+						self.territoriFissi=self.territoriGenerali[:]
+						self.carte=u.parser(Carta,data["carte"],self)
+					self.numPmax=numPmax
+					self.numP=0
+					self.giocatori=[]
+					self.listaIP=[]
+					self.colori=["blu","rosso","giallo","nero","verde","viola"]
+					self.giocatoreDelTurno=None
+					self.numeroGiocatoreDelTurno=0
+
+					self.STATO=0
+
 
 		else:
 

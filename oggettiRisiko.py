@@ -1,6 +1,5 @@
 import utilities as u
 import json
-from classiServah import Partita
 
 class Giocatore(object):
 
@@ -24,13 +23,13 @@ class Giocatore(object):
 class Territorio(object):
 
 	def __init__(self,json,match):
-		self.nomeT=json["territori"]["nome"]
+		self.nomeT=json["nome"]
 		self.numArmyT=0
-		self.codiceTerritorio=json["territori"]["codice"]
-		self.continente=json["territori"]["continente"]
+		self.codiceTerritorio=json["codice"]
+		self.continente=json["continente"]
 		self.proprietarioT=None
-		self.coloreTerritorio=json["territori"]["colore"]
-		self.nomiTconfinanti=json["territori"]["tConfinanti"]
+		self.coloreTerritorio=json["colore"]
+		self.nomiTconfinanti=json["tConfinanti"]
 		self.territoriConfinanti=[]
 		self.match=match
 
@@ -47,8 +46,8 @@ class Carta(object):
 
 	def __init__(self,json,match):
 
-		self.figura=json["carte"]["figura"]
-		self.codiceTerritorio=json["carte"]["codice"]
+		self.figura=json["figura"]
+		self.codiceTerritorio=json["codice"]
 		self.cartaT=None
 		self.proprietario=None
 		self.armateExtra=False
@@ -76,12 +75,20 @@ class CartaObiettivo(object):
 
 	def __init__(self,json,match):
 
-		self.stringa=json["obiettivi"]["stringa"]
+		self.stringa=json["stringa"]
 		self.proprietario=None
-		self.ID=json["obiettivi"]["ID"]
+		self.ID=json["ID"]
 		self.obCompletato=False
 		self.match=match
 
+	def controllaObCompletato(self):
+
+		for x in match.giocatori:
+
+			if x.obiettivoGiocatore == self:
+				
+				self.proprietario=x
+	
 		if self.ID=="ob28" and len(self.proprietario.territori)>=28:
 			
 			self.obCompletato=True
@@ -307,7 +314,7 @@ class CartaObiettivo(object):
 
 					else:
 
-						self.ID="ob28"e
+						self.ID="ob28"
 
 			else:
 

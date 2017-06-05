@@ -3,6 +3,7 @@ import os
 from urlparse import urlparse
 from urlparse import parse_qs
 from classiServah import Partita
+from oggettiRisiko import Giocatore
 import utilities as u
 
 
