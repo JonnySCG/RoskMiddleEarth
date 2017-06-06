@@ -417,7 +417,7 @@ class Partita(object):
 
 				if "aggiorna" in self.query and self.query["aggiorna"]==["1"]:
 
-					self.response("")#TODO
+					self.response(self.inviaTutto())
 
 				else:
 
@@ -430,8 +430,7 @@ class Partita(object):
 
 						elif "aggiornami" in self.query and self.query["aggiornami"]==["1"]:
 
-							self.response("")
-							#TODO rispondi tuttos
+							self.response(self.inviaTutto())
 
 
 						elif "attesa" in self.query and self.query["attesa"]==["4"]:
@@ -1700,8 +1699,10 @@ class Partita(object):
 			else:
 
 				if "attesa" in self.query and self.query["attesa"]==["4"]:
-					
+
+					self.response(self.inviaTutto())					
 					self.response("{} sta concludendo il suo turno.".format(self.giocatoreDelTurno))
+
 				else:
 
 					self.response("Azione non disponibile")
@@ -1735,7 +1736,7 @@ class Partita(object):
 					self.carte=[]
 					self.territoriGenerali=[]
 					self.territoriFissi=[]
-					self.carteUsate=[]
+					self.carteUsate=[]##########quasi sempre
 					with open('json.json') as data_file:
 						data = json.load(data_file)
 						self.obiettivi=u.parser(CartaObiettivo,data["obiettivi"],self)
@@ -1744,10 +1745,10 @@ class Partita(object):
 						self.carte=u.parser(Carta,data["carte"],self)
 					self.numPmax=numPmax
 					self.numP=0
-					self.giocatori=[]
+					self.giocatori=[]######solo qualche variabile
 					self.listaIP=[]
 					self.colori=["blu","rosso","giallo","nero","verde","viola"]
-					self.giocatoreDelTurno=None
+					self.giocatoreDelTurno=None##########quasi sempre
 
 					self.STATO=0
 
@@ -1759,6 +1760,191 @@ class Partita(object):
 	def inviaTutto(self):
 
 		toReturn={}
+
+		if self.numPmax==3:
+
+			toReturn={
+
+				"cUsate":[x.code for x in self.carteUsate]
+				"pTurno":self.giocatoreDelTurno
+
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				},	
+				"p2"{
+
+					"coloreP":self.giocatori[1].colore
+					"codezTerritori":[x.code for x in self.giocatori[1].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[1].territori]
+					"eliminatez":self.giocatore[1].eliminato
+
+				},	
+				"p1"{
+
+					"coloreP":self.giocatori[2].colore
+					"codezTerritori":[x.code for x in self.giocatori[2].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[2].territori]
+					"eliminatez":self.giocatore[2].eliminato
+
+				}	
+
+			}
+
+		elif self.numPmax==4:
+
+			toReturn={
+
+				"cUsate":[x.code for x in self.carteUsate]
+				"pTurno":self.giocatoreDelTurno
+
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				},	
+				"p2"{
+
+					"coloreP":self.giocatori[1].colore
+					"codezTerritori":[x.code for x in self.giocatori[1].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[1].territori]
+					"eliminatez":self.giocatore[1].eliminato
+
+				},	
+				"p3"{
+
+					"coloreP":self.giocatori[2].colore
+					"codezTerritori":[x.code for x in self.giocatori[2].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[2].territori]
+					"eliminatez":self.giocatore[2].eliminato
+
+				},	
+				"p4"{
+
+					"coloreP":self.giocatori[3].colore
+					"codezTerritori":[x.code for x in self.giocatori[3].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[3].territori]
+					"eliminatez":self.giocatore[3].eliminato
+
+				}
+
+			}
+
+		elif self.numPmax==5:
+
+			toReturn={
+
+				"cUsate":[x.code for x in self.carteUsate]
+				"pTurno":self.giocatoreDelTurno
+
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				},	
+				"p2"{
+
+					"coloreP":self.giocatori[1].colore
+					"codezTerritori":[x.code for x in self.giocatori[1].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[1].territori]
+					"eliminatez":self.giocatore[1].eliminato
+
+				},	
+				"p3"{
+
+					"coloreP":self.giocatori[2].colore
+					"codezTerritori":[x.code for x in self.giocatori[2].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[2].territori]
+					"eliminatez":self.giocatore[2].eliminato
+
+				},
+				"p4"{
+
+					"coloreP":self.giocatori[3].colore
+					"codezTerritori":[x.code for x in self.giocatori[3].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[3].territori]
+					"eliminatez":self.giocatore[3].eliminato
+
+				},	
+				"p5"{
+
+					"coloreP":self.giocatori[4].colore
+					"codezTerritori":[x.code for x in self.giocatori[4].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[4].territori]
+					"eliminatez":self.giocatore[4].eliminato
+
+				}					
+
+			}
+
+		elif self.numPmax==6:
+
+			toReturn={
+
+				"cUsate":[x.code for x in self.carteUsate]
+				"pTurno":self.giocatoreDelTurno
+
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				},	
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				},	
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				},
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				},	
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				},	
+				"p1"{
+
+					"coloreP":self.giocatori[0].colore
+					"codezTerritori":[x.code for x in self.giocatori[0].territori]
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
+					"eliminatez":self.giocatore[0].eliminato
+
+				}
+
+
+			}
 
 		return json.dumps(toReturn)
 

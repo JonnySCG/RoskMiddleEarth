@@ -5,27 +5,27 @@ class Giocatore(object):
 
 	def __init__(self,ordine,socket):
 	
-		self.ordine=ordine#
+		self.ordine=ordine            #####1Volta
 		self.socket=socket
-		self.IP=self.socket[0]
-		self.colore=""
+		self.IP=self.socket[0]        #####1Volta
+		self.colore=""                #####1Volta
 		self.obiettivoGiocatore=None
 		self.conferma=False
 		self.conferma2=False
 		self.NumArmy=0
 		#self.NumArmyDisponibili=135
 		self.finitoDisArmy=False
-		self.territori=[]
+		self.territori=[]             ##########quasi sempre
 		self.carteCombinazioni=[]
-		self.eliminato=False
+		self.eliminato=False          #####solo a ArmatePerse
 		self.giocatoriEliminati=[]
 
 class Territorio(object):
 
 	def __init__(self,json,match):
 		self.nomeT=json["nome"]
-		self.numArmyT=0
-		self.codiceTerritorio=json["codice"]
+		self.numArmyT=0               ##########quasi sempre
+		self.codiceTerritorio=json["codice"]##########quasi sempre
 		self.continente=json["continente"]
 		self.proprietarioT=None
 		self.coloreTerritorio=json["colore"]
