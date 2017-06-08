@@ -28,7 +28,7 @@ class Territorio(object):
 		self.codiceTerritorio=json["codice"]##########quasi sempre
 		self.continente=json["continente"]
 		self.proprietarioT=None
-		self.coloreTerritorio=json["colore"]
+		# self.coloreTerritorio=json["colore"]
 		self.nomiTconfinanti=json["tConfinanti"]
 		self.territoriConfinanti=[]
 		self.match=match

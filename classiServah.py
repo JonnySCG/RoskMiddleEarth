@@ -285,7 +285,7 @@ class Partita(object):
 
 				if self.verificaOK()==True:
 
-					self.response("Benvenuto nella Terra di Mezzo. Colore della tua armata: {}, Il tuo obiettivo: {}, Armate da distribuire: {}. Lista dei tuoi territori: {}. Vai alla distribuzione delle armate sui territori".format(player.colore , player.obiettivoGiocatore.code , player.numArmy , x.code for x in player.territori))
+					self.response("Benvenuto nella Terra di Mezzo. Colore della tua armata: {}, Il tuo obiettivo: {}, Armate da distribuire: {}. Lista dei tuoi territori: {}. Vai alla distribuzione delle armate sui territori".format(player.colore , player.obiettivoGiocatore.code , player.numArmy , ([x.code for x in player.territori])))
 
 					self.STATO=1.1
 
@@ -374,7 +374,7 @@ class Partita(object):
 
 					if self.query["attesa"]==["2"]:
 
-						self.response("Benvenuto nella Terra di Mezzo. Colore della tua armata: {}, Il tuo obiettivo: {}, Armate da distribuire: {}. Lista dei tuoi territori: {}. Vai alla distribuzione delle armate sui territori".format(player.colore , player.obiettivoGiocatore.code , player.numArmy , x.code for x in player.territori))
+						self.response("Benvenuto nella Terra di Mezzo. Colore della tua armata: {}, Il tuo obiettivo: {}, Armate da distribuire: {}. Lista dei tuoi territori: {}. Vai alla distribuzione delle armate sui territori".format(player.colore , player.obiettivoGiocatore.code , player.numArmy , [x.code for x in player.territori]))
 
 					elif self.query["attesa"]==["3"]:
 
@@ -1762,34 +1762,34 @@ class Partita(object):
 		toReturn={}
 
 		if self.numPmax==3:
+			# To indent properly a multi-line dictionaty see:
+			# https://stackoverflow.com/questions/6388187/what-is-the-proper-way-to-format-a-multi-line-dict-in-python
 
 			toReturn={
+				"cUsate":[x.code for x in self.carteUsate],
+				"pTurno":self.giocatoreDelTurno,	
+				"p1":{
 
-				"cUsate":[x.code for x in self.carteUsate]
-				"pTurno":self.giocatoreDelTurno
-
-				"p1"{
-
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
 
 				},	
-				"p2"{
+				"p2":{
 
-					"coloreP":self.giocatori[1].colore
-					"codezTerritori":[x.code for x in self.giocatori[1].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[1].territori]
-					"eliminatez":self.giocatore[1].eliminato
+					"coloreP":self.giocatori[1].colore,
+					"codezTerritori":[x.code for x in self.giocatori[1].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[1].territori],
+					"eliminatez":self.giocatore[1].eliminato,
 
 				},	
-				"p1"{
+				"p1":{
 
-					"coloreP":self.giocatori[2].colore
-					"codezTerritori":[x.code for x in self.giocatori[2].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[2].territori]
-					"eliminatez":self.giocatore[2].eliminato
+					"coloreP":self.giocatori[2].colore,
+					"codezTerritori":[x.code for x in self.giocatori[2].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[2].territori],
+					"eliminatez":self.giocatore[2].eliminato,
 
 				}	
 
@@ -1799,39 +1799,39 @@ class Partita(object):
 
 			toReturn={
 
-				"cUsate":[x.code for x in self.carteUsate]
-				"pTurno":self.giocatoreDelTurno
+				"cUsate":[x.code for x in self.carteUsate],
+				"pTurno":self.giocatoreDelTurno,
 
-				"p1"{
+				"p1":{
 
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
-
-				},	
-				"p2"{
-
-					"coloreP":self.giocatori[1].colore
-					"codezTerritori":[x.code for x in self.giocatori[1].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[1].territori]
-					"eliminatez":self.giocatore[1].eliminato
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
 
 				},	
-				"p3"{
+				"p2":{
 
-					"coloreP":self.giocatori[2].colore
-					"codezTerritori":[x.code for x in self.giocatori[2].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[2].territori]
-					"eliminatez":self.giocatore[2].eliminato
+					"coloreP":self.giocatori[1].colore,
+					"codezTerritori":[x.code for x in self.giocatori[1].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[1].territori],
+					"eliminatez":self.giocatore[1].eliminato,
 
 				},	
-				"p4"{
+				"p3":{
 
-					"coloreP":self.giocatori[3].colore
-					"codezTerritori":[x.code for x in self.giocatori[3].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[3].territori]
-					"eliminatez":self.giocatore[3].eliminato
+					"coloreP":self.giocatori[2].colore,
+					"codezTerritori":[x.code for x in self.giocatori[2].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[2].territori],
+					"eliminatez":self.giocatore[2].eliminato,
+
+				},	
+				"p4":{
+
+					"coloreP":self.giocatori[3].colore,
+					"codezTerritori":[x.code for x in self.giocatori[3].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[3].territori],
+					"eliminatez":self.giocatore[3].eliminato,
 
 				}
 
@@ -1841,47 +1841,47 @@ class Partita(object):
 
 			toReturn={
 
-				"cUsate":[x.code for x in self.carteUsate]
-				"pTurno":self.giocatoreDelTurno
+				"cUsate":[x.code for x in self.carteUsate],
+				"pTurno":self.giocatoreDelTurno,
 
-				"p1"{
+				"p1":{
 
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
-
-				},	
-				"p2"{
-
-					"coloreP":self.giocatori[1].colore
-					"codezTerritori":[x.code for x in self.giocatori[1].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[1].territori]
-					"eliminatez":self.giocatore[1].eliminato
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
 
 				},	
-				"p3"{
+				"p2":{
 
-					"coloreP":self.giocatori[2].colore
-					"codezTerritori":[x.code for x in self.giocatori[2].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[2].territori]
-					"eliminatez":self.giocatore[2].eliminato
+					"coloreP":self.giocatori[1].colore,
+					"codezTerritori":[x.code for x in self.giocatori[1].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[1].territori],
+					"eliminatez":self.giocatore[1].eliminato,
+
+				},	
+				"p3":{
+
+					"coloreP":self.giocatori[2].colore,
+					"codezTerritori":[x.code for x in self.giocatori[2].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[2].territori],
+					"eliminatez":self.giocatore[2].eliminato,
 
 				},
-				"p4"{
+				"p4":{
 
-					"coloreP":self.giocatori[3].colore
-					"codezTerritori":[x.code for x in self.giocatori[3].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[3].territori]
-					"eliminatez":self.giocatore[3].eliminato
+					"coloreP":self.giocatori[3].colore,
+					"codezTerritori":[x.code for x in self.giocatori[3].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[3].territori],
+					"eliminatez":self.giocatore[3].eliminato,
 
 				},	
-				"p5"{
+				"p5":{
 
-					"coloreP":self.giocatori[4].colore
-					"codezTerritori":[x.code for x in self.giocatori[4].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[4].territori]
-					"eliminatez":self.giocatore[4].eliminato
+					"coloreP":self.giocatori[4].colore,
+					"codezTerritori":[x.code for x in self.giocatori[4].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[4].territori],
+					"eliminatez":self.giocatore[4].eliminato,
 
 				}					
 
@@ -1891,56 +1891,56 @@ class Partita(object):
 
 			toReturn={
 
-				"cUsate":[x.code for x in self.carteUsate]
-				"pTurno":self.giocatoreDelTurno
+				"cUsate":[x.code for x in self.carteUsate],
+				"pTurno":self.giocatoreDelTurno,
 
-				"p1"{
+				"p1":{ #ATENZIONE!! qua tutti i pN, ritornano propiet'a del giocatore [0]!!!
+						# TODO: FIX
 
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
-
-				},	
-				"p1"{
-
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
 
 				},	
-				"p1"{
+				"p2":{
 
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
+
+				},	
+				"p3":{
+
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
 
 				},
-				"p1"{
+				"p4":{
 
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
-
-				},	
-				"p1"{
-
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
 
 				},	
-				"p1"{
+				"p5":{
 
-					"coloreP":self.giocatori[0].colore
-					"codezTerritori":[x.code for x in self.giocatori[0].territori]
-					"numATerritori":[x.numArmy for x in self.giocatori[0].territori]
-					"eliminatez":self.giocatore[0].eliminato
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
 
+				},	
+				"p6":{
+
+					"coloreP":self.giocatori[0].colore,
+					"codezTerritori":[x.code for x in self.giocatori[0].territori],
+					"numATerritori":[x.numArmy for x in self.giocatori[0].territori],
+					"eliminatez":self.giocatore[0].eliminato,
 				}
 
 
